@@ -139,46 +139,50 @@
     });
   }
 
-  /* ---------- 5. KURZOR-ELŐNÉZET a tipográfiai indexen ---------- */
-  var peekHost = document.querySelector('.peek');
-  if (peekHost && fine && !reduce) {
-    var rows = [].slice.call(document.querySelectorAll('[data-peek]'));
-    if (rows.length) {
-      var imgs = {};
-      rows.forEach(function (r) {
-        var src = r.dataset.peek;
-        if (imgs[src]) return;
-        var im = new Image();
-        im.src = src; im.alt = '';
-        peekHost.appendChild(im);
-        imgs[src] = im;
+  /* ---------- 5. DOKKOLT ELŐNÉZET a tipográfiai indexen ----------
+     A kép egy ragadó keretben áll a lista mellett, sosem takar szöveget.
+     Hover váltja a képet és a feliratot; az utolsó kép bent marad. */
+  var dock = document.querySelector('.idxview__frame');
+  if (dock && fine) {
+    var dimgs = [].slice.call(dock.querySelectorAll('img'));
+    var dcap = document.querySelector('.idxview__cap [data-cap]');
+    [].slice.call(document.querySelectorAll('[data-peek]')).forEach(function (r) {
+      r.addEventListener('mouseenter', function () {
+        var src = r.getAttribute('data-peek');
+        for (var i = 0; i < dimgs.length; i++) {
+          dimgs[i].classList.toggle('on', dimgs[i].getAttribute('src') === src);
+        }
+        if (dcap) {
+          var t = r.querySelector('.idx__t');
+          if (t) dcap.textContent = t.textContent;
+        }
       });
-      var tx = innerWidth / 2, ty = innerHeight / 2, cx = tx, cy = ty, on = false, pRAF = 0;
-      function pLoop() {
-        cx += (tx - cx) * 0.13; cy += (ty - cy) * 0.13;
-        peekHost.style.transform = 'translate3d(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px,0) translate(-50%,-50%)' + (on ? ' scale(1)' : ' scale(.94)');
-        if (Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4 || on) pRAF = requestAnimationFrame(pLoop);
-        else pRAF = 0;
-      }
-      addEventListener('mousemove', function (e) {
-        tx = e.clientX + 190; ty = e.clientY;
-        if (tx > innerWidth - 200) tx = e.clientX - 190;
-        if (!pRAF) pRAF = requestAnimationFrame(pLoop);
-      }, { passive: true });
-      rows.forEach(function (r) {
-        r.addEventListener('mouseenter', function () {
-          on = true; peekHost.classList.add('on');
-          for (var k in imgs) imgs[k].classList.toggle('on', k === r.dataset.peek);
-          if (!pRAF) pRAF = requestAnimationFrame(pLoop);
-        });
-        r.addEventListener('mouseleave', function () {
-          on = false; peekHost.classList.remove('on');
-        });
-      });
-    }
+    });
   }
 
-  /* ---------- 5/b. FEJEZET-JELÖLŐ a ragadó indexen (GSAP-mentes) ---------- */
+  /* ---------- 5/b. SZŰRŐ CHIPEK a referencialistán ----------
+     Egy aktív chip; a sorok data-cat tagek alapján rejtődnek. A tételszámláló
+     követi a szűrést. */
+  var chips = [].slice.call(document.querySelectorAll('.chip[data-filter]'));
+  if (chips.length) {
+    var frows = [].slice.call(document.querySelectorAll('.idx__row[data-cat]'));
+    var counter = document.querySelector('[data-count]');
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        chips.forEach(function (x) { x.classList.toggle('on', x === c); });
+        var f = c.getAttribute('data-filter');
+        var shown = 0;
+        frows.forEach(function (r) {
+          var ok = f === 'all' || (' ' + r.getAttribute('data-cat') + ' ').indexOf(' ' + f + ' ') !== -1;
+          r.classList.toggle('is-hidden', !ok);
+          if (ok) shown++;
+        });
+        if (counter) counter.textContent = shown;
+      });
+    });
+  }
+
+  /* ---------- 5/c. FEJEZET-JELÖLŐ a ragadó indexen (GSAP-mentes) ---------- */
   var chapNav = document.querySelector('.chapx__nav');
   if (chapNav) {
     var links = [].slice.call(chapNav.querySelectorAll('a[href^="#"]'));

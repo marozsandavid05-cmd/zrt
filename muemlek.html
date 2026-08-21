@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=zodiak@400,700,401&f%5B%5D=switzer@400,500,600&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=erode@400,401,500,700&f%5B%5D=supreme@400,401,500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <style>
@@ -35,13 +35,16 @@ body.p-muemlek .m-cap__r{text-align:right}
   body.p-muemlek .m-cap__s{grid-column:1/-1;grid-row:2;margin-inline:0}
 }
 
-/* falszövet-szekció: aszimmetrikus szöveg + adatoszlop */
+/* falszövet-szekció: három egyenrangú hasáb (szöveg · adat · fotó), nincs üres tér */
 body.p-muemlek .m-falt{max-width:18ch;margin-top:var(--sp-3)}
-body.p-muemlek .m-fal{display:grid;grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr);
-  gap:clamp(2rem,6vw,5.5rem);align-items:start;margin-top:clamp(2rem,5vh,3.5rem)}
+body.p-muemlek .m-fal{display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,.85fr) minmax(0,330px);
+  gap:clamp(1.6rem,4vw,4rem);align-items:start;margin-top:clamp(2rem,5vh,3.5rem)}
 body.p-muemlek .m-fal p + p{margin-top:var(--sp-2)}
 body.p-muemlek .m-side{display:flex;flex-direction:column;gap:var(--sp-3)}
-body.p-muemlek .m-fb{max-width:440px}
+body.p-muemlek .m-fb{max-width:440px;background:transparent}
+@media(max-width:1120px){body.p-muemlek .m-fal{grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr)}
+  body.p-muemlek .m-fal .m-fb{grid-column:1;margin-top:0}}
 @media(max-width:900px){body.p-muemlek .m-fal{grid-template-columns:1fr}}
 
 /* menet: négy szakasz egy sávban, nem kártyarács-érzet */
@@ -56,10 +59,13 @@ body.p-muemlek .m-kor .idx__row{cursor:default}
   body.p-muemlek .m-kor .idx__row:hover .idx__t{color:var(--ink)}
 }
 
-/* tagozat-sáv: álló fotó mellett idézet */
+/* tagozat-sáv: a fotó a szöveg-hasáb magasságát veszi fel, nincs üres tér */
 body.p-muemlek .m-band{display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1fr);
-  gap:clamp(2rem,5vw,4.5rem);align-items:center;margin-bottom:clamp(3.5rem,9vh,7rem)}
-body.p-muemlek .m-band__txt{display:flex;flex-direction:column;gap:var(--sp-3);align-items:flex-start}
+  gap:clamp(2rem,5vw,4.5rem);align-items:stretch;margin-bottom:clamp(3.5rem,9vh,7rem)}
+body.p-muemlek .m-band figure{display:flex;flex-direction:column;height:100%;min-height:0}
+body.p-muemlek .m-band figure img{flex:1 1 0;min-height:22rem;width:100%;object-fit:cover}
+body.p-muemlek .m-band__txt{display:flex;flex-direction:column;gap:var(--sp-3);
+  align-items:flex-start;justify-content:center}
 body.p-muemlek .m-band__txt .quote{margin-block:.2rem}
 @media(max-width:900px){body.p-muemlek .m-band{grid-template-columns:1fr}}
 
@@ -105,12 +111,12 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
   <div class="nav__in">
     <a href="index.html" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
     <div class="nav__links">
-      <a href="mit-epitunk.html" class="nav__a">Mit építünk</a>
+      <a href="mit-epitunk.html" class="nav__a nav__a--sect">Mit építünk</a>
       <a href="hogyan-epitunk.html" class="nav__a">Hogyan építünk</a>
       <a href="referenciak.html" class="nav__a">Referenciák</a>
       <a href="szamok.html" class="nav__a">Számok</a>
       <a href="rolunk.html" class="nav__a">Rólunk</a>
-      <a href="kapcsolat.html" class="nav__tel">+36 70 403 7217</a>
+      <a href="kapcsolat.html" class="nav__tel">Kapcsolat<b> &middot; +36 70 403 7217</b></a>
     </div>
     <button class="burger" type="button" aria-expanded="false" aria-label="Menü"><i></i><i></i></button>
   </div>
@@ -119,9 +125,9 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
   <p class="lab">Oldalak</p>
   <a href="index.html">Főoldal</a>
   <a href="mit-epitunk.html">Mit építünk</a>
+  <a href="foghij.html" class="mob__sub">Foghíjbeépítés</a>
+  <a href="muemlek.html" aria-current="page" class="mob__sub">Műemlék és homlokzat</a>
   <a href="hogyan-epitunk.html">Hogyan építünk</a>
-  <a href="foghij.html">Foghíjbeépítés</a>
-  <a href="muemlek.html" aria-current="page">Műemlék és homlokzat</a>
   <a href="referenciak.html">Referenciák</a>
   <a href="szamok.html">Számok</a>
   <a href="rolunk.html">Rólunk</a>
@@ -201,12 +207,12 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
           <div><dt>Engedély</dt><dd>Örökségvédelmi</dd></div>
         </dl>
         <p class="lab">Minta értékek, épületenként újramérve</p>
-
-        <figure class="shot m-fb" data-in data-d="3">
-          <img src="media/fb/fb-04.webp" alt="Raklapos anyag emelése autódaruval egy szűk belvárosi utcában, jobbra homlokzati állványzat pallói" loading="lazy" width="443" height="591">
-          <figcaption class="shot__cap lab">Saját helyszíni felvétel · anyagmozgatás közterületről</figcaption>
-        </figure>
       </div>
+
+      <figure class="shot m-fb" data-in data-d="3">
+        <img src="media/fb/fb-04.webp" alt="Raklapos anyag emelése autódaruval egy szűk belvárosi utcában, jobbra homlokzati állványzat pallói" loading="lazy" width="443" height="591">
+        <figcaption class="shot__cap lab">Saját helyszíni felvétel · anyagmozgatás közterületről</figcaption>
+      </figure>
     </div>
   </div>
 </section>

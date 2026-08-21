@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=zodiak@400,700,401&f%5B%5D=switzer@400,500,600&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=erode@400,401,500,700&f%5B%5D=supreme@400,401,500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <style>
@@ -58,8 +58,9 @@ body.p-rolunk .tl__foot{margin-top:clamp(2rem,5vh,3.2rem);display:grid;
 
 /* helyszíni felvétel a munkamódszer alatt: a saját fotó csak kicsiben */
 body.p-rolunk .ev{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);
-  gap:clamp(1.4rem,4vw,3.5rem);align-items:start;margin-top:clamp(2.5rem,6vh,4rem);
+  gap:clamp(1.4rem,4vw,3.5rem);align-items:center;margin-top:clamp(2.5rem,6vh,4rem);
   padding-top:clamp(1.8rem,5vh,3rem);border-top:1px solid var(--line)}
+body.p-rolunk .ev figure img{width:100%;aspect-ratio:1/1;object-fit:cover}
 body.p-rolunk .ev p{font-size:.96rem}
 body.p-rolunk .ev p+p{margin-top:var(--sp-2)}
 body.p-rolunk .ev .lab-rule{margin-bottom:var(--sp-2)}
@@ -86,7 +87,7 @@ body.p-rolunk .prt__k p{font-size:.94rem;margin-top:.55rem}
 /* zárás: fotó, törzsadat, jegyzet */
 body.p-rolunk .fin{margin-top:clamp(2.5rem,6vh,4rem)}
 body.p-rolunk .co{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
-  gap:var(--sp-4) clamp(2rem,6vw,5rem);align-items:start}
+  gap:var(--sp-4) clamp(2rem,6vw,5rem);align-items:center}
 body.p-rolunk .co__side{display:flex;flex-direction:column;gap:var(--sp-2);align-items:flex-start}
 body.p-rolunk .co__side p{font-size:.94rem;color:var(--ink-2)}
 body.p-rolunk .co__side .btn{margin-top:.4rem}
@@ -117,7 +118,7 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
       <a href="referenciak.html" class="nav__a">Referenciák</a>
       <a href="szamok.html" class="nav__a">Számok</a>
       <a href="rolunk.html" aria-current="page" class="nav__a">Rólunk</a>
-      <a href="kapcsolat.html" class="nav__tel">+36 70 403 7217</a>
+      <a href="kapcsolat.html" class="nav__tel">Kapcsolat<b> &middot; +36 70 403 7217</b></a>
     </div>
     <button class="burger" type="button" aria-expanded="false" aria-label="Menü"><i></i><i></i></button>
   </div>
@@ -126,9 +127,9 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
   <p class="lab">Oldalak</p>
   <a href="index.html">Főoldal</a>
   <a href="mit-epitunk.html">Mit építünk</a>
+  <a href="foghij.html" class="mob__sub">Foghíjbeépítés</a>
+  <a href="muemlek.html" class="mob__sub">Műemlék és homlokzat</a>
   <a href="hogyan-epitunk.html">Hogyan építünk</a>
-  <a href="foghij.html">Foghíjbeépítés</a>
-  <a href="muemlek.html">Műemlék és homlokzat</a>
   <a href="referenciak.html">Referenciák</a>
   <a href="szamok.html">Számok</a>
   <a href="rolunk.html" aria-current="page">Rólunk</a>

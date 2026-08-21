@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=zodiak@400,700,401&f%5B%5D=switzer@400,500,600&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=erode@400,401,500,700&f%5B%5D=supreme@400,401,500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <style>
@@ -33,6 +33,11 @@ body.p-foghij .blk{display:grid;grid-template-columns:minmax(0,8.5rem) minmax(0,
 body.p-foghij .blk__n{padding-top:.9rem;border-top:1px solid var(--okker)}
 body.p-foghij .blk__h{font-size:var(--t-3);max-width:21ch}
 body.p-foghij .blk__b{margin-top:var(--sp-3);display:grid;gap:var(--sp-2)}
+/* széles nézetben a tiszta szöveg két hasábra folyik: nincs üres jobb oldal */
+@media(min-width:1000px){
+  body.p-foghij .blk__b{display:block;columns:2;column-gap:clamp(2.5rem,4.5vw,4.5rem)}
+  body.p-foghij .blk__b p{max-width:none;margin:0 0 var(--sp-2)}
+}
 body.p-foghij .blk__b a{border-bottom:1px solid var(--okker);padding-bottom:1px}
 body.p-foghij .blk__b a:hover{color:var(--okker)}
 body.p-foghij #tetoter{scroll-margin-top:calc(var(--nav-h) + 2rem)}
@@ -92,12 +97,12 @@ body.p-foghij .stack{margin-top:clamp(2rem,5vh,3.5rem)}
   <div class="nav__in">
     <a href="index.html" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
     <div class="nav__links">
-      <a href="mit-epitunk.html" class="nav__a">Mit építünk</a>
+      <a href="mit-epitunk.html" class="nav__a nav__a--sect">Mit építünk</a>
       <a href="hogyan-epitunk.html" class="nav__a">Hogyan építünk</a>
       <a href="referenciak.html" class="nav__a">Referenciák</a>
       <a href="szamok.html" class="nav__a">Számok</a>
       <a href="rolunk.html" class="nav__a">Rólunk</a>
-      <a href="kapcsolat.html" class="nav__tel">+36 70 403 7217</a>
+      <a href="kapcsolat.html" class="nav__tel">Kapcsolat<b> &middot; +36 70 403 7217</b></a>
     </div>
     <button class="burger" type="button" aria-expanded="false" aria-label="Menü"><i></i><i></i></button>
   </div>
@@ -106,9 +111,9 @@ body.p-foghij .stack{margin-top:clamp(2rem,5vh,3.5rem)}
   <p class="lab">Oldalak</p>
   <a href="index.html">Főoldal</a>
   <a href="mit-epitunk.html">Mit építünk</a>
+  <a href="foghij.html" aria-current="page" class="mob__sub">Foghíjbeépítés</a>
+  <a href="muemlek.html" class="mob__sub">Műemlék és homlokzat</a>
   <a href="hogyan-epitunk.html">Hogyan építünk</a>
-  <a href="foghij.html" aria-current="page">Foghíjbeépítés</a>
-  <a href="muemlek.html">Műemlék és homlokzat</a>
   <a href="referenciak.html">Referenciák</a>
   <a href="szamok.html">Számok</a>
   <a href="rolunk.html">Rólunk</a>

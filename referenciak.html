@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=zodiak@400,700,401&f%5B%5D=switzer@400,500,600&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=erode@400,401,500,700&f%5B%5D=supreme@400,401,500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <style>
@@ -27,14 +27,8 @@ body.p-ref .r-head{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;align-items:base
   justify-content:space-between;padding-block:clamp(1.6rem,4vh,2.6rem)}
 /* a meta három szedett sorra bomlik: hely és év · méret · szerep */
 body.p-ref .idx__m{line-height:1.62}
-@media(min-width:901px){
-  body.p-ref .idx__row{grid-template-columns:3.6rem minmax(0,1fr) minmax(0,13rem) 13.5rem;
-    gap:var(--sp-2)}
-}
-@media(min-width:1200px){
-  body.p-ref .idx__row{grid-template-columns:4.5rem minmax(0,1fr) minmax(0,17rem) 13.5rem;
-    gap:var(--sp-3)}
-}
+/* a dokkolt előnézet mellett magasabb keret fér el a hosszú listához */
+body.p-ref .idxview__frame{aspect-ratio:3/4}
 body.p-ref .r-two{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);
   gap:var(--sp-4) clamp(2rem,5vw,5rem);align-items:start}
 body.p-ref .r-two--cta{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
@@ -72,7 +66,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
       <a href="referenciak.html" aria-current="page" class="nav__a">Referenciák</a>
       <a href="szamok.html" class="nav__a">Számok</a>
       <a href="rolunk.html" class="nav__a">Rólunk</a>
-      <a href="kapcsolat.html" class="nav__tel">+36 70 403 7217</a>
+      <a href="kapcsolat.html" class="nav__tel">Kapcsolat<b> &middot; +36 70 403 7217</b></a>
     </div>
     <button class="burger" type="button" aria-expanded="false" aria-label="Menü"><i></i><i></i></button>
   </div>
@@ -81,9 +75,9 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
   <p class="lab">Oldalak</p>
   <a href="index.html">Főoldal</a>
   <a href="mit-epitunk.html">Mit építünk</a>
+  <a href="foghij.html" class="mob__sub">Foghíjbeépítés</a>
+  <a href="muemlek.html" class="mob__sub">Műemlék és homlokzat</a>
   <a href="hogyan-epitunk.html">Hogyan építünk</a>
-  <a href="foghij.html">Foghíjbeépítés</a>
-  <a href="muemlek.html">Műemlék és homlokzat</a>
   <a href="referenciak.html" aria-current="page">Referenciák</a>
   <a href="szamok.html">Számok</a>
   <a href="rolunk.html">Rólunk</a>
@@ -112,24 +106,25 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
 
   <div class="filt" data-in>
     <span class="lab filt__lab">Szűrés</span>
-    <span class="chip on">Mind</span>
-    <span class="chip">Társasház</span>
-    <span class="chip">Foghíj</span>
-    <span class="chip">Tetőtér</span>
-    <span class="chip">Műemlék</span>
-    <span class="chip">Csarnok</span>
-    <span class="chip">Szerkezetépítés</span>
-    <span class="chip">Generálkivitelezés</span>
+    <button type="button" class="chip on" data-filter="all">Mind</button>
+    <button type="button" class="chip" data-filter="tarsashaz">Társasház</button>
+    <button type="button" class="chip" data-filter="foghij">Foghíj</button>
+    <button type="button" class="chip" data-filter="tetoter">Tetőtér</button>
+    <button type="button" class="chip" data-filter="muemlek">Műemlék</button>
+    <button type="button" class="chip" data-filter="csarnok">Csarnok</button>
+    <button type="button" class="chip" data-filter="szerkezet">Szerkezetépítés</button>
+    <button type="button" class="chip" data-filter="general">Generálkivitelezés</button>
   </div>
 
   <div class="r-head">
     <p class="lab lab--ok" data-in>Minta projektek</p>
-    <p class="lab" data-in data-d="1">11 tétel · 2021-2025</p>
+    <p class="lab" data-in data-d="1"><span data-count>11</span> tétel · 2021-2025</p>
   </div>
 
+  <div class="idxwrap">
   <div class="idx">
 
-    <a class="idx__row" href="projekt-erzsebetvaros.html" data-in data-d="1" data-peek="media/projektek/p1.webp">
+    <a class="idx__row" href="projekt-erzsebetvaros.html" data-in data-d="1" data-cat="tarsashaz foghij general" data-peek="media/projektek/p1.webp">
       <span class="idx__n">01</span>
       <span class="idx__t">Társasház két tűzfal között, Erzsébetváros</span>
       <span class="idx__x">Tizenkét méter utcai homlokzat, felvonulási terület nélkül.</span>
@@ -138,7 +133,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         generál</span>
     </a>
 
-    <a class="idx__row" href="kapcsolat.html" data-in data-d="2" data-peek="media/projektek/p2.webp">
+    <a class="idx__row" href="kapcsolat.html" data-in data-d="2" data-peek="media/projektek/p2.webp" data-cat="tarsashaz tetoter general szerkezet">
       <span class="idx__n">02</span>
       <span class="idx__t">Tetőtér-ráépítés lakott bérház fölé, Terézváros</span>
       <span class="idx__x">A lakók a helyükön maradtak, a lépcsőház végig működött.</span>
@@ -147,7 +142,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         generál · szerkezet</span>
     </a>
 
-    <a class="idx__row" href="projekt-palotanegyed.html" data-in data-d="3" data-peek="media/projektek/p3.webp">
+    <a class="idx__row" href="projekt-palotanegyed.html" data-in data-d="3" data-cat="muemlek general" data-peek="media/projektek/p3.webp">
       <span class="idx__n">03</span>
       <span class="idx__t">Műemléki homlokzat-helyreállítás, Palotanegyed</span>
       <span class="idx__x">Restaurátori kutatás, örökségvédelmi engedély, védőtetős állvány.</span>
@@ -156,7 +151,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         generál</span>
     </a>
 
-    <a class="idx__row" href="kapcsolat.html" data-in data-d="4" data-peek="media/szolgaltatasok/zsalu.webp">
+    <a class="idx__row" href="kapcsolat.html" data-in data-d="4" data-peek="media/szolgaltatasok/zsalu.webp" data-cat="tarsashaz szerkezet">
       <span class="idx__n">04</span>
       <span class="idx__t">Monolit vasbeton szerkezet belső udvaros bérháznál</span>
       <span class="idx__x">Szerkezetkész, vízhatlan állapotig, fix áron.</span>
@@ -165,7 +160,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         szerkezet</span>
     </a>
 
-    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/projektek/p5.webp">
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/projektek/p5.webp" data-cat="tarsashaz general szerkezet">
       <span class="idx__n">05</span>
       <span class="idx__t">Új építésű társasház, Józsefváros</span>
       <span class="idx__x">Szabadon álló telek, mélygarázs, két ütemben szerződve.</span>
@@ -174,7 +169,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         generál · szerkezet</span>
     </a>
 
-    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/projektek/p4.webp">
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/projektek/p4.webp" data-cat="general">
       <span class="idx__n">06</span>
       <span class="idx__t">Irodaház homlokzat és födém-megerősítés</span>
       <span class="idx__x">Működő bérlők mellett, szintenként ütemezve.</span>
@@ -183,7 +178,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         generál</span>
     </a>
 
-    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/melyepites.webp">
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/melyepites.webp" data-cat="szerkezet">
       <span class="idx__n">07</span>
       <span class="idx__t">Alapmegerősítés szomszédos épület mellett, Belváros</span>
       <span class="idx__x">Talajszilárdítás, a szomszéd falán geodéziai mozgásfigyeléssel.</span>
@@ -192,7 +187,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         szerkezet</span>
     </a>
 
-    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/tetoszerkezet.webp">
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/tetoszerkezet.webp" data-cat="tarsashaz tetoter general">
       <span class="idx__n">08</span>
       <span class="idx__t">Tetőtér-beépítés bérházban, Józsefváros</span>
       <span class="idx__x">A fedélszék megmaradt, az új szint könnyűszerkezetből épült.</span>
@@ -201,7 +196,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         generál</span>
     </a>
 
-    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/csarnok.webp">
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/csarnok.webp" data-cat="csarnok general">
       <span class="idx__n">09</span>
       <span class="idx__t">Ipari csarnok és kiszolgáló épület</span>
       <span class="idx__x">Alapozástól a technológiai fogadószintig, egy szerződésben.</span>
@@ -210,7 +205,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         generál</span>
     </a>
 
-    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/vasbeton-vaz.webp">
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/vasbeton-vaz.webp" data-cat="tarsashaz general szerkezet">
       <span class="idx__n">10</span>
       <span class="idx__t">Negyvennyolc lakásos társasház</span>
       <span class="idx__x">A vállalt méretsáv felső vége, két ütemű átadással.</span>
@@ -219,7 +214,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         generál · szerkezet</span>
     </a>
 
-    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/homlokzat-klasszikus.webp">
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/homlokzat-klasszikus.webp" data-cat="muemlek general">
       <span class="idx__n">11</span>
       <span class="idx__t">Várfal- és műemlék-helyreállítás</span>
       <span class="idx__x">Történeti falszövet, kézi bontás, helyben kevert mészhabarcs.</span>
@@ -228,6 +223,23 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         generál</span>
     </a>
 
+  </div>
+  <aside class="idxview" aria-hidden="true">
+    <div class="idxview__frame">
+      <img src="media/projektek/p1.webp" alt="" class="on">
+      <img src="media/projektek/p2.webp" alt="" loading="lazy">
+      <img src="media/projektek/p3.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/zsalu.webp" alt="" loading="lazy">
+      <img src="media/projektek/p5.webp" alt="" loading="lazy">
+      <img src="media/projektek/p4.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/melyepites.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/tetoszerkezet.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/csarnok.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/vasbeton-vaz.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/homlokzat-klasszikus.webp" alt="" loading="lazy">
+    </div>
+    <p class="lab idxview__cap"><span data-cap>Társasház két tűzfal között</span><span class="lab--ok">Előnézet</span></p>
+  </aside>
   </div>
 </section>
 
@@ -306,14 +318,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
     </div>
 
     <div class="r-side" data-in data-d="3">
-      <figure>
-        <div class="shot">
-          <img src="media/fb/fb-02.webp" width="443" height="590" loading="lazy"
-               alt="Két kompakt lánctalpas emelőgép egy szűk belvárosi utcában, felülnézetből, közvetlenül a klasszikus homlokzat mellett">
-        </div>
-        <figcaption class="lab shot__cap">Emelés közterületről, zártsorú beépítésben</figcaption>
-      </figure>
-      <p class="lab lab-rule r-side__t">Amit a bejáráson megmutatunk</p>
+      <p class="lab lab-rule">Amit a bejáráson megmutatunk</p>
       <dl class="spec">
         <div><dt>Munkaterület</dt><dd>Egy folyamatban lévő és egy átadott helyszín.</dd></div>
         <div><dt>Dokumentum</dt><dd>Építési napló, minőség-kapuk jegyzőkönyvei, mérési jegyzőkönyvek.</dd></div>
@@ -371,7 +376,6 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
 </footer>
 <!-- CHROME:FOOTER:end -->
 
-<div class="peek" aria-hidden="true"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>

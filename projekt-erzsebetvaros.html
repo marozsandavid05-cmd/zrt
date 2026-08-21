@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=zodiak@400,700,401&f%5B%5D=switzer@400,500,600&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=erode@400,401,500,700&f%5B%5D=supreme@400,401,500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <style>
@@ -45,7 +45,8 @@ body.p-case .krow--first{border-top:1px solid var(--line)}
 body.p-case .krow h3{font-size:var(--t-2);max-width:24ch}
 body.p-case .krow p{margin-top:.75rem;color:var(--ink-2)}
 body.p-case .krow .lab{padding-top:.5em}
-body.p-case .kor__side{display:flex;flex-direction:column;gap:var(--sp-3)}
+body.p-case .kor__side{display:flex;flex-direction:column;gap:var(--sp-3);
+  position:sticky;top:calc(var(--nav-h) + 2rem)}
 body.p-case .kor__side .spec{width:100%}
 /* a hosszabb mono címkéknek (FELVONULÁSI TERÜLET) szűk hasábban több hely kell */
 body.p-case .kor__side .spec>div{grid-template-columns:minmax(0,11.5rem) minmax(0,1fr)}
@@ -58,7 +59,7 @@ body.p-case .mego{margin-top:clamp(2.4rem,6vh,3.8rem)}
 body.p-case .mego .stack__i{gap:.55rem}
 body.p-case .mego .stack__i p{color:var(--ink-dark-2)}
 body.p-case .mego__wide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(1.5rem,5vw,4rem);align-items:end;margin-bottom:clamp(2rem,5vh,3.2rem)}
+  gap:clamp(1.5rem,5vw,4rem);align-items:center;margin-bottom:clamp(2rem,5vh,3.2rem)}
 body.p-case .mego__wide p + p{margin-top:var(--sp-2)}
 
 /* eredmény: szám-sor + dosszié-tábla + idézetsáv */
@@ -74,8 +75,9 @@ body.p-case .qband{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,
 body.p-case .qband .quote{font-size:clamp(1.55rem,3.2vw,3.2rem);max-width:26ch}
 
 /* helyszíni felvételek: az fb-fotók csak 443px szélesek, sosem nagyobbak */
-body.p-case .fbgrid{display:grid;grid-template-columns:repeat(2,minmax(0,440px));
+body.p-case .fbgrid{display:grid;grid-template-columns:repeat(3,minmax(0,440px));
   gap:clamp(1rem,3vw,2rem);margin-top:var(--sp-3)}
+@media(max-width:1100px){body.p-case .fbgrid{grid-template-columns:repeat(2,minmax(0,440px))}}
 body.p-case .fbgrid img{width:100%;height:auto}
 body.p-case .fbnote{margin-top:var(--sp-4);max-width:62ch}
 body.p-case .case-cta{display:flex;flex-wrap:wrap;justify-content:space-between;
@@ -127,10 +129,10 @@ body.p-case .pg:hover .pg__t{color:var(--okker)}
     <div class="nav__links">
       <a href="mit-epitunk.html" class="nav__a">Mit építünk</a>
       <a href="hogyan-epitunk.html" class="nav__a">Hogyan építünk</a>
-      <a href="referenciak.html" class="nav__a">Referenciák</a>
+      <a href="referenciak.html" class="nav__a nav__a--sect">Referenciák</a>
       <a href="szamok.html" class="nav__a">Számok</a>
       <a href="rolunk.html" class="nav__a">Rólunk</a>
-      <a href="kapcsolat.html" class="nav__tel">+36 70 403 7217</a>
+      <a href="kapcsolat.html" class="nav__tel">Kapcsolat<b> &middot; +36 70 403 7217</b></a>
     </div>
     <button class="burger" type="button" aria-expanded="false" aria-label="Menü"><i></i><i></i></button>
   </div>
@@ -139,9 +141,9 @@ body.p-case .pg:hover .pg__t{color:var(--okker)}
   <p class="lab">Oldalak</p>
   <a href="index.html">Főoldal</a>
   <a href="mit-epitunk.html">Mit építünk</a>
+  <a href="foghij.html" class="mob__sub">Foghíjbeépítés</a>
+  <a href="muemlek.html" class="mob__sub">Műemlék és homlokzat</a>
   <a href="hogyan-epitunk.html">Hogyan építünk</a>
-  <a href="foghij.html">Foghíjbeépítés</a>
-  <a href="muemlek.html">Műemlék és homlokzat</a>
   <a href="referenciak.html">Referenciák</a>
   <a href="szamok.html">Számok</a>
   <a href="rolunk.html">Rólunk</a>
@@ -294,9 +296,9 @@ body.p-case .pg:hover .pg__t{color:var(--okker)}
       <figure data-in>
         <div class="shot">
           <img src="media/szolgaltatasok/melyepites.webp" loading="lazy"
-               alt="Nyers betonfelületű támfal és megtámasztott munkagödör oldala egy alapozási munkaterületen">
+               alt="Acél szádfal-sor egy munkagödör határolásán, alulról fotózva">
         </div>
-        <figcaption class="lab shot__cap">Alapmegtámasztás, szakaszos munkagödörrel</figcaption>
+        <figcaption class="lab shot__cap">Munkagödör-határolás szádfallal</figcaption>
       </figure>
       <div data-in data-d="1">
         <p>Az első négy hónap nem az épületről szólt, hanem a két szomszéd házról. Amíg a
@@ -438,9 +440,16 @@ body.p-case .pg:hover .pg__t{color:var(--okker)}
       </div>
       <figcaption class="lab shot__cap">Két gép ugyanazon a sávon, ütemezve</figcaption>
     </figure>
+    <figure data-in data-d="3">
+      <div class="shot">
+        <img src="media/fb/fb-03.webp" width="443" height="590" loading="lazy"
+             alt="Frissen betonozott tetőszinti födém betonacél-kiállásokkal, mellette az utca fölé nyúló betonpumpa gémje, szemben klasszikus bérházhomlokzat">
+      </div>
+      <figcaption class="lab shot__cap">Födémszakasz zárása, betonpumpával</figcaption>
+    </figure>
   </div>
 
-  <p class="fbnote muted" data-in data-d="3">A fenti adatlap és a nyitókép minta. Ez a két felvétel
+  <p class="fbnote muted" data-in data-d="3">A fenti adatlap és a nyitókép minta. Ez a három felvétel
     viszont a saját munkaterületünkről való, és pontosan azt a helyzetet mutatja, amiről ez az
     esettanulmány szól: az utca a munkaterület, a gép a forgalom mellett dolgozik, és minden emelésnek
     megvan a maga órája.</p>

@@ -39,8 +39,8 @@
   --scrim:#1A1714D9;
 
   /* tipó */
-  --display:'Zodiak','Iowan Old Style','Palatino Linotype',Georgia,serif;
-  --sans:'Switzer','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --display:'Erode','Iowan Old Style','Palatino Linotype',Georgia,serif;
+  --sans:'Supreme','Helvetica Neue',Helvetica,Arial,sans-serif;
   --mono:'Martian Mono',ui-monospace,'Cascadia Mono',Consolas,monospace;
 
   /* skála: 1.28 arány, korlátos clamp (max ≈ 2.5× min) */
@@ -146,9 +146,15 @@ p{text-wrap:pretty;max-width:68ch}
   transition:transform .55s var(--e-soft) .1s}
 .nav__a:hover{color:var(--okker)}
 .nav__a:hover::after,.nav__a[aria-current="page"]::after{transform:scaleX(1)}
+/* mélyoldalon a szülő-szekció halvány jelölést kap: látszik, hol jár a látogató */
+.nav__a--sect::after{transform:scaleX(1);opacity:.4}
 .nav__tel{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
-  padding:.6rem 1rem;border:1px solid var(--line-2);transition:border-color .35s,color .35s}
+  padding:.6rem 1rem;border:1px solid var(--line-2);transition:border-color .35s,color .35s;
+  white-space:nowrap}
+.nav__tel b{font-weight:400;color:var(--ink-2);transition:color .35s}
 .nav__tel:hover{border-color:var(--okker);color:var(--okker)}
+.nav__tel:hover b{color:var(--okker)}
+@media(max-width:1280px){.nav__tel b{display:none}}
 .burger{display:none;width:46px;height:46px;position:relative;margin-right:-8px}
 .burger i{position:absolute;left:11px;right:11px;height:1px;background:var(--ink);
   transition:transform .45s var(--e-out),opacity .3s}
@@ -162,6 +168,9 @@ p{text-wrap:pretty;max-width:68ch}
 .mob.open{opacity:1;visibility:visible}
 .mob a{display:block;font-family:var(--display);font-size:clamp(1.7rem,7.5vw,2.6rem);
   padding-block:.62rem;border-bottom:1px solid var(--line)}
+/* aloldal a Mit építünk alatt: behúzva, kisebben, hogy a hierarchia látsszon */
+.mob a.mob__sub{font-size:clamp(1.15rem,5vw,1.6rem);padding-left:1.6rem;color:var(--ink-2)}
+.mob a.mob__sub::before{content:'\2192\00a0';color:var(--okker)}
 .mob a[aria-current="page"]{color:var(--okker)}
 .mob .lab{margin:2rem 0 .6rem}
 @media(max-width:1000px){.nav__links{display:none}.burger{display:block}}
@@ -229,6 +238,14 @@ p{text-wrap:pretty;max-width:68ch}
   text-transform:uppercase;color:var(--ink)}
 
 /* ---------- 8. HERO ---------- */
+/* Pinnelt pálya: a hero addig áll, amíg a súrolófény végigsöpör. A pálya csak
+   .js alatt magas; JS nélkül és reduced-motion alatt sima, egy képernyős hero. */
+.js .herotrack{position:relative;height:230svh}
+.js .herotrack .hero{position:sticky;top:0;height:100svh;min-height:0}
+@media (max-height:600px){
+  .js .herotrack{height:auto}
+  .js .herotrack .hero{position:relative;height:auto;min-height:100svh}
+}
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;
   justify-content:flex-end;padding-top:calc(var(--nav-h) + 6vh);padding-bottom:var(--sp-4);
   overflow:clip;isolation:isolate}
@@ -281,23 +298,43 @@ p{text-wrap:pretty;max-width:68ch}
 .idx__x{font-size:.92rem;color:var(--ink-2)}
 .light .idx__x{color:var(--ink-dark-2)}
 .idx__m{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;color:var(--ink-2);
-  text-align:right}
+  text-align:right;line-height:1.9}
+/* cél-címke: megmutatja, hova visz a sor. A "mi hol van" tisztázása */
+.idx__go{color:var(--okker);font-size:.58rem;letter-spacing:.12em}
 .light .idx__m{color:var(--ink-dark-2)}
 @media(max-width:900px){
   .idx__row{grid-template-columns:3rem 1fr;gap:.4rem var(--sp-2)}
   .idx__x,.idx__m{grid-column:2;text-align:left}
 }
-/* a kurzort követő előnézet: egyetlen fix elem, lerp-pel mozog */
-.peek{position:fixed;top:0;left:0;z-index:60;width:23rem;aspect-ratio:4/3;
-  pointer-events:none;opacity:0;overflow:hidden;
-  transform:translate3d(-50%,-50%,0) scale(.94);
-  transition:opacity .45s var(--e-quart),transform .6s var(--e-out);
-  border:1px solid var(--line-2);background:var(--kova-2)}
-.peek.on{opacity:1;transform:translate3d(-50%,-50%,0) scale(1)}
-.peek img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;transition:opacity .5s ease}
-.peek img.on{opacity:1}
-@media (hover:none),(pointer:coarse){.peek{display:none}}
+/* dokkolt előnézet: a lista mellett ragadó képkeret, nem takar szöveget.
+   JS nélkül is komponált: az első kép alapból .on osztállyal áll benne. */
+.idxwrap{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+  gap:clamp(2rem,4.5vw,4.5rem);align-items:start}
+.idxview{position:sticky;top:calc(var(--nav-h) + 1.2rem)}
+/* a keret + felirat mindig beférjen a képernyőre: a max-height cap-eli az
+   aspect-ratio-ból jövő magasságot, a kép cover-rel tölti ki */
+.idxview__frame{position:relative;aspect-ratio:4/5;overflow:clip;
+  max-height:calc(100svh - var(--nav-h) - 5rem);
+  background:var(--kova-2);border:1px solid var(--line)}
+.idxview__frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transform:scale(1.045);
+  transition:opacity .55s var(--e-quart),transform 1.1s var(--e-out);
+  filter:saturate(.92) contrast(1.04)}
+.idxview__frame img.on{opacity:1;transform:scale(1)}
+.idxview__cap{margin-top:.8rem;display:flex;justify-content:space-between;gap:1rem}
+/* szűkebb listaoszlop: a leírás a cím alá kerül, a meta jobbra marad */
+.idxwrap .idx__row{grid-template-columns:2.9rem minmax(0,1fr) auto;
+  gap:.35rem var(--sp-3);align-items:baseline}
+.idxwrap .idx__x{grid-column:2}
+.idxwrap .idx__m{grid-row:1;grid-column:3;text-align:right}
+@media(max-width:980px){
+  .idxwrap{grid-template-columns:1fr}
+  .idxview{display:none}
+}
+@media(max-width:640px){
+  .idxwrap .idx__row{grid-template-columns:2.9rem 1fr}
+  .idxwrap .idx__m{grid-row:auto;grid-column:2;text-align:left}
+}
 
 /* ---------- 11. FOTÓ-KEZELÉS ---------- */
 .shot{position:relative;overflow:clip;background:var(--kova-2)}
@@ -411,6 +448,8 @@ p{text-wrap:pretty;max-width:68ch}
 .chip:hover{border-color:var(--okker);color:var(--okker)}
 .chip.on{border-color:var(--okker);color:var(--okker)}
 .chip.on::before{content:'▪ '}
+/* szűrt sor: display felülírás kell, mert a sor grid-elem */
+.idx__row.is-hidden{display:none}
 
 /* ---------- 13/f. SÚROLÓFÉNY-PÁLYA (pinnelés nélkül, sticky) ---------- */
 .raketrack{position:relative}
@@ -476,6 +515,8 @@ p{text-wrap:pretty;max-width:68ch}
   .rake{--sweep:100%}
   .rake__beam{display:none}
   .shot img{filter:saturate(1) contrast(1.02);transition:none}
-  .peek{display:none}
+  .js .herotrack{height:auto}
+  .js .herotrack .hero{position:relative;height:auto;min-height:100svh}
+  .idxview__frame img{transition:none}
   *{scroll-behavior:auto!important}
 }

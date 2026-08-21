@@ -16,22 +16,25 @@
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=zodiak@400,700,401&f%5B%5D=switzer@400,500,600&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=erode@400,401,500,700&f%5B%5D=supreme@400,401,500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <style>
 /* oldal-szkópolt kiegészítések: minden szelektor body.p-hogyan alatt */
 body.p-hogyan .phero__t{line-height:1.14}
+/* a kép mindig a mellette lévő szöveg-oszlop magasságát veszi fel: nincs üres tér */
 body.p-hogyan .open{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr);
-  gap:clamp(1.8rem,5vw,5rem);align-items:start;margin-top:clamp(1.6rem,4vh,2.8rem)}
+  gap:clamp(1.8rem,5vw,5rem);align-items:stretch;margin-top:clamp(1.6rem,4vh,2.8rem)}
 body.p-hogyan .open__lead{font-size:var(--t-1)}
 body.p-hogyan .open p + p{margin-top:var(--sp-2)}
 body.p-hogyan .duo{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);
-  gap:clamp(1.4rem,3.5vw,3rem);align-items:start;margin-block:var(--sp-4)}
-body.p-hogyan .duo .shot{margin-block:0}
-body.p-hogyan .duo .spec{margin-block:0}
-body.p-hogyan .shot--tall{max-width:32rem}
-body.p-hogyan .shot--fb{max-width:440px}
+  gap:clamp(1.4rem,3.5vw,3rem);align-items:stretch;margin-block:var(--sp-4)}
+body.p-hogyan .duo--dat{grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr)}
+body.p-hogyan .open .shot,body.p-hogyan .duo .shot{margin-block:0;display:flex;
+  flex-direction:column;height:100%;min-height:0}
+body.p-hogyan .open .shot img,body.p-hogyan .duo .shot img{flex:1 1 0;min-height:16rem;
+  width:100%;height:100%;object-fit:cover}
+body.p-hogyan .duo .spec,body.p-hogyan .duo .dat{margin-block:0}
 body.p-hogyan .chapx__nav i{font-style:normal;flex:0 0 1.5rem}
 body.p-hogyan .chapx__nav .lab{margin-bottom:.35rem}
 body.p-hogyan .chap p + p{margin-top:var(--sp-2)}
@@ -94,7 +97,7 @@ body.p-hogyan .gate .lab{margin-bottom:.5rem}
       <a href="referenciak.html" class="nav__a">Referenciák</a>
       <a href="szamok.html" class="nav__a">Számok</a>
       <a href="rolunk.html" class="nav__a">Rólunk</a>
-      <a href="kapcsolat.html" class="nav__tel">+36 70 403 7217</a>
+      <a href="kapcsolat.html" class="nav__tel">Kapcsolat<b> &middot; +36 70 403 7217</b></a>
     </div>
     <button class="burger" type="button" aria-expanded="false" aria-label="Menü"><i></i><i></i></button>
   </div>
@@ -103,9 +106,9 @@ body.p-hogyan .gate .lab{margin-bottom:.5rem}
   <p class="lab">Oldalak</p>
   <a href="index.html">Főoldal</a>
   <a href="mit-epitunk.html">Mit építünk</a>
+  <a href="foghij.html" class="mob__sub">Foghíjbeépítés</a>
+  <a href="muemlek.html" class="mob__sub">Műemlék és homlokzat</a>
   <a href="hogyan-epitunk.html" aria-current="page">Hogyan építünk</a>
-  <a href="foghij.html">Foghíjbeépítés</a>
-  <a href="muemlek.html">Műemlék és homlokzat</a>
   <a href="referenciak.html">Referenciák</a>
   <a href="szamok.html">Számok</a>
   <a href="rolunk.html">Rólunk</a>
@@ -343,6 +346,7 @@ body.p-hogyan .gate .lab{margin-bottom:.5rem}
           repedéstérképpel, a műszaki ellenőr aláírásával. Ez elsősorban a beruházót védi. Ha a munka végén valaki
           egy húsz éve meglévő repedésért kér kártérítést, a dokumentáció ott van.</p>
 
+        <div class="duo duo--dat">
         <table class="dat" data-in>
           <caption class="lab">Szomszédos épületek megfigyelése · minta protokoll</caption>
           <thead>
@@ -362,12 +366,13 @@ body.p-hogyan .gate .lab{margin-bottom:.5rem}
           </tbody>
         </table>
 
-        <figure class="shot shot--tall" data-in>
-          <img src="media/szolgaltatasok/melyepites.webp" width="1600" height="2134"
-            alt="Nyers betonfelületű támfal és munkagödör-határolás egy mélyépítési munkaterületen"
+        <figure class="shot" data-in>
+          <img src="media/szolgaltatasok/melyepites.webp" width="1920" height="1260"
+            alt="Acél szádfal-sor egy munkagödör határolásán, alulról fotózva"
             loading="lazy">
-          <figcaption class="lab shot__cap">Munkagödör-határolás</figcaption>
+          <figcaption class="lab shot__cap">Munkagödör-határolás szádfallal</figcaption>
         </figure>
+        </div>
       </section>
 
       <!-- 04 -->
@@ -385,6 +390,7 @@ body.p-hogyan .gate .lab{margin-bottom:.5rem}
         <p data-in data-d="2">Ez nem udvariasság. Egy bejelentés miatt leállított építkezés napokat visz el, és a
           leállás mindig a beruházó pénze.</p>
 
+        <div class="duo duo--dat">
         <dl class="spec" data-in>
           <div><dt>Közterület</dt><dd>Kerületi foglalási engedély, jóváhagyott forgalomtechnikai tervvel, havi díjfizetéssel.</dd></div>
           <div><dt>Emelések</dt><dd>Előre kihirdetett napokon, hétköznap munkaidőben, forgalomirányítás mellett.</dd></div>
@@ -400,6 +406,7 @@ body.p-hogyan .gate .lab{margin-bottom:.5rem}
             loading="lazy">
           <figcaption class="lab shot__cap">Saját helyszín · szűk utca</figcaption>
         </figure>
+        </div>
       </section>
 
       <!-- 05 -->
@@ -416,6 +423,7 @@ body.p-hogyan .gate .lab{margin-bottom:.5rem}
         <p data-in data-d="2">A felelős műszaki vezetőink az MMK névjegyzékében szerepelnek, a nyilvántartási
           számuk kérésre ellenőrizhető. A cég kivitelezői nyilvántartása az MKIK oldalán bárki számára nyilvános.</p>
 
+        <div class="duo duo--dat">
         <table class="dat" data-in>
           <caption class="lab">Projektdokumentáció · minden projektnél azonos</caption>
           <thead>
@@ -437,12 +445,13 @@ body.p-hogyan .gate .lab{margin-bottom:.5rem}
           </tbody>
         </table>
 
-        <figure class="shot shot--tall" data-in>
+        <figure class="shot" data-in>
           <img src="media/szolgaltatasok/tetoszerkezet.webp" width="1600" height="2400"
             alt="Épülő tetőszerkezet fedés közben, lécezéssel és félig elkészült héjazattal"
             loading="lazy">
           <figcaption class="lab shot__cap">Tetőfedés a vízzárósági próba előtt</figcaption>
         </figure>
+        </div>
       </section>
 
       <!-- 06 -->
