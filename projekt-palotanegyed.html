@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.className += ' js';</script>
+<title>Műemléki homlokzat helyreállítás a Palotanegyedben | VAC-Team</title>
+<meta name="description" content="Minta esettanulmány: 1 850 m² neoklasszicista homlokzat helyreállítása a VIII. kerületi Palotanegyedben, restaurátori kutatással és védőtetős állványozással.">
+<link rel="canonical" href="https://vac-team.hu/projekt-palotanegyed.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Műemléki homlokzat-helyreállítás, Palotanegyed · VAC-Team Építő Zrt.">
+<meta property="og:description" content="1 850 m² neoklasszicista homlokzat, 1838 utáni falszövet, örökségvédelmi engedély. Minta esettanulmány a kutatástól az átvételig.">
+<meta property="og:image" content="https://vac-team.hu/media/og-kep.jpg">
+<meta property="og:locale" content="hu_HU">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1714'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23AE762B' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=zodiak@400,700,401&f%5B%5D=switzer@400,500,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* oldal-szkópolt kiegészítések, minden szelektor body.p-case alatt */
+body.p-case .phero__t{max-width:22ch}
+
+/* 01 · adatlap közvetlenül a hero alatt: bal a feladat, jobb a spec */
+body.p-case .c-sheet{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:clamp(2rem,6vw,5.5rem);align-items:start;margin-top:clamp(2rem,5vh,3.5rem)}
+body.p-case .c-sheet p + p{margin-top:var(--sp-2)}
+body.p-case .c-sheet .lab{margin-bottom:var(--sp-2)}
+@media(max-width:900px){body.p-case .c-sheet{grid-template-columns:1fr}}
+
+/* 02 · nagy álló fotó, mellette a felület-szám */
+body.p-case .c-big{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.82fr);
+  gap:clamp(2rem,5vw,4.5rem);align-items:center}
+body.p-case .c-big .shot{aspect-ratio:3/4}
+body.p-case .c-big .shot img{width:100%;height:100%;object-fit:cover}
+body.p-case .c-big__t{display:flex;flex-direction:column;gap:var(--sp-3);align-items:flex-start}
+body.p-case .c-big__t p{max-width:44ch}
+body.p-case .c-big .fig{font-size:clamp(2.8rem,7vw,4.6rem)}
+@media(max-width:900px){
+  body.p-case .c-big{grid-template-columns:1fr}
+  body.p-case .c-big .shot{aspect-ratio:4/5}
+}
+
+/* 03 · adottságok: bal oldalt ragadó cím-sáv, jobb oldalt hajszálvonalas sorok */
+body.p-case .c-cond{display:grid;grid-template-columns:minmax(0,.74fr) minmax(0,1.26fr);
+  gap:clamp(2rem,6vw,5rem);align-items:start}
+body.p-case .c-cond__side{position:sticky;top:calc(var(--nav-h) + 2.5rem);
+  display:flex;flex-direction:column;gap:var(--sp-3);align-items:flex-start}
+body.p-case .c-cond__t{font-size:var(--t-3);max-width:13ch}
+body.p-case .c-fb{max-width:440px;width:100%}
+body.p-case .c-row{display:grid;grid-template-columns:3.4rem minmax(0,1fr);
+  gap:.4rem var(--sp-3);align-items:baseline;
+  padding-block:clamp(1.6rem,4vh,2.5rem);border-bottom:1px solid var(--line)}
+body.p-case .c-row:first-child{border-top:1px solid var(--line)}
+body.p-case .c-row h3{font-size:var(--t-2)}
+body.p-case .c-row p{margin-top:.75rem;color:var(--ink-2)}
+@media(max-width:900px){
+  body.p-case .c-cond{grid-template-columns:1fr}
+  body.p-case .c-cond__side{position:static}
+  body.p-case .c-row{grid-template-columns:2.6rem minmax(0,1fr)}
+}
+
+/* 04 · súrolófény-felirat: mondat fölül, előtte-utána jelölés hajszálvonal alatt */
+body.p-case .c-cap__s{max-width:52ch;color:#D8CDBD;font-size:.95rem;margin-top:.9rem}
+/* max-width:none kell: a p{max-width:68ch} különben félszélességre húzná a sávot */
+body.p-case .c-cap__r{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 1rem;
+  max-width:none;margin-top:var(--sp-3);padding-top:.9rem;border-top:1px solid var(--line-2)}
+
+/* 05 · megoldás: megállapítás és beavatkozás párban */
+body.p-case .c-lead{margin-bottom:var(--sp-3)}
+body.p-case .c-pair{display:grid;grid-template-columns:minmax(0,.76fr) minmax(0,1.24fr);
+  gap:var(--sp-2) clamp(2rem,5vw,4.5rem);align-items:start;
+  padding-block:clamp(1.8rem,4.5vh,2.8rem);border-bottom:1px solid var(--line-dark)}
+body.p-case .c-pairs .c-pair:first-child{border-top:1px solid var(--line-dark)}
+body.p-case .c-pair__f p{font-size:.94rem;color:var(--ink-dark-2);margin-top:.7rem}
+body.p-case .c-pair__b h3{font-size:var(--t-2)}
+body.p-case .c-pair__b p{margin-top:.75rem}
+@media(max-width:900px){body.p-case .c-pair{grid-template-columns:1fr}}
+
+body.p-case .c-mat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(2rem,5vw,4rem);align-items:center;margin-top:clamp(2.5rem,6vh,4.5rem)}
+body.p-case .c-mat .shot{aspect-ratio:3/2}
+body.p-case .c-mat .shot img{width:100%;height:100%;object-fit:cover}
+body.p-case .c-mat__t .lab{margin-bottom:var(--sp-2)}
+body.p-case .c-mat__t .spec{margin-bottom:var(--sp-2)}
+@media(max-width:900px){body.p-case .c-mat{grid-template-columns:1fr}}
+
+/* 06 · eredmény: részletfotó mellett a zárás */
+body.p-case .c-res{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  gap:clamp(2rem,6vw,5rem);align-items:start}
+body.p-case .c-res .shot{aspect-ratio:4/5}
+body.p-case .c-res .shot img{width:100%;height:112%;object-fit:cover}
+body.p-case .c-res__t{display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp-3)}
+body.p-case .c-res__t p{margin:0}
+body.p-case .c-res__t .spec{width:100%;margin-top:var(--sp-2)}
+@media(max-width:900px){body.p-case .c-res{grid-template-columns:1fr}}
+
+/* 07 · lapozó: három tipográfiai oszlop, hajszálvonallal elválasztva */
+body.p-case .c-pager{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid var(--line)}
+body.p-case .c-pager a{display:flex;flex-direction:column;gap:.85rem;
+  padding:clamp(1.7rem,4.2vh,2.6rem) clamp(1.2rem,2.4vw,2rem) clamp(1.7rem,4.2vh,2.6rem) clamp(1.2rem,2.4vw,2rem);
+  border-left:1px solid var(--line)}
+body.p-case .c-pager a:first-child{border-left:0;padding-left:0}
+body.p-case .c-pager__t{font-family:var(--display);font-size:var(--t-2);line-height:1.16;
+  transition:color .4s ease}
+/* a nyíl saját sorban ül: hosszabb címnél különben árván tördelődne a második sorba */
+body.p-case .c-pager__i{font-style:normal;color:var(--okker);font-size:1.05rem;line-height:1;
+  margin-top:.2rem;display:inline-block;transition:transform .45s var(--e-out)}
+@media (hover:hover) and (pointer:fine){
+  body.p-case .c-pager a:hover .c-pager__t{color:var(--okker)}
+  body.p-case .c-pager a:hover .c-pager__i{transform:translateX(6px)}
+}
+@media(max-width:820px){
+  body.p-case .c-pager{grid-template-columns:1fr}
+  body.p-case .c-pager a{border-left:0;padding-inline:0;border-bottom:1px solid var(--line)}
+}
+
+body.p-case .c-end{display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:var(--sp-3) clamp(2rem,5vw,4rem);align-items:end;margin-top:clamp(2.5rem,6vh,4rem)}
+body.p-case .c-end__x{max-width:56ch;color:var(--ink-2);margin-top:var(--sp-2)}
+@media(max-width:820px){body.p-case .c-end{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Főoldal","item":"https://vac-team.hu/"},
+    {"@type":"ListItem","position":2,"name":"Referenciák","item":"https://vac-team.hu/referenciak.html"},
+    {"@type":"ListItem","position":3,"name":"Műemléki homlokzat-helyreállítás, Palotanegyed","item":"https://vac-team.hu/projekt-palotanegyed.html"}
+  ]
+}
+</script>
+</head>
+<body class="p-case">
+
+<!-- CHROME:NAV:start -->
+<nav class="nav">
+  <div class="nav__in">
+    <a href="index.html" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
+    <div class="nav__links">
+      <a href="mit-epitunk.html" class="nav__a">Mit építünk</a>
+      <a href="hogyan-epitunk.html" class="nav__a">Hogyan építünk</a>
+      <a href="referenciak.html" class="nav__a">Referenciák</a>
+      <a href="szamok.html" class="nav__a">Számok</a>
+      <a href="rolunk.html" class="nav__a">Rólunk</a>
+      <a href="kapcsolat.html" class="nav__tel">+36 70 403 7217</a>
+    </div>
+    <button class="burger" type="button" aria-expanded="false" aria-label="Menü"><i></i><i></i></button>
+  </div>
+</nav>
+<div class="mob">
+  <p class="lab">Oldalak</p>
+  <a href="index.html">Főoldal</a>
+  <a href="mit-epitunk.html">Mit építünk</a>
+  <a href="hogyan-epitunk.html">Hogyan építünk</a>
+  <a href="foghij.html">Foghíjbeépítés</a>
+  <a href="muemlek.html">Műemlék és homlokzat</a>
+  <a href="referenciak.html">Referenciák</a>
+  <a href="szamok.html">Számok</a>
+  <a href="rolunk.html">Rólunk</a>
+  <a href="kapcsolat.html">Kapcsolat</a>
+  <p class="lab">Elérhetőség</p>
+  <a href="tel:+36704037217">+36 70 403 7217</a>
+</div>
+<!-- CHROME:NAV:end -->
+
+<!-- ======================= 01 · ADATLAP ======================= -->
+<header class="phero wrap">
+  <p class="phero__crumb lab">
+    <a href="index.html">Főoldal</a><i>/</i>
+    <a href="referenciak.html">Referenciák</a><i>/</i>
+    <span>Palotanegyed</span>
+  </p>
+  <p class="lab lab--ok" data-in>Minta projekt</p>
+  <h1 class="phero__t mask">
+    <span class="ln"><span>Műemléki</span></span>
+    <span class="ln"><span>homlokzat-helyreállítás,</span></span>
+    <span class="ln"><span><em>Palotanegyed</em></span></span>
+  </h1>
+  <p class="phero__x" data-in>Neoklasszicista bérházhomlokzat az 1838-as árvíz utáni falszövettel,
+    műemléki védettség alatt, élő gyalogosforgalom fölött. Ez a lap azt mutatja meg, mit mértünk,
+    mit döntöttünk el, és mi lett belőle.</p>
+  <div class="phero__rule"></div>
+
+  <div class="c-sheet">
+    <div data-in>
+      <p class="lab">A feladat</p>
+      <p>A ház utcai homlokzata három évtizede nem kapott érdemi beavatkozást. A főpárkány két
+        szakaszon hiányos volt, a lábazati kő sózott, a vakolat nagy felületen elvált a fal síkjától.
+        A beruházó és a tulajdonosi közösség egy dologban egyezett meg előre: a homlokzat nem lehet
+        újszerű, csak ép.</p>
+      <p>Generálkivitelezőként vittük végig, a kutatástól az örökségvédelmi átvételig. Az itt közölt
+        adatok minta értékek, az eljárásrend viszont az, amivel valóban dolgozunk.</p>
+    </div>
+    <div data-in data-d="1">
+      <p class="lab">Adatlap</p>
+      <dl class="spec">
+        <div><dt>Helyszín</dt><dd>VIII. kerület, Józsefváros, Palotanegyed</dd></div>
+        <div><dt>Homlokzat</dt><dd>1 850 m²</dd></div>
+        <div><dt>Beavatkozás</dt><dd>Homlokzat-helyreállítás</dd></div>
+        <div><dt>Szerep</dt><dd>Generálkivitelezés</dd></div>
+        <div><dt>Év</dt><dd>2023&ndash;2024</dd></div>
+        <div><dt>Védettség</dt><dd>Műemléki</dd></div>
+        <div><dt>Engedély</dt><dd>Örökségvédelmi</dd></div>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= 02 · A HELYREÁLLÍTOTT HOMLOKZAT ======================= -->
+<section class="sect wrap">
+  <div class="c-big">
+    <figure class="shot" data-in>
+      <img src="media/projektek/p3.webp"
+        alt="Helyreállított klasszikus kőhomlokzat zárterkélyekkel, meleg mézszínű kőfelülettel"
+        loading="lazy">
+    </figure>
+    <div class="c-big__t">
+      <p class="lab lab-rule" data-in data-d="1">A helyreállított felület</p>
+      <span class="fig" data-in data-d="2">1&thinsp;850<span class="fig__unit">m²</span></span>
+      <p data-in data-d="3">Utcai homlokzat a két oldalkockával és a kapualj kőkeretével együtt.
+        A felület nagyobb részén nem cseréltünk anyagot, hanem megtartottunk. Pótlás ott van, ahol a
+        régi már nem volt visszamenthető, és ott is a saját anyagával.</p>
+      <p class="lab" data-in data-d="4">Minta érték · homlokzatonként újramérve</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 03 · A HOMLOKZAT ADOTTSÁGAI ======================= -->
+<section class="sect wrap">
+  <div class="c-cond">
+    <div class="c-cond__side">
+      <p class="lab lab-rule" data-in>01 / Adottságok</p>
+      <h2 class="c-cond__t" data-in data-d="1">A homlokzat adottságai</h2>
+      <p class="muted" data-in data-d="2">Négy dolog döntötte el, hogyan lehet ehhez a falhoz
+        hozzányúlni. A homlokzat színe egyik sem volt.</p>
+      <figure class="shot c-fb" data-in data-d="3">
+        <img src="media/fb/fb-01.webp" width="443" height="590" loading="lazy"
+          alt="Autódaru gémje egy szűk belvárosi utca fölé fordulva, alatta lánctalpas emelőgép és teherautó a lezárt sávban, kétoldalt klasszikus bérházhomlokzatok">
+        <figcaption class="shot__cap lab">Saját helyszíni felvétel · emelés lezárt sávból</figcaption>
+      </figure>
+    </div>
+
+    <div class="c-rows">
+      <div class="c-row" data-in>
+        <span class="lab lab--ok">01</span>
+        <div>
+          <h3>Neoklasszicista tagozatrend</h3>
+          <p>Övpárkány, tagozott ablakkeretek, konzolos főpárkány, a kapualj faragott kőkerete.
+            Ez a rend nem díszítés, hanem geometria: minden kiülés a csapóesőt vezeti el a falsíkról.
+            A főpárkány orra két szakaszon hiányzott, az ablakkeretek harmadát korábban lecsiszolták.</p>
+        </div>
+      </div>
+      <div class="c-row" data-in>
+        <span class="lab lab--ok">02</span>
+        <div>
+          <h3>Az 1838 utáni falszövet</h3>
+          <p>A nagy pesti árvíz után újrarakott, tömör téglás, mészhabarcsos fal, dilatáció nélkül.
+            Ez a szerkezet felfelé engedi a nedvességet, a sót pedig a vakolat alatt teszi le.
+            Cementes vakolat vagy zárórendszerű festék két télen belül visszahozta volna a károsodást.</p>
+        </div>
+      </div>
+      <div class="c-row" data-in>
+        <span class="lab lab--ok">03</span>
+        <div>
+          <h3>Műemléki védettség</h3>
+          <p>Védett homlokzaton az anyagválasztás nem kivitelezői döntés. Az örökségvédelmi eljárás
+            átfutását a szerződéses ütemtervbe tettük, a kutatási dokumentáció a tervezéssel
+            párhuzamosan készült. Az engedélyre így nem a beállt állvány alatt vártunk.</p>
+        </div>
+      </div>
+      <div class="c-row" data-in>
+        <span class="lab lab--ok">04</span>
+        <div>
+          <h3>Forgalmas utca az állvány alatt</h3>
+          <p>A járda a ház vonalában fut, felvonulási terület nincs, a kapun a lakók naponta jártak be.
+            Az anyagmozgatás közterületről, előre engedélyezett napokon és sávlezárással történt,
+            reggel hét óráig. A szemközti oldalon iskola működik.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SIGNATURE: SÚROLÓFÉNY ======================= -->
+<div class="raketrack" data-rake-track style="height:220svh">
+  <div class="raketrack__stick">
+    <div class="rake" data-rake>
+      <div class="rake__layer">
+        <img src="media/projektek/ba-homlokzat-elotte.webp"
+          alt="A homlokzat a helyreállítás előtti, megfakult és sötétedett állapotában" loading="lazy">
+      </div>
+      <div class="rake__after">
+        <img src="media/projektek/ba-homlokzat-utana.webp"
+          alt="Ugyanaz a homlokzat a helyreállítás után, esti aranyfényben" loading="lazy">
+      </div>
+      <div class="rake__beam" aria-hidden="true"></div>
+    </div>
+    <div class="wrap raketrack__cap">
+      <p class="lab lab-rule">Súrolófény</p>
+      <p class="c-cap__s">Ugyanaz a homlokzat, ugyanabból a nézőpontból, a helyreállítás előtt és után.
+        Görgessen, és a fény úgy megy végig rajta, ahogy a munka is végigment: bal oldalról,
+        szakaszonként, tagozatról tagozatra.</p>
+      <p class="c-cap__r">
+        <span class="lab">Előtte · 2023 tavasz</span>
+        <span class="lab">Utána · 2024 ősz</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= 05 · A MEGOLDÁS (világos világ) ======================= -->
+<section class="sect light">
+  <div class="wrap">
+    <p class="lab lab-rule c-lead" data-in>02 / A megoldás</p>
+    <div class="shd">
+      <h2 class="shd__t" data-in>Minden beavatkozás előtt egy megállapítás</h2>
+      <p class="shd__x" data-in data-d="1">Ezt a sorrendet védett homlokzaton nem lehet megfordítani.
+        Az anyagot a kutatás választja ki, nem az árlista, és nem az, hogy mi van a raktárban.</p>
+      <div class="shd__rule"></div>
+    </div>
+
+    <div class="c-pairs">
+    <div class="c-pair" data-in>
+      <div class="c-pair__f">
+        <p class="lab lab--ok">Megállapítás 01</p>
+        <p>A kutatóablakok hét festékréteget mutattak. Az eredeti vakolat és a hozzá tartozó szín a
+          harmadik rétegben volt meg, a ma látható tónus egy hetvenes évekbeli javításból maradt.</p>
+      </div>
+      <div class="c-pair__b">
+        <h3>Restaurátori kutatás és színrétegvizsgálat</h3>
+        <p>A színrendet a rétegsor döntötte el, nem színkártya. A kutatást restaurátor művész végezte,
+          a jegyzőkönyvben minden mintavételi pont fotóval és homlokzati jelöléssel szerepel. Ez a
+          dokumentum ment be az engedélykérelemmel együtt.</p>
+      </div>
+    </div>
+
+    <div class="c-pair" data-in>
+      <div class="c-pair__f">
+        <p class="lab lab--ok">Megállapítás 02</p>
+        <p>A főpárkány két szakaszon hiányos, az ablakkeretek egy része lecsiszolt. A megmaradt
+          szakaszokon viszont ép a profil, tehát van miről mintát venni.</p>
+      </div>
+      <div class="c-pair__b">
+        <h3>Tagozatok újraprofilozása mintavétel alapján</h3>
+        <p>A megmaradt párkányról és keretről mintát vettünk, sablont készítettünk, és a tagozatot a
+          helyszínen húztuk újra. Gyári polisztirol profilt nem építettünk be: se az anyaga, se az éle
+          nem azonos a húzott tagozattal, és a védettség sem engedi.</p>
+      </div>
+    </div>
+
+    <div class="c-pair" data-in>
+      <div class="c-pair__f">
+        <p class="lab lab--ok">Megállapítás 03</p>
+        <p>A lábazati kő sózik, a vakolat kopogtatásos vizsgálatra 210 m²-en bizonyult üregesnek.
+          A kő nagy része viszont konzerválható, cserére csak néhány elem szorult.</p>
+      </div>
+      <div class="c-pair__b">
+        <h3>Kőkonzerválás és vakolatpótlás</h3>
+        <p>Kíméletes tisztítás, sópakolás, kőkiegészítés a kő saját anyagával. A vakolatpótlás
+          mészhabarccsal készült, hogy a fal továbbra is ki tudja engedni a nedvességet. Minden anyagot
+          a műemlékvédelmi szakértővel egyeztetve választottunk ki, mintafelület után.</p>
+      </div>
+    </div>
+
+    <div class="c-pair" data-in>
+      <div class="c-pair__f">
+        <p class="lab lab--ok">Megállapítás 04</p>
+        <p>A homlokzat előtt nincs hely felvonulásra. A járda a ház vonalában fut, a kapun lakók
+          járnak, a szemközti oldalon iskola működik.</p>
+      </div>
+      <div class="c-pair__b">
+        <h3>Védőtetős állványozás, ütemezett emelésekkel</h3>
+        <p>Az állvány védőtetővel és hálóval épült, a járda alatta végig járható maradt. Az emelések
+          előre engedélyezett napokra kerültek, a sávlezárás mindig ugyanarra a két órára szólt.
+          A lakók a saját kapujukon jártak be a munka teljes ideje alatt.</p>
+      </div>
+    </div>
+    </div>
+
+    <div class="c-mat">
+      <figure class="shot" data-in>
+        <img src="media/szolgaltatasok/allvany-homlokzat.webp"
+          alt="Állványozott klasszikus belvárosi homlokzat felújítás alatt, fölötte toronydaru, fekete-fehér felvétel"
+          loading="lazy">
+      </figure>
+      <div class="c-mat__t" data-in data-d="1">
+        <p class="lab lab-rule">Anyag és eljárás</p>
+        <dl class="spec">
+          <div><dt>Vakolat</dt><dd>Mészhabarcs, mintafelület után</dd></div>
+          <div><dt>Festés</dt><dd>Szilikát, a harmadik rétegsor színe</dd></div>
+          <div><dt>Kő</dt><dd>Konzerválás, kiegészítés saját anyaggal</dd></div>
+          <div><dt>Tagozat</dt><dd>Helyszíni sablonhúzás mintáról</dd></div>
+          <div><dt>Állvány</dt><dd>Védőtetős, hálóval, járható járdával</dd></div>
+        </dl>
+        <p class="lab">Minta értékek · homlokzatonként újra egyeztetve</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 06 · AZ EREDMÉNY ======================= -->
+<section class="sect wrap">
+  <div class="c-res">
+    <figure data-in>
+      <div class="shot">
+        <img src="media/szolgaltatasok/homlokzat-klasszikus.webp"
+          alt="Klasszikus homlokzat helyreállított szobordíszei, konzolai és tagozott párkányzata"
+          loading="lazy" data-par="0.05">
+      </div>
+      <figcaption class="shot__cap lab">A visszaállított tagozati rend, a kapuzat fölött</figcaption>
+    </figure>
+
+    <div class="c-res__t">
+      <p class="lab lab-rule" data-in>03 / Az eredmény</p>
+      <blockquote class="quote mask">
+        <span class="ln"><span>A homlokzat nem új lett.</span></span>
+        <span class="ln"><span><em>Ép lett.</em></span></span>
+      </blockquote>
+      <p data-in data-d="1">A tagozati rend az eredeti profilok szerint állt helyre, az ablakkeretek és
+        a főpárkány a megmaradt szakaszokról vett minta alapján. A színrend a kutatási jegyzőkönyv
+        harmadik rétegsorát követi, nem a szomszéd házak mai tónusát.</p>
+      <p data-in data-d="2">Az örökségvédelmi hatóság a homlokzatot kifogás nélkül vette át. A munka
+        alatt a lakók végig a saját kapujukon jártak be, és a járda egyetlen napra sem zárt le teljesen.</p>
+      <p data-in data-d="3">A ház ugyanaz maradt. Annyi történt, hogy a következő ötven évre is
+        felkészült.</p>
+
+      <dl class="spec" data-in data-d="4">
+        <div><dt>Átvétel</dt><dd>Örökségvédelmi hatóság, kifogás nélkül</dd></div>
+        <div><dt>Tagozat</dt><dd>Eredeti profilok szerint helyreállítva</dd></div>
+        <div><dt>Színrend</dt><dd>Kutatási jegyzőkönyv szerint</dd></div>
+        <div><dt>Járda</dt><dd>Végig járható, teljes lezárás nélkül</dd></div>
+        <div><dt>Dokumentáció</dt><dd>Kutatási és megvalósulási, átadva</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 07 · LAPOZÓ ======================= -->
+<section class="sect wrap">
+  <div class="c-pager">
+    <a href="projekt-erzsebetvaros.html">
+      <span class="lab">Előző esettanulmány</span>
+      <span class="c-pager__t">Társasház két tűzfal között</span>
+      <span class="lab">VII. kerület · 14 lakás · 2023-2025</span>
+      <i class="c-pager__i" aria-hidden="true">&rarr;</i>
+    </a>
+    <a href="referenciak.html">
+      <span class="lab">Vissza a listához</span>
+      <span class="c-pager__t">Minden referencia</span>
+      <span class="lab">11 minta tétel · 2021-2025</span>
+      <i class="c-pager__i" aria-hidden="true">&rarr;</i>
+    </a>
+    <a href="muemlek.html">
+      <span class="lab">A szakterület</span>
+      <span class="c-pager__t">Műemlék és homlokzat</span>
+      <span class="lab">Hogyan dolgozunk védett falon</span>
+      <i class="c-pager__i" aria-hidden="true">&rarr;</i>
+    </a>
+  </div>
+
+  <div class="c-end">
+    <div data-in>
+      <p class="lab lab-rule">Projekt-egyeztetés</p>
+      <p class="c-end__x">Küldjön néhány fotót a homlokzatról és a helyszínrajzot. Két munkanapon belül
+        visszaírjuk, milyen kutatással kell kezdeni, mekkora örökségvédelmi átfutással számoljon, és
+        nagyságrendileg mit visz el az állványzat.</p>
+    </div>
+    <div class="hero__cta" data-in data-d="1">
+      <a class="btn btn--solid" href="kapcsolat.html">Kapcsolat <i>&rarr;</i></a>
+      <a class="btn" href="tel:+36704037217">+36 70 403 7217</a>
+    </div>
+  </div>
+</section>
+
+<!-- CHROME:FOOTER:start -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__col">
+        <a href="index.html" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
+        <p class="muted" style="margin-top:1rem;max-width:32ch">Generálkivitelezés és monolit vasbeton
+          szerkezetépítés Budapesten és az agglomerációban.</p>
+      </div>
+      <div class="foot__col">
+        <h4>Szakterületek</h4>
+        <a href="hogyan-epitunk.html#general">Generálkivitelezés</a>
+        <a href="hogyan-epitunk.html#szerkezet">Szerkezetépítés</a>
+        <a href="foghij.html">Foghíjbeépítés</a>
+        <a href="foghij.html#tetoter">Tetőtér-ráépítés</a>
+        <a href="muemlek.html">Műemlék és homlokzat</a>
+        <a href="mit-epitunk.html#csarnok">Csarnok és ipari</a>
+      </div>
+      <div class="foot__col">
+        <h4>Oldalak</h4>
+        <a href="mit-epitunk.html">Mit építünk</a>
+        <a href="hogyan-epitunk.html">Hogyan építünk</a>
+        <a href="referenciak.html">Referenciák</a>
+        <a href="szamok.html">Számok</a>
+        <a href="rolunk.html">Rólunk</a>
+        <a href="kapcsolat.html">Kapcsolat</a>
+      </div>
+      <div class="foot__col">
+        <h4>Cégadatok</h4>
+        <span class="foot__mono">VAC-Team Építő Zrt.</span>
+        <span class="foot__mono">Cg. 13-10-042476</span>
+        <span class="foot__mono">Adószám 14658022-2-13</span>
+        <span class="foot__mono">2161 Csomád, Kossuth Lajos út 79.</span>
+        <a class="foot__mono" href="tel:+36704037217">+36 70 403 7217</a>
+        <a class="foot__mono" href="mailto:vacteamepitozrt@gmail.com">vacteamepitozrt@gmail.com</a>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span class="lab">© 2026 VAC-Team Építő Zrt.</span>
+      <span class="lab">Működési terület: Budapest és agglomeráció</span>
+      <span class="lab">Weboldal-koncepció, minta adatokkal</span>
+    </div>
+  </div>
+</footer>
+<!-- CHROME:FOOTER:end -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

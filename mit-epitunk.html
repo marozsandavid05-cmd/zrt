@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.className += ' js';</script>
+<title>Mit építünk: társasház, irodaház, csarnok, műemlék | VAC-Team</title>
+<meta name="description" content="Társasház, foghíjbeépítés, tetőtér-ráépítés, műemléki homlokzat, irodaház és csarnok. Hat épülettípus konkrét méretsávokkal, beruházóknak a pesti belvárosban.">
+<link rel="canonical" href="https://vac-team.hu/mit-epitunk.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mit építünk · VAC-Team Építő Zrt.">
+<meta property="og:description" content="Hat épülettípus, mindegyiknél megadott méretsáv. Társasháztól a műemléki homlokzatig és az ipari csarnokig.">
+<meta property="og:image" content="https://vac-team.hu/media/og-kep.jpg">
+<meta property="og:locale" content="hu_HU">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1714'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23AE762B' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=zodiak@400,700,401&f%5B%5D=switzer@400,500,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* oldal-szkópolt kiegészítések: a folyosó-panel arányai és a két alsó szekció rácsa */
+body.p-mit .corr__track{padding-block:clamp(1.25rem,3.5vh,2.6rem)}
+body.p-mit .corr__p{flex:0 0 min(82vw,440px);gap:.85rem;padding-top:var(--sp-3)}
+body.p-mit .corr__p .shot{aspect-ratio:16/10}
+body.p-mit .corr__p h3{font-size:var(--t-2);line-height:1.1}
+body.p-mit .corr__p .spec>div{grid-template-columns:minmax(0,6.6rem) minmax(0,1fr);gap:.8rem;padding-block:.62rem}
+body.p-mit .corr__p .btn{margin-top:.2rem}
+body.p-mit .corr__hint{display:flex;justify-content:space-between;align-items:baseline;
+  gap:1rem var(--sp-4);flex-wrap:wrap;padding-top:var(--sp-3)}
+body.p-mit .corr__note{padding-top:var(--sp-2)}
+
+body.p-mit .mit-size{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  gap:var(--sp-4) clamp(2rem,6vw,5rem);align-items:start;margin-bottom:clamp(2.5rem,6vh,4rem)}
+body.p-mit .mit-size h2{font-size:var(--t-3);margin-top:var(--sp-2);margin-bottom:var(--sp-3)}
+body.p-mit .mit-size p+p{margin-top:var(--sp-2)}
+body.p-mit .mit-size .fig{font-size:2.7rem;display:block;margin-bottom:var(--sp-3)}
+body.p-mit .mit-foot{margin-top:var(--sp-4);max-width:62ch;color:var(--ink-dark-2)}
+body.p-mit .mit-foot a{color:var(--ink-dark);border-bottom:1px solid var(--okker);padding-bottom:1px}
+body.p-mit .mit-foot a:hover{color:var(--okker)}
+
+body.p-mit .mit-bleed{height:clamp(300px,58svh,620px);margin-bottom:clamp(2.5rem,7vh,4.5rem)}
+body.p-mit .mit-bleed img{position:relative;top:-9%;height:118%}
+body.p-mit .mit-geo{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:var(--sp-4) clamp(2rem,6vw,5rem);align-items:start;margin-top:clamp(2rem,5vh,3.2rem)}
+body.p-mit .mit-geo h2{font-size:var(--t-3);margin-top:var(--sp-2)}
+body.p-mit .mit-geo p+p{margin-top:var(--sp-2)}
+
+@media(max-width:880px){
+  body.p-mit .mit-size,body.p-mit .mit-geo{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  body.p-mit .dat tbody tr{grid-template-columns:1fr;gap:.35rem}
+  body.p-mit .dat .num{text-align:left}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Főoldal","item":"https://vac-team.hu/"},
+    {"@type":"ListItem","position":2,"name":"Mit építünk","item":"https://vac-team.hu/mit-epitunk.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"Service",
+  "name":"Generálkivitelezés és szerkezetépítés",
+  "serviceType":"Generálkivitelezés",
+  "provider":{
+    "@type":"GeneralContractor","name":"VAC-Team Építő Zrt.",
+    "url":"https://vac-team.hu/","telephone":"+36 70 403 7217","vatID":"14658022-2-13",
+    "address":{"@type":"PostalAddress","streetAddress":"Kossuth Lajos út 79.","addressLocality":"Csomád","postalCode":"2161","addressCountry":"HU"}
+  },
+  "areaServed":"Budapest és agglomeráció",
+  "url":"https://vac-team.hu/mit-epitunk.html",
+  "hasOfferCatalog":{
+    "@type":"OfferCatalog","name":"Épülettípusok",
+    "itemListElement":[
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Társasház, új építés"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Foghíjbeépítés"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Tetőtér-ráépítés"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Műemléki homlokzat-helyreállítás"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Irodaház és vegyes funkciójú épület"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Csarnok és iparterület"}}
+    ]
+  }
+}
+</script>
+</head>
+<body class="p-mit">
+
+<!-- CHROME:NAV:start -->
+<nav class="nav">
+  <div class="nav__in">
+    <a href="index.html" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
+    <div class="nav__links">
+      <a href="mit-epitunk.html" aria-current="page" class="nav__a">Mit építünk</a>
+      <a href="hogyan-epitunk.html" class="nav__a">Hogyan építünk</a>
+      <a href="referenciak.html" class="nav__a">Referenciák</a>
+      <a href="szamok.html" class="nav__a">Számok</a>
+      <a href="rolunk.html" class="nav__a">Rólunk</a>
+      <a href="kapcsolat.html" class="nav__tel">+36 70 403 7217</a>
+    </div>
+    <button class="burger" type="button" aria-expanded="false" aria-label="Menü"><i></i><i></i></button>
+  </div>
+</nav>
+<div class="mob">
+  <p class="lab">Oldalak</p>
+  <a href="index.html">Főoldal</a>
+  <a href="mit-epitunk.html" aria-current="page">Mit építünk</a>
+  <a href="hogyan-epitunk.html">Hogyan építünk</a>
+  <a href="foghij.html">Foghíjbeépítés</a>
+  <a href="muemlek.html">Műemlék és homlokzat</a>
+  <a href="referenciak.html">Referenciák</a>
+  <a href="szamok.html">Számok</a>
+  <a href="rolunk.html">Rólunk</a>
+  <a href="kapcsolat.html">Kapcsolat</a>
+  <p class="lab">Elérhetőség</p>
+  <a href="tel:+36704037217">+36 70 403 7217</a>
+</div>
+<!-- CHROME:NAV:end -->
+
+<!-- ======================= ALOLDALI HERO ======================= -->
+<header class="phero wrap">
+  <p class="lab phero__crumb" data-in>
+    <a href="index.html">Főoldal</a><i>/</i><span>Mit építünk</span>
+  </p>
+  <h1 class="phero__t mask">
+    <span class="ln"><span>Mit <em>építünk</em></span></span>
+  </h1>
+  <p class="phero__x" data-in data-d="1">Hat épülettípus, mindegyiknél megadott méretsávval. Nem azt soroljuk
+    fel, amit el tudnánk vállalni, hanem azt, amit két év múlva is át tudunk adni. A többit inkább elmondjuk
+    az első beszélgetésen.</p>
+  <div class="phero__rule"></div>
+  <div class="corr__hint">
+    <p class="lab lab-rule" data-in data-d="2">01 / A hat épülettípus</p>
+    <p class="lab" data-in data-d="3">Oldalra fut</p>
+  </div>
+</header>
+
+<!-- ======================= VÍZSZINTES FOLYOSÓ ======================= -->
+<section class="corr" data-corridor aria-label="Épülettípusok">
+  <div class="corr__track" data-corridor-track>
+
+    <article class="corr__p">
+      <p class="lab">01 / Lakóépület</p>
+      <figure class="shot">
+        <img src="media/projektek/p1.webp" alt="Modern belvárosi lakóépület zártsorú beépítésben, a szomszédos házak közé illesztve">
+      </figure>
+      <h3>Társasház, nyolctól ötven lakásig</h3>
+      <p>Ez a gerincünk. Alapozástól a kulcsátadásig, egy szerződéssel és egy felelős műszaki vezetővel,
+        olyan ütemtervvel, amit a finanszírozó bank is el tud fogadni.</p>
+      <dl class="spec">
+        <div><dt>Lépték</dt><dd>8-50 lakás</dd></div>
+        <div><dt>Terület</dt><dd>900-6 000 m² bruttó</dd></div>
+        <div><dt>Szerep</dt><dd>Generálkivitelezés vagy szerkezetépítés</dd></div>
+      </dl>
+      <p><a class="btn" href="hogyan-epitunk.html">Hogyan építünk <i>&rarr;</i></a></p>
+    </article>
+
+    <article class="corr__p">
+      <p class="lab">02 / Zártsorú beépítés</p>
+      <figure class="shot">
+        <img src="media/szolgaltatasok/foghij-tuzfal.webp" alt="Budapesti tégla tűzfalak egy üresen álló foghíjtelek két oldalán">
+      </figure>
+      <h3>Foghíjtelek két tűzfal között</h3>
+      <p>Tizenkét méter utcafront, felvonulási terület nélkül. Az anyagot közterületről emeljük be, előre
+        engedélyezett napokon, a szomszéd tűzfalának folyamatos mozgásmérése mellett.</p>
+      <dl class="spec">
+        <div><dt>Lépték</dt><dd>10-18 m telekszélesség, 8-24 lakás</dd></div>
+        <div><dt>Terület</dt><dd>VI. VII. VIII. kerület</dd></div>
+        <div><dt>Szerep</dt><dd>Generálkivitelezés</dd></div>
+      </dl>
+      <p><a class="btn" href="foghij.html">Foghíjbeépítés <i>&rarr;</i></a></p>
+    </article>
+
+    <article class="corr__p">
+      <p class="lab">03 / Ráépítés</p>
+      <figure class="shot">
+        <img src="media/projektek/p2.webp" alt="Régi fedélszék belülről, ácsolt szarufákkal a beépítés előtt">
+      </figure>
+      <h3>Tetőtér lakott ház fölé</h3>
+      <p>A lakók bent maradnak. Előbb a meglévő födém teherbírása dől el, utána az, hogy könnyűszerkezettel
+        vagy pontszerű vasbeton megtámasztással megyünk fel.</p>
+      <dl class="spec">
+        <div><dt>Lépték</dt><dd>+1-2 szint, 4-12 lakás</dd></div>
+        <div><dt>Terület</dt><dd>Pest belső kerületei</dd></div>
+        <div><dt>Szerep</dt><dd>Generálkivitelezés, lakott házban</dd></div>
+      </dl>
+      <p><a class="btn" href="foghij.html#tetoter">Tetőtér-ráépítés <i>&rarr;</i></a></p>
+    </article>
+
+    <article class="corr__p">
+      <p class="lab">04 / Örökségvédelem</p>
+      <figure class="shot">
+        <img src="media/szolgaltatasok/homlokzat-klasszikus.webp" alt="Neoklasszicista homlokzat szobrokkal és tagozott párkányokkal">
+      </figure>
+      <h3>Műemléki homlokzat helyreállítása</h3>
+      <p>Restaurátori kutatással kezdünk, és csak azután árazunk, hogy tudjuk, mi van a vakolat alatt. Az
+        1838-as árvíz utáni falszövet minden házban másképp viselkedik.</p>
+      <dl class="spec">
+        <div><dt>Lépték</dt><dd>400-2 500 m² homlokzat</dd></div>
+        <div><dt>Terület</dt><dd>V. VI. VII. VIII. kerület</dd></div>
+        <div><dt>Szerep</dt><dd>Generálkivitelezés, örökségvédelmi engedéllyel</dd></div>
+      </dl>
+      <p><a class="btn" href="muemlek.html">Műemlék és homlokzat <i>&rarr;</i></a></p>
+    </article>
+
+    <article class="corr__p">
+      <p class="lab">05 / Irodaház</p>
+      <figure class="shot">
+        <img src="media/projektek/p4.webp" alt="Vasbeton raszterhomlokzat alulnézetből, ismétlődő pillérosztással">
+      </figure>
+      <h3>Irodaház és vegyes funkció</h3>
+      <p>Raszteres vasbeton váz, nagy fesztávok, a gépészetnek előre kiosztott áttörésekkel. A bérbeadási
+        ütemhez igazított, szakaszos birtokbaadást is vállalunk.</p>
+      <dl class="spec">
+        <div><dt>Lépték</dt><dd>3-8 szint, 2 000-8 000 m²</dd></div>
+        <div><dt>Terület</dt><dd>Budapest</dd></div>
+        <div><dt>Szerep</dt><dd>Szerkezetépítés vagy generálkivitelezés</dd></div>
+      </dl>
+      <p><a class="btn" href="hogyan-epitunk.html#szerkezet">Szerkezetépítés <i>&rarr;</i></a></p>
+    </article>
+
+    <article class="corr__p" id="csarnok">
+      <p class="lab">06 / Ipari</p>
+      <figure class="shot">
+        <img src="media/szolgaltatasok/csarnok.webp" alt="Ipari csarnok acél vázszerkezete a szerelés fázisában">
+      </figure>
+      <h3>Csarnok és iparterület</h3>
+      <p>Alapozástól a technológiai fogadószintig: vázszerkezet, ipari padló, csatlakozó közmű. A gépsor
+        beszállítójának ütemtervéhez igazodunk, nem fordítva.</p>
+      <dl class="spec">
+        <div><dt>Lépték</dt><dd>800-4 000 m², 1-2 hajó</dd></div>
+        <div><dt>Terület</dt><dd>Agglomeráció</dd></div>
+        <div><dt>Szerep</dt><dd>Generálkivitelezés</dd></div>
+      </dl>
+      <p><a class="btn" href="hogyan-epitunk.html#general">Generálkivitelezés <i>&rarr;</i></a></p>
+    </article>
+
+  </div>
+</section>
+
+<div class="wrap corr__note">
+  <p class="lab lab--ok">Minta adatok · a méretsávok tipikus értékek, nem konkrét projektadatok</p>
+</div>
+
+<!-- ======================= 02 · LÉPTÉK (világos világ) ======================= -->
+<section class="sect light">
+  <div class="wrap">
+    <div class="mit-size">
+      <div>
+        <p class="lab lab-rule" data-in>02 / Lépték</p>
+        <h2 data-in data-d="1">Amit a méret jelent</h2>
+        <p data-in data-d="2">A méretsáv nem szerénység, hanem üzemméret. Nyolc lakás alatt a felvonulás, a
+          művezetés és az adminisztráció nagyjából ugyanannyiba kerül, mint húsz lakásnál, csak nincs mire
+          szétteríteni. Ötven fölött pedig már nem a kivitelező tudása a szűk keresztmetszet, hanem a saját
+          cash flow-ja.</p>
+        <p data-in data-d="3">Ezért megmondjuk, hol vagyunk jó választás, és hol nem. Ha a projekt a sávon
+          kívül esik, ezt az első egyeztetésen halljuk meg egymástól, nem a harmadik hónapban.</p>
+      </div>
+      <div data-in data-d="2">
+        <span class="fig">8&thinsp;/&thinsp;50<span class="fig__unit">lakás</span></span>
+        <dl class="spec">
+          <div><dt>Alsó határ</dt><dd>Nyolc lakás. Ez alatt a projektszervezés költsége aránytalan, ilyenkor
+            inkább kollégát ajánlunk.</dd></div>
+          <div><dt>Felső határ</dt><dd>Ötven lakás. Efölött szerkezetépítőként vagy konzorciumi tagként
+            megyünk be.</dd></div>
+          <div><dt>Nem vállaljuk</dt><dd>Lakásfelújítás, egyedi családi ház, és kivitelezés műszaki ellenőr
+            nélkül.</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <table class="dat" data-in>
+      <caption class="lab">Épülettípus, lépték, szerep · minta értékek</caption>
+      <thead>
+        <tr>
+          <th scope="col">Épülettípus</th>
+          <th scope="col">Lépték</th>
+          <th scope="col">Bruttó terület</th>
+          <th scope="col">Szerepünk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Társasház, új építés</th>
+          <td class="num">8-50 <b>lakás</b></td>
+          <td class="num">900-6 000 <b>m²</b></td>
+          <td class="lab">generálkivitelezés</td></tr>
+        <tr><th scope="row">Foghíjbeépítés</th>
+          <td class="num">8-24 <b>lakás</b></td>
+          <td class="num">700-2 400 <b>m²</b></td>
+          <td class="lab">generálkivitelezés</td></tr>
+        <tr><th scope="row">Tetőtér-ráépítés</th>
+          <td class="num">4-12 <b>lakás</b></td>
+          <td class="num">300-1 100 <b>m²</b></td>
+          <td class="lab">generál, lakott házban</td></tr>
+        <tr><th scope="row">Műemléki homlokzat</th>
+          <td class="num">2-6 <b>szint</b></td>
+          <td class="num">400-2 500 <b>m²</b></td>
+          <td class="lab">generál, örökségvédelmi engedéllyel</td></tr>
+        <tr><th scope="row">Irodaház, vegyes funkció</th>
+          <td class="num">3-8 <b>szint</b></td>
+          <td class="num">2 000-8 000 <b>m²</b></td>
+          <td class="lab">szerkezetépítés vagy generál</td></tr>
+        <tr><th scope="row">Csarnok, iparterület</th>
+          <td class="num">1-2 <b>hajó</b></td>
+          <td class="num">800-4 000 <b>m²</b></td>
+          <td class="lab">generálkivitelezés</td></tr>
+      </tbody>
+    </table>
+
+    <p class="mit-foot" data-in data-d="1">A tábla sávokat mutat, nem árat. A konkrét lépték, ütemezés és
+      fedezet a <a href="szamok.html">Számok</a> oldalon és a projekt-egyeztetésen áll össze. A
+      referenciamunkák adatlapja a <a href="referenciak.html">Referenciák</a> között van.</p>
+  </div>
+</section>
+
+<!-- ======================= 03 · TERÜLET ======================= -->
+<section class="sect">
+  <figure class="shot shot--full mit-bleed">
+    <img src="media/szolgaltatasok/daru-belvaros.webp" alt="Két toronydaru egy belvárosi építkezés fölött, alkonyati fényben" loading="lazy" data-par="0.06">
+  </figure>
+
+  <div class="wrap">
+    <p class="lab" data-in>Toronydaruk a pesti belvárosban, esti műszakváltáskor</p>
+    <div class="mit-geo">
+      <div>
+        <p class="lab lab-rule" data-in>03 / Terület</p>
+        <h2 data-in data-d="1">Ahol elfér a daru</h2>
+        <p data-in data-d="2">A működési területünket nem térkép jelöli ki, hanem a megközelítés. Az számít,
+          hogy a mixer be tud-e fordulni, meddig kapunk útlezárási engedélyt, és hova tesszük le a zsaluzatot
+          egy tizenkét méteres utcafronton.</p>
+        <p data-in data-d="3">Ezért a pesti belső kerületekben vagyunk otthon, ahol a szűk helyszín a szakma
+          része, nem akadály. Csarnokot és iparterületet az agglomerációban viszünk, ahol a lépték nagyobb,
+          a logisztika viszont egyszerűbb.</p>
+      </div>
+      <dl class="spec" data-in data-d="2">
+        <div><dt>Fő terület</dt><dd>Budapest V. VI. VII. VIII. és IX. kerület, zártsorú beépítés.</dd></div>
+        <div><dt>Budai oldal</dt><dd>Egyedi elbírálással, ha a felvonulás és a megközelítés megoldható.</dd></div>
+        <div><dt>Agglomeráció</dt><dd>Csarnok, iparterület, ipari padló, közműcsatlakozás.</dd></div>
+        <div><dt>Székhely</dt><dd>2161 Csomád, Kossuth Lajos út 79.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ZÁRÁS ======================= -->
+<section class="sect wrap s-cta">
+  <p class="lab lab-rule" data-in>Projekt-egyeztetés</p>
+  <h2 class="s-cta__t mask">
+    <span class="ln"><span>Ha a telek megvan,</span></span>
+    <span class="ln"><span><em>a lépték a mi dolgunk.</em></span></span>
+  </h2>
+  <p class="s-cta__x" data-in data-d="1">Küldjön egy helyrajzi számot és a tervvázlatot. Két munkanapon belül
+    megírjuk, melyik sávba esik a projekt, és mit tudunk belőle fix áron, szerkezetkész állapotig vállalni.</p>
+  <div class="hero__cta" data-in data-d="2">
+    <a class="btn btn--solid" href="kapcsolat.html">Kapcsolat <i>&rarr;</i></a>
+    <a class="btn" href="tel:+36704037217">+36 70 403 7217</a>
+  </div>
+</section>
+
+<!-- CHROME:FOOTER:start -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__col">
+        <a href="index.html" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
+        <p class="muted" style="margin-top:1rem;max-width:32ch">Generálkivitelezés és monolit vasbeton
+          szerkezetépítés Budapesten és az agglomerációban.</p>
+      </div>
+      <div class="foot__col">
+        <h4>Szakterületek</h4>
+        <a href="hogyan-epitunk.html#general">Generálkivitelezés</a>
+        <a href="hogyan-epitunk.html#szerkezet">Szerkezetépítés</a>
+        <a href="foghij.html">Foghíjbeépítés</a>
+        <a href="foghij.html#tetoter">Tetőtér-ráépítés</a>
+        <a href="muemlek.html">Műemlék és homlokzat</a>
+        <a href="mit-epitunk.html#csarnok">Csarnok és ipari</a>
+      </div>
+      <div class="foot__col">
+        <h4>Oldalak</h4>
+        <a href="mit-epitunk.html">Mit építünk</a>
+        <a href="hogyan-epitunk.html">Hogyan építünk</a>
+        <a href="referenciak.html">Referenciák</a>
+        <a href="szamok.html">Számok</a>
+        <a href="rolunk.html">Rólunk</a>
+        <a href="kapcsolat.html">Kapcsolat</a>
+      </div>
+      <div class="foot__col">
+        <h4>Cégadatok</h4>
+        <span class="foot__mono">VAC-Team Építő Zrt.</span>
+        <span class="foot__mono">Cg. 13-10-042476</span>
+        <span class="foot__mono">Adószám 14658022-2-13</span>
+        <span class="foot__mono">2161 Csomád, Kossuth Lajos út 79.</span>
+        <a class="foot__mono" href="tel:+36704037217">+36 70 403 7217</a>
+        <a class="foot__mono" href="mailto:vacteamepitozrt@gmail.com">vacteamepitozrt@gmail.com</a>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span class="lab">© 2026 VAC-Team Építő Zrt.</span>
+      <span class="lab">Működési terület: Budapest és agglomeráció</span>
+      <span class="lab">Weboldal-koncepció, minta adatokkal</span>
+    </div>
+  </div>
+</footer>
+<!-- CHROME:FOOTER:end -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

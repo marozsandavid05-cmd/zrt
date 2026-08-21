@@ -1,0 +1,265 @@
+/* ==========================================================================
+   VAC-TEAM „ARANYÓRA" — mozgásmotor
+   Elv: a KÉSZ állapot az alapértelmezés. Minden rejtett kezdőállapot csak
+   .js alatt él, és minden effektnek van komponált végállapota. GSAP nélkül
+   is teljes az oldal: a súrolófény, a reveal és a nav natív JS-en fut.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* ---------- 1. REVEAL: scroll-listener + biztonsági passzok ---------- */
+  var ins = [].slice.call(document.querySelectorAll('[data-in]'));
+  function runIn() {
+    for (var i = 0; i < ins.length; i++) {
+      var el = ins[i];
+      if (el.classList.contains('on')) continue;
+      if (el.getBoundingClientRect().top < innerHeight * 0.92) el.classList.add('on');
+    }
+  }
+  var masks = [].slice.call(document.querySelectorAll('.mask'));
+  function runMask() {
+    for (var i = 0; i < masks.length; i++) {
+      var el = masks[i];
+      if (el.classList.contains('on')) continue;
+      if (el.getBoundingClientRect().top < innerHeight * 0.94) el.classList.add('on');
+    }
+  }
+  var shots = [].slice.call(document.querySelectorAll('.shot'));
+  function runShot() {
+    for (var i = 0; i < shots.length; i++) {
+      var el = shots[i];
+      if (el.classList.contains('on')) continue;
+      var r = el.getBoundingClientRect();
+      if (r.top < innerHeight * 0.7 && r.bottom > 0) el.classList.add('on');
+    }
+  }
+  function pass() { runIn(); runMask(); runShot(); }
+  addEventListener('scroll', pass, { passive: true });
+  addEventListener('resize', pass, { passive: true });
+  pass();
+  setTimeout(pass, 260);
+  setTimeout(pass, 1200);
+  addEventListener('load', pass);
+
+  /* ---------- 2. SÚROLÓFÉNY (a signature) ----------
+     Minden [data-rake] elem saját pályán fut. A pálya vagy a legközelebbi
+     [data-rake-track] szülő (magas konténer + sticky gyerek), vagy maga a
+     hero. A --sweep 0..100% között áll, a fénysáv a söprés élén ül.
+     Reduced motion alatt a CSS 100%-on tartja: a KÉSZ homlokzat áll ott. */
+  var rakes = [].slice.call(document.querySelectorAll('[data-rake]'));
+  if (rakes.length && !reduce) {
+    rakes.forEach(function (rk) {
+      rk.classList.add('is-live');
+      rk.style.setProperty('--sweep', '0%');
+    });
+    var rkRAF = 0;
+    var rkState = rakes.map(function (rk) { return { el: rk, cur: 0, target: 0, beam: rk.querySelector('.rake__beam') }; });
+
+    function measure() {
+      for (var i = 0; i < rkState.length; i++) {
+        var s = rkState[i];
+        var track = s.el.closest('[data-rake-track]');
+        var p;
+        if (track) {
+          var tr = track.getBoundingClientRect();
+          var span = tr.height - innerHeight;
+          p = span > 0 ? (-tr.top) / span : (tr.top < 0 ? 1 : 0);
+        } else {
+          var hr = s.el.getBoundingClientRect();
+          var hspan = hr.height || innerHeight;
+          p = (-hr.top) / hspan;
+        }
+        var start = parseFloat(s.el.dataset.rakeStart || '0');
+        s.target = Math.max(0, Math.min(1, start + p * (1 - start)));
+      }
+      if (!rkRAF) rkRAF = requestAnimationFrame(loop);
+    }
+    function loop() {
+      var busy = false;
+      for (var i = 0; i < rkState.length; i++) {
+        var s = rkState[i];
+        s.cur += (s.target - s.cur) * 0.14;
+        if (Math.abs(s.target - s.cur) > 0.0015) busy = true;
+        var pct = s.cur * 100;
+        s.el.style.setProperty('--sweep', pct.toFixed(2) + '%');
+        if (s.beam) {
+          /* a fénysáv a KONTÉNER szélességéhez igazodik, nem a viewporthoz,
+             így szűkebb blokkban is pontosan a söprés élén ül */
+          var w = s.el.offsetWidth || innerWidth;
+          s.beam.style.transform =
+            'translateX(' + (s.cur * w).toFixed(1) + 'px) translateX(-50%) skewX(-9deg)';
+          s.beam.style.opacity = (s.cur > 0.005 && s.cur < 0.995) ? '1' : '0';
+        }
+      }
+      rkRAF = busy ? requestAnimationFrame(loop) : 0;
+    }
+    addEventListener('scroll', measure, { passive: true });
+    addEventListener('resize', measure, { passive: true });
+    measure();
+    setTimeout(measure, 400);
+    addEventListener('load', measure);
+  }
+
+  /* ---------- 3. NAV: delta-hiszterézis + tömör állapot ---------- */
+  var nav = document.querySelector('.nav');
+  var lastY = scrollY, dn = 0, up = 0, menuOpen = false;
+  addEventListener('scroll', function () {
+    if (!nav) return;
+    var y = scrollY, d = y - lastY; lastY = y;
+    nav.classList.toggle('is-solid', y > 40);
+    if (menuOpen) return;
+    if (d > 0) { dn += d; up = 0; } else if (d < 0) { up -= d; dn = 0; }
+    if (y < 90) { nav.classList.remove('nav--up'); return; }
+    if (dn > 30 && y > 240) nav.classList.add('nav--up');
+    else if (up > 14) nav.classList.remove('nav--up');
+  }, { passive: true });
+
+  /* ---------- 4. MOBIL MENÜ ---------- */
+  var burger = document.querySelector('.burger');
+  var mob = document.querySelector('.mob');
+  if (burger && mob) {
+    burger.addEventListener('click', function () {
+      menuOpen = !menuOpen;
+      mob.classList.toggle('open', menuOpen);
+      burger.setAttribute('aria-expanded', menuOpen ? 'true' : 'false');
+      document.documentElement.style.overflow = menuOpen ? 'hidden' : '';
+      if (window.__lenis) { menuOpen ? window.__lenis.stop() : window.__lenis.start(); }
+      if (menuOpen) nav.classList.remove('nav--up');
+    });
+    mob.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        menuOpen = false; mob.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.documentElement.style.overflow = '';
+        if (window.__lenis) window.__lenis.start();
+      });
+    });
+  }
+
+  /* ---------- 5. KURZOR-ELŐNÉZET a tipográfiai indexen ---------- */
+  var peekHost = document.querySelector('.peek');
+  if (peekHost && fine && !reduce) {
+    var rows = [].slice.call(document.querySelectorAll('[data-peek]'));
+    if (rows.length) {
+      var imgs = {};
+      rows.forEach(function (r) {
+        var src = r.dataset.peek;
+        if (imgs[src]) return;
+        var im = new Image();
+        im.src = src; im.alt = '';
+        peekHost.appendChild(im);
+        imgs[src] = im;
+      });
+      var tx = innerWidth / 2, ty = innerHeight / 2, cx = tx, cy = ty, on = false, pRAF = 0;
+      function pLoop() {
+        cx += (tx - cx) * 0.13; cy += (ty - cy) * 0.13;
+        peekHost.style.transform = 'translate3d(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px,0) translate(-50%,-50%)' + (on ? ' scale(1)' : ' scale(.94)');
+        if (Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4 || on) pRAF = requestAnimationFrame(pLoop);
+        else pRAF = 0;
+      }
+      addEventListener('mousemove', function (e) {
+        tx = e.clientX + 190; ty = e.clientY;
+        if (tx > innerWidth - 200) tx = e.clientX - 190;
+        if (!pRAF) pRAF = requestAnimationFrame(pLoop);
+      }, { passive: true });
+      rows.forEach(function (r) {
+        r.addEventListener('mouseenter', function () {
+          on = true; peekHost.classList.add('on');
+          for (var k in imgs) imgs[k].classList.toggle('on', k === r.dataset.peek);
+          if (!pRAF) pRAF = requestAnimationFrame(pLoop);
+        });
+        r.addEventListener('mouseleave', function () {
+          on = false; peekHost.classList.remove('on');
+        });
+      });
+    }
+  }
+
+  /* ---------- 5/b. FEJEZET-JELÖLŐ a ragadó indexen (GSAP-mentes) ---------- */
+  var chapNav = document.querySelector('.chapx__nav');
+  if (chapNav) {
+    var links = [].slice.call(chapNav.querySelectorAll('a[href^="#"]'));
+    var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    var markRAF = 0;
+    function mark() {
+      markRAF = 0;
+      var best = -1, bestTop = -Infinity;
+      for (var i = 0; i < targets.length; i++) {
+        if (!targets[i]) continue;
+        var t = targets[i].getBoundingClientRect().top - innerHeight * 0.32;
+        if (t <= 0 && t > bestTop) { bestTop = t; best = i; }
+      }
+      if (best < 0) best = 0;
+      for (var j = 0; j < links.length; j++) links[j].classList.toggle('on', j === best);
+    }
+    addEventListener('scroll', function () { if (!markRAF) markRAF = requestAnimationFrame(mark); }, { passive: true });
+    addEventListener('resize', function () { if (!markRAF) markRAF = requestAnimationFrame(mark); }, { passive: true });
+    mark();
+    setTimeout(mark, 600);
+  }
+
+  /* ---------- 6. LENIS (self-rAF, NEM gsap.ticker) ---------- */
+  if (!reduce && typeof Lenis !== 'undefined') {
+    var lenis = new Lenis({
+      duration: 1.15,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true, syncTouch: false
+    });
+    window.__lenis = lenis;
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })();
+    lenis.on('scroll', function () {
+      if (window.ScrollTrigger) ScrollTrigger.update();
+    });
+  }
+
+  /* ---------- 7. GSAP: kizárólag degradálható extra ---------- */
+  if (typeof gsap !== 'undefined' && !reduce) {
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
+    document.querySelectorAll('[data-par]').forEach(function (el) {
+      var amt = parseFloat(el.dataset.par) || 0.1;
+      gsap.to(el, {
+        yPercent: amt * 100, ease: 'none',
+        scrollTrigger: { trigger: el.closest('section,header,figure') || el, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    });
+
+    /* vízszintes folyosó: pin + eltolás, natív fallbackkel */
+    document.querySelectorAll('[data-corridor]').forEach(function (host) {
+      var track = host.querySelector('[data-corridor-track]');
+      if (!track) return;
+      if (matchMedia('(max-width:900px)').matches) return;
+      if (track.scrollWidth <= innerWidth) return;
+      /* horgony-ugrás (#csarnok) vízszintesen elgörgetheti a konténert, mielőtt
+         a GSAP ráteszi a saját x transzformot: nullázni kell, különben eltolódnak a panelek */
+      host.scrollLeft = 0;
+      host.style.overflow = 'hidden';
+      gsap.to(track, {
+        x: function () { return -(track.scrollWidth - innerWidth + 40); }, ease: 'none',
+        scrollTrigger: {
+          trigger: host, start: 'top top',
+          end: function () { return '+=' + (track.scrollWidth - innerWidth + 40); },
+          pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1
+        }
+      });
+    });
+
+    /* idle-refresh: SOHA nem görgetés közben */
+    var lastScrollT = 0, tries = 0;
+    addEventListener('scroll', function () { lastScrollT = performance.now(); }, { passive: true });
+    function idleRefresh() {
+      if (tries++ > 40) return;
+      if (performance.now() - lastScrollT > 600) ScrollTrigger.refresh();
+      else setTimeout(idleRefresh, 500);
+    }
+    addEventListener('load', function () { setTimeout(idleRefresh, 700); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setTimeout(idleRefresh, 250); });
+    document.querySelectorAll('img').forEach(function (im) {
+      if (!im.complete) im.addEventListener('load', function () { setTimeout(idleRefresh, 200); }, { once: true });
+    });
+  }
+})();

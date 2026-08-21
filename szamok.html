@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.className += ' js';</script>
+<title>Cégadatok, fedezet és ellenőrizhetőség | VAC-Team Építő Zrt.</title>
+<meta name="description" content="Kivitelezői felelősségbiztosítás, C.A.R. keret, cégjegyzékszám és közhiteles nyilvántartások. Minden adat, amit a beruházó az átvilágításnál keresni fog.">
+<link rel="canonical" href="https://vac-team.hu/szamok.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Számok · VAC-Team Építő Zrt.">
+<meta property="og:description" content="Fedezet, cégadat, nyilvántartás. Amit egy beruházói átvilágítás keresni fog, forrásmegjelöléssel.">
+<meta property="og:image" content="https://vac-team.hu/media/og-kep.jpg">
+<meta property="og:locale" content="hu_HU">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1714'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23AE762B' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=zodiak@400,700,401&f%5B%5D=switzer@400,500,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ---- oldal-szkópolt: „dosszié" elrendezés (minden szelektor body.p-szamok) ---- */
+
+/* négyes szám-mérleg: hajszálvonalas rács, nem kártya */
+body.p-szamok .led{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+body.p-szamok .led__i{display:flex;flex-direction:column;gap:.85rem;
+  padding:clamp(1.6rem,3.2vw,2.6rem) clamp(1rem,2vw,2rem);border-left:1px solid var(--line)}
+body.p-szamok .led__i:first-child{border-left:0;padding-left:0}
+body.p-szamok .led__i .fig{font-size:clamp(2.3rem,4.4vw,3.5rem)}
+body.p-szamok .led__x{font-size:.9rem;color:var(--ink-2);max-width:26ch}
+@media(max-width:1000px){
+  body.p-szamok .led{grid-template-columns:repeat(2,minmax(0,1fr))}
+  body.p-szamok .led__i:nth-child(odd){border-left:0;padding-left:0}
+  body.p-szamok .led__i:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media(max-width:600px){
+  body.p-szamok .led{grid-template-columns:1fr}
+  body.p-szamok .led__i{border-left:0;padding-left:0}
+  body.p-szamok .led__i+.led__i{border-top:1px solid var(--line)}
+}
+
+/* fejezetjel a szekció-fej fölött */
+body.p-szamok .chapmark{margin-bottom:var(--sp-3)}
+body.p-szamok .aftr{margin-top:clamp(1.6rem,4vh,2.6rem)}
+
+/* táblázat oldalsó jegyzettel */
+body.p-szamok .dsl{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);
+  gap:clamp(1.8rem,5vw,5rem);align-items:start}
+body.p-szamok .dsl__side{position:sticky;top:calc(var(--nav-h) + 2.5rem);
+  display:flex;flex-direction:column;gap:var(--sp-2)}
+body.p-szamok .dsl__side p{font-size:.9rem;color:var(--ink-2)}
+body.p-szamok .light .dsl__side p{color:var(--ink-dark-2)}
+@media(max-width:900px){
+  body.p-szamok .dsl{grid-template-columns:1fr}
+  body.p-szamok .dsl__side{position:static}
+}
+
+/* mono érték-cella a cégadat-táblában (bal igazított, törhető, nem .num) */
+body.p-szamok .dat .val{font-family:var(--mono);font-size:.8rem;letter-spacing:.01em;
+  line-height:1.55;color:var(--ink)}
+@media(max-width:640px){
+  body.p-szamok .dat--co tbody tr{grid-template-columns:1fr;gap:.35rem}
+}
+
+/* megjegyzés-blokk a tábla alatt */
+body.p-szamok .fnote{margin-top:clamp(2rem,5vh,3.5rem);padding-top:var(--sp-3);
+  border-top:1px solid var(--line);display:grid;
+  grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:clamp(1rem,5vw,5rem)}
+body.p-szamok .light .fnote{border-color:var(--line-dark)}
+body.p-szamok .fnote p+p{margin-top:var(--sp-2)}
+@media(max-width:900px){body.p-szamok .fnote{grid-template-columns:1fr;gap:var(--sp-2)}}
+
+/* szélesebb címke-oszlop a biztosíték-specben */
+body.p-szamok .spec--wide>div{grid-template-columns:minmax(0,17rem) minmax(0,1fr)}
+@media(max-width:640px){body.p-szamok .spec--wide>div{grid-template-columns:1fr;gap:.3rem}}
+
+/* az egyetlen fotó: teljes szélesség, biztonságos parallax-tartalék */
+body.p-szamok .fin__img{aspect-ratio:16/7;background:var(--kova-2)}
+body.p-szamok .fin__img img{width:100%;height:118%;position:relative;top:-9%;
+  object-fit:cover;transition:filter 1s ease}
+body.p-szamok .fin__img:hover img{transform:none}
+@media(max-width:760px){body.p-szamok .fin__img{aspect-ratio:4/3}}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Főoldal","item":"https://vac-team.hu/"},
+    {"@type":"ListItem","position":2,"name":"Számok","item":"https://vac-team.hu/szamok.html"}
+  ]
+}
+</script>
+</head>
+<body class="p-szamok">
+
+<!-- CHROME:NAV:start -->
+<nav class="nav">
+  <div class="nav__in">
+    <a href="index.html" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
+    <div class="nav__links">
+      <a href="mit-epitunk.html" class="nav__a">Mit építünk</a>
+      <a href="hogyan-epitunk.html" class="nav__a">Hogyan építünk</a>
+      <a href="referenciak.html" class="nav__a">Referenciák</a>
+      <a href="szamok.html" aria-current="page" class="nav__a">Számok</a>
+      <a href="rolunk.html" class="nav__a">Rólunk</a>
+      <a href="kapcsolat.html" class="nav__tel">+36 70 403 7217</a>
+    </div>
+    <button class="burger" type="button" aria-expanded="false" aria-label="Menü"><i></i><i></i></button>
+  </div>
+</nav>
+<div class="mob">
+  <p class="lab">Oldalak</p>
+  <a href="index.html">Főoldal</a>
+  <a href="mit-epitunk.html">Mit építünk</a>
+  <a href="hogyan-epitunk.html">Hogyan építünk</a>
+  <a href="foghij.html">Foghíjbeépítés</a>
+  <a href="muemlek.html">Műemlék és homlokzat</a>
+  <a href="referenciak.html">Referenciák</a>
+  <a href="szamok.html" aria-current="page">Számok</a>
+  <a href="rolunk.html">Rólunk</a>
+  <a href="kapcsolat.html">Kapcsolat</a>
+  <p class="lab">Elérhetőség</p>
+  <a href="tel:+36704037217">+36 70 403 7217</a>
+</div>
+<!-- CHROME:NAV:end -->
+
+<!-- ======================= OLDAL-FEJ ======================= -->
+<header class="phero wrap">
+  <p class="lab phero__crumb"><a href="index.html">Főoldal</a><i>/</i><span>Számok</span></p>
+  <h1 class="phero__t mask">
+    <span class="ln"><span>Számok, amiket</span></span>
+    <span class="ln"><span><em>vissza lehet keresni.</em></span></span>
+  </h1>
+  <p class="phero__x" data-in>A magyar felszámolások nagyjából negyede építőipari cég. Ezért a beruházó
+    első kérdése nem az, hogy szépet építünk-e, hanem az, hogy ott állunk-e a második év végén is.
+    Erre az oldalra azt tettük ki, amit egy átvilágítás úgyis megkeres, a forrás megjelölésével.</p>
+  <div class="phero__rule"></div>
+</header>
+
+<!-- ======================= A MÉRLEG: NÉGY SZÁM ======================= -->
+<section class="sect wrap">
+  <p class="lab lab-rule chapmark" data-in>A mérleg · 2026</p>
+
+  <div class="led">
+    <div class="led__i" data-in>
+      <span class="lab">Kivitelezői felelősségbiztosítás</span>
+      <span class="fig">100<span class="fig__unit">M Ft</span></span>
+      <p class="led__x">A kamarai kötelező minimum kétszerese. Minden szerződés mögött ez áll,
+        a projekt méretétől függetlenül.</p>
+    </div>
+    <div class="led__i" data-in data-d="1">
+      <span class="lab">C.A.R. keret, Generali</span>
+      <span class="fig"><span class="fig__pre">~</span>2<span class="fig__unit">Mrd Ft</span></span>
+      <p class="led__x">Építés- és szerelésbiztosítás. A projektek külön kötvényen futnak,
+        nem egy közös keretet fogyasztanak.</p>
+    </div>
+    <div class="led__i" data-in data-d="2">
+      <span class="lab">Legnagyobb egyedi kötés</span>
+      <span class="fig">900<span class="fig__unit">M Ft</span></span>
+      <p class="led__x">Egyetlen beruházásra szóló fedezet. A további élő kötések 750 és
+        450 millió forintra szólnak.</p>
+    </div>
+    <div class="led__i" data-in data-d="3">
+      <span class="lab">Lejárt szállítói tartozás</span>
+      <span class="fig">0<span class="fig__unit">Ft</span></span>
+      <p class="led__x">Nyolc napon túl lejárt tartozásunk nincs. Az alvállalkozó a szerződés
+        szerinti napon kapja a pénzét.</p>
+    </div>
+  </div>
+
+  <p class="aftr muted" data-in>A számok mögötti kötvénymásolatot, a cégkivonatot és az igazolásokat
+    egyeztetés előtt is elküldjük, aláírt titoktartás nélkül. Ezek az adatok amúgy is nyilvánosak.</p>
+</section>
+
+<!-- ======================= 01 · FEDEZET ======================= -->
+<section class="sect wrap">
+  <p class="lab lab-rule chapmark" data-in>01 / Fedezet</p>
+  <div class="shd">
+    <h2 class="shd__t" data-in>Fedezet és biztosítás</h2>
+    <p class="shd__x" data-in data-d="1">Ha az építkezésen kár keletkezik, két dolog dönt: van-e mögötte
+      kötvény, és elég nagy-e. Az alábbi sorok mindegyikét kötvénymásolattal igazoljuk.</p>
+    <div class="shd__rule"></div>
+  </div>
+
+  <div class="dsl">
+    <aside class="dsl__side" data-in>
+      <p class="lab lab--ok">Mit fedez</p>
+      <p>A felelősségbiztosítás a mi hibánkból eredő károkat viszi. A C.A.R. magát az épülő szerkezetet
+        és a szereléseket, benne a szomszédos épületben okozott kárral.</p>
+      <p>A belvárosi munkánál ez a második rész a fontos. A kockázat nem a saját telken van,
+        hanem a mellette álló házban.</p>
+    </aside>
+
+    <table class="dat" data-in data-d="1">
+      <caption class="lab">Fedezeti adatok · érvényes kötvények szerint</caption>
+      <thead>
+        <tr><th scope="col">Tétel</th><th scope="col">Érték</th><th scope="col">Hol ellenőrizhető</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Kivitelezői felelősségbiztosítás</th>
+          <td class="num">100 000 000 <b>Ft</b></td><td class="lab">MKIK kivitelezői nyilvántartás</td></tr>
+        <tr><th scope="row">Ebből kamarai kötelező minimum</th>
+          <td class="num">50 000 000 <b>Ft</b></td><td class="lab">191/2009. Korm. rendelet</td></tr>
+        <tr><th scope="row">C.A.R. építés- és szerelésbiztosítási keret</th>
+          <td class="num">~2 000 000 000 <b>Ft</b></td><td class="lab">Generali, kötvényenként</td></tr>
+        <tr><th scope="row">Legnagyobb egyedi projektkötés</th>
+          <td class="num">900 000 000 <b>Ft</b></td><td class="lab">kötvénymásolat kérésre</td></tr>
+        <tr><th scope="row">További élő projektkötések</th>
+          <td class="num">750 / 450 <b>M Ft</b></td><td class="lab">kötvénymásolat kérésre</td></tr>
+        <tr><th scope="row">8 napon túli lejárt szállítói tartozás</th>
+          <td class="num">0 <b>Ft</b></td><td class="lab">NAV köztartozásmentes adatbázis</td></tr>
+        <tr><th scope="row">Közzétett beszámolók</th>
+          <td class="num">2020&ndash;2025</td><td class="lab">e-beszamolo.im.gov.hu</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ======================= 02 · CÉGADAT ======================= -->
+<section class="sect wrap">
+  <p class="lab lab-rule chapmark" data-in>02 / Cégadat</p>
+  <div class="shd">
+    <h2 class="shd__t" data-in>Cégadatok</h2>
+    <p class="shd__x" data-in data-d="1">Amit a cégkivonat mutat, karakterre ugyanúgy. Azért így,
+      hogy a két oldal összevethető legyen, és ne kelljen kitalálni, melyik a hivatalos alak.</p>
+    <div class="shd__rule"></div>
+  </div>
+
+  <table class="dat dat--co" data-in>
+    <caption class="lab">Törzsadatok · közhiteles cégnyilvántartás szerint</caption>
+    <thead>
+      <tr><th scope="col">Adat</th><th scope="col">Érték</th><th scope="col">Forrás</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Cégnév</th>
+        <td class="val">VAC-Team Építő Zrt.</td><td class="lab">cégnyilvántartás</td></tr>
+      <tr><th scope="row">Teljes név</th>
+        <td class="val">VAC-Team Építő Zártkörűen Működő Részvénytársaság</td><td class="lab">cégkivonat</td></tr>
+      <tr><th scope="row">Cégjegyzékszám</th>
+        <td class="val">13-10-042476</td><td class="lab">cégnyilvántartás</td></tr>
+      <tr><th scope="row">Adószám</th>
+        <td class="val">14658022-2-13</td><td class="lab">NAV törzsadat</td></tr>
+      <tr><th scope="row">Székhely</th>
+        <td class="val">2161 Csomád, Kossuth Lajos út 79.</td><td class="lab">cégkivonat</td></tr>
+      <tr><th scope="row">Működési terület</th>
+        <td class="val">Budapest és agglomeráció</td><td class="lab">saját nyilatkozat</td></tr>
+      <tr><th scope="row">Vezérigazgató</th>
+        <td class="val">Antal-Köz Csaba</td><td class="lab">cégkivonat</td></tr>
+      <tr><th scope="row">Alapítás</th>
+        <td class="val">2009</td><td class="lab">cégkivonat</td></tr>
+      <tr><th scope="row">Építőipari profil</th>
+        <td class="val">2023-tól</td><td class="lab">tulajdonosváltás</td></tr>
+    </tbody>
+  </table>
+
+  <div class="fnote" data-in>
+    <p class="lab lab--ok">Megjegyzés a cégtörténethez</p>
+    <div>
+      <p>Egy dolgot érdemes előre kimondani. A társaságot 2009-ben jegyezték be, az építőipari profil
+        viszont a 2023-as tulajdonosváltással jött. A cégkivonat így néz ki, és aki lekéri, ezt fogja látni.</p>
+      <p>A referenciamunkák mögötti mintegy huszonnégy évnyi szakmai múlt a vezetők személyéhez és
+        korábbi cégeikhez kötődik, nem ehhez a cégjegyzékszámhoz. Ezért nem írunk hosszú építőipari
+        cégmúltat oda, ahol az adat mást mond. A kettőt az ügyvezetés önéletrajza köti össze,
+        azt kérésre névre szólóan átadjuk.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 03 · ELLENŐRZÉS (világos világ) ======================= -->
+<section class="sect light">
+  <div class="wrap">
+    <p class="lab lab-rule chapmark" data-in>03 / Ellenőrzés</p>
+    <div class="shd">
+      <h2 class="shd__t" data-in>Ellenőrizze le minket</h2>
+      <p class="shd__x" data-in data-d="1">Öt nyilvántartás, mind nyilvános, egyikhez sem kell tőlünk
+        semmi. Ha ellentmondást talál bármelyikben, kérjük, hívjon fel, mielőtt továbblép.</p>
+      <div class="shd__rule"></div>
+    </div>
+
+    <div class="idx" data-in>
+      <a class="idx__row" href="https://knyr.mkik.hu" target="_blank" rel="noopener">
+        <span class="idx__n">01</span>
+        <span class="idx__t">MKIK kivitelezői nyilvántartás</span>
+        <span class="idx__x">Szerepel-e a cég a kivitelezői nyilvántartásban, milyen szakterületre,
+          és mekkora a felelősségbiztosítása.<span class="sr-only"> A hivatkozás új lapon nyílik.</span></span>
+        <span class="idx__m">knyr.mkik.hu</span>
+      </a>
+      <a class="idx__row" href="https://www.mmk.hu" target="_blank" rel="noopener">
+        <span class="idx__n">02</span>
+        <span class="idx__t">MMK névjegyzék</span>
+        <span class="idx__x">A felelős műszaki vezető kamarai jogosultsága és NÜJ száma,
+          érvényességi dátummal.<span class="sr-only"> A hivatkozás új lapon nyílik.</span></span>
+        <span class="idx__m">mmk.hu</span>
+      </a>
+      <a class="idx__row" href="https://nav.gov.hu/adatbazisok" target="_blank" rel="noopener">
+        <span class="idx__n">03</span>
+        <span class="idx__t">NAV köztartozásmentes adatbázis</span>
+        <span class="idx__x">Van-e lejárt köztartozásunk. A lista havonta frissül, a szereplés
+          feltétele a nulla tartozás.<span class="sr-only"> A hivatkozás új lapon nyílik.</span></span>
+        <span class="idx__m">nav.gov.hu</span>
+      </a>
+      <a class="idx__row" href="https://e-beszamolo.im.gov.hu" target="_blank" rel="noopener">
+        <span class="idx__n">04</span>
+        <span class="idx__t">Beszámolók, mérleg, eredmény</span>
+        <span class="idx__x">A 2020 és 2025 közötti üzleti évek beszámolói, díjmentesen,
+          cégnév vagy adószám alapján.<span class="sr-only"> A hivatkozás új lapon nyílik.</span></span>
+        <span class="idx__m">e-beszamolo.im.gov.hu</span>
+      </a>
+      <a class="idx__row" href="https://www.opten.hu" target="_blank" rel="noopener">
+        <span class="idx__n">05</span>
+        <span class="idx__t">Opten céginformáció</span>
+        <span class="idx__x">Tulajdonosi kör, változásbejegyzések, negatív információk és a
+          kapcsolt cégek listája.<span class="sr-only"> A hivatkozás új lapon nyílik.</span></span>
+        <span class="idx__m">opten.hu</span>
+      </a>
+    </div>
+
+    <p class="aftr muted" data-in>A nyilvántartások egymástól függetlenül vezetettek, és nem tőlünk
+      kapják az adatot. Pont ez bennük az érték. Az itt közölt sorokat 2026 februárjában vetettük
+      össze velük utoljára.</p>
+  </div>
+</section>
+
+<!-- ======================= 04 · BIZTOSÍTÉK (világos világ, folytatás) ======================= -->
+<section class="sect light">
+  <div class="wrap">
+    <p class="lab lab-rule chapmark" data-in>04 / Biztosíték</p>
+    <div class="shd">
+      <h2 class="shd__t" data-in>Biztosítékok a szerződésben</h2>
+      <p class="shd__x" data-in data-d="1">A biztosíték nem bizalmi kérdés, hanem szerződéses tétel.
+        Ezek a sorok minden vállalkozási szerződésünkben benne vannak, az összeg a vállalkozói díjhoz igazodik.</p>
+      <div class="shd__rule"></div>
+    </div>
+
+    <div class="dsl">
+      <aside class="dsl__side" data-in>
+        <p class="lab lab--ok">Miért így</p>
+        <p>A biztosíték annyit ér, amennyit a beruházó le tud hívni belőle. Ezért bankgaranciát adunk
+          vagy visszatartást fogadunk el, nem ígéretet.</p>
+        <p>Banki finanszírozásnál a hitelező elvárásaihoz igazítjuk az arányokat és a formát.</p>
+      </aside>
+
+      <dl class="spec spec--wide" data-in data-d="1">
+        <div><dt>Teljesítési biztosíték</dt>
+          <dd>A nettó vállalkozói díj 5 százaléka, bankgaranciával vagy visszatartással,
+            a szerződéskötéstől a műszaki átadásig.</dd></div>
+        <div><dt>Jólteljesítési garancia</dt>
+          <dd>Az átadástól számítva 5 százalék az első évben, majd 3 százalék a garanciaidő végéig.</dd></div>
+        <div><dt>Előleg-visszafizetési garancia</dt>
+          <dd>Előlegfizetés esetén az előleg teljes összegére, bankgaranciával.</dd></div>
+        <div><dt>Késedelmi kötbér</dt>
+          <dd>A nettó vállalkozói díj napi 0,2 százaléka, legfeljebb 10 százalékig.</dd></div>
+        <div><dt>Meghiúsulási kötbér</dt>
+          <dd>A nettó vállalkozói díj 10 százaléka.</dd></div>
+        <div><dt>Jótállás</dt>
+          <dd>Lakóépületnél három év. A tartószerkezeti elemekre a jogszabályi kötelező
+            alkalmassági idő tíz év.</dd></div>
+        <div><dt>Fizetési rend</dt>
+          <dd>Havi teljesítésigazolás alapján, a beruházó műszaki ellenőrének aláírásával,
+            30 napos átutalással.</dd></div>
+      </dl>
+    </div>
+
+    <div class="fnote" data-in>
+      <p class="lab lab--ok">Amit nem vállalunk</p>
+      <div>
+        <p>Nem adunk fix árat két évre a kulcsátadásig. A forint és az euró viszonyát ennyi időre
+          nem lehet becsületesen beárazni, és az ilyen ár vagy a beruházón, vagy az alvállalkozói
+          láncon csattan. Ezért a szerkezetkész, vízhatlan épületig megyünk fix áron, a második
+          ütemre pedig a tényleges piaci árakon adunk ajánlatot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ZÁRÁS: AZ EGYETLEN FOTÓ ======================= -->
+<figure class="shot fin__img">
+  <img src="media/projektek/p5.webp" alt="Belvárosi építkezés madártávlatból: darugémek a bontott telek fölött, mellette forgalmas utca parkoló autókkal" loading="lazy" data-par="0.06">
+</figure>
+
+<section class="sect wrap s-cta">
+  <p class="lab lab-rule" data-in>Iratok és egyeztetés</p>
+  <h2 class="s-cta__t mask">
+    <span class="ln"><span>Kérje be az iratokat.</span></span>
+    <span class="ln"><span><em>Utána beszéljünk.</em></span></span>
+  </h2>
+  <p class="s-cta__x" data-in data-d="1">Cégkivonat, kötvénymásolat, felelős műszaki vezetői
+    jogosultság, referencialista. Egy levélben, két munkanapon belül, még az első találkozó előtt.</p>
+  <div class="hero__cta" data-in data-d="2">
+    <a class="btn btn--solid" href="kapcsolat.html">Iratok kérése <i>&rarr;</i></a>
+    <a class="btn" href="tel:+36704037217">+36 70 403 7217</a>
+  </div>
+</section>
+
+<!-- CHROME:FOOTER:start -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__col">
+        <a href="index.html" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
+        <p class="muted" style="margin-top:1rem;max-width:32ch">Generálkivitelezés és monolit vasbeton
+          szerkezetépítés Budapesten és az agglomerációban.</p>
+      </div>
+      <div class="foot__col">
+        <h4>Szakterületek</h4>
+        <a href="hogyan-epitunk.html#general">Generálkivitelezés</a>
+        <a href="hogyan-epitunk.html#szerkezet">Szerkezetépítés</a>
+        <a href="foghij.html">Foghíjbeépítés</a>
+        <a href="foghij.html#tetoter">Tetőtér-ráépítés</a>
+        <a href="muemlek.html">Műemlék és homlokzat</a>
+        <a href="mit-epitunk.html#csarnok">Csarnok és ipari</a>
+      </div>
+      <div class="foot__col">
+        <h4>Oldalak</h4>
+        <a href="mit-epitunk.html">Mit építünk</a>
+        <a href="hogyan-epitunk.html">Hogyan építünk</a>
+        <a href="referenciak.html">Referenciák</a>
+        <a href="szamok.html">Számok</a>
+        <a href="rolunk.html">Rólunk</a>
+        <a href="kapcsolat.html">Kapcsolat</a>
+      </div>
+      <div class="foot__col">
+        <h4>Cégadatok</h4>
+        <span class="foot__mono">VAC-Team Építő Zrt.</span>
+        <span class="foot__mono">Cg. 13-10-042476</span>
+        <span class="foot__mono">Adószám 14658022-2-13</span>
+        <span class="foot__mono">2161 Csomád, Kossuth Lajos út 79.</span>
+        <a class="foot__mono" href="tel:+36704037217">+36 70 403 7217</a>
+        <a class="foot__mono" href="mailto:vacteamepitozrt@gmail.com">vacteamepitozrt@gmail.com</a>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span class="lab">© 2026 VAC-Team Építő Zrt.</span>
+      <span class="lab">Működési terület: Budapest és agglomeráció</span>
+      <span class="lab">Weboldal-koncepció, minta adatokkal</span>
+    </div>
+  </div>
+</footer>
+<!-- CHROME:FOOTER:end -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
