@@ -507,6 +507,13 @@ p{text-wrap:pretty;max-width:68ch}
 .s-cta__t{font-size:var(--t-4);margin-top:var(--sp-3)}
 .s-cta__t em{font-style:italic;color:var(--okker)}
 .s-cta__x{margin-top:var(--sp-3);max-width:54ch;color:var(--ink-2)}
+/* záró CTA két hasábban: cím balra, szöveg + gombok jobbra. Nincs üres jobb fél */
+.s-cta__row{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:var(--sp-4) clamp(2.5rem,6vw,6rem);align-items:center;margin-top:var(--sp-3)}
+.s-cta__row .s-cta__t{margin-top:0}
+.s-cta__row .s-cta__x{margin-top:0}
+.s-cta__row .hero__cta{margin-top:var(--sp-3)}
+@media(max-width:900px){.s-cta__row{grid-template-columns:1fr}}
 
 /* ---------- 15. REDUCED MOTION: MINDIG KOMPONÁLT VÉGÁLLAPOT ---------- */
 @media (prefers-reduced-motion:reduce){

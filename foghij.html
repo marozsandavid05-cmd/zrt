@@ -47,8 +47,14 @@ body.p-foghij .duo{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,
   gap:clamp(2rem,6vw,5rem);align-items:start;margin-top:var(--sp-3)}
 body.p-foghij .duo--far{margin-top:clamp(2.5rem,6vh,4rem)}
 body.p-foghij .duo p + p{margin-top:var(--sp-2)}
-body.p-foghij .cta-lab{margin-top:var(--sp-5)}
-body.p-foghij .cta-spec{max-width:40rem;margin-top:.9rem}
+/* záró CTA: szöveg+gombok balra, az iratlista jobbra tölti ki a sort */
+body.p-foghij .cta-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:var(--sp-4) clamp(2.5rem,6vw,6rem);align-items:center;margin-top:var(--sp-3)}
+body.p-foghij .cta-grid .s-cta__x{margin-top:0}
+body.p-foghij .cta-grid .hero__cta{margin-top:var(--sp-4)}
+body.p-foghij .cta-lab{margin-top:0}
+body.p-foghij .cta-spec{max-width:none;margin-top:.9rem}
+@media(max-width:900px){body.p-foghij .cta-grid{grid-template-columns:1fr}}
 body.p-foghij .figrow{display:flex;flex-wrap:wrap;gap:var(--sp-4) var(--sp-6);margin-top:var(--sp-4)}
 body.p-foghij .figrow>div{display:flex;flex-direction:column;gap:.45rem}
 body.p-foghij .figrow .fig{font-size:2.6rem}
@@ -423,19 +429,25 @@ body.p-foghij .stack{margin-top:clamp(2rem,5vh,3.5rem)}
     <span class="ln"><span>Mielőtt megveszi a telket,</span></span>
     <span class="ln"><span><em>mérjük fel együtt.</em></span></span>
   </h2>
-  <p class="s-cta__x" data-in data-d="1">Két munkanapon belül megírjuk, hány lakás fér el rajta
-    reálisan, mit kíván az organizáció, és mibe kerül a szerkezetkész, vízhatlan állapot. Ha a telek nem
-    beépíthető úgy, ahogy elképzelte, azt is megírjuk.</p>
-  <p class="lab cta-lab" data-in data-d="2">Amit küldjön</p>
-  <dl class="spec cta-spec" data-in data-d="2">
-    <div><dt>01</dt><dd>Helyrajzi szám</dd></div>
-    <div><dt>02</dt><dd>Telekméret és az utcafront hossza</dd></div>
-    <div><dt>03</dt><dd>Meglévő terv, vázlat vagy tanulmányterv</dd></div>
-    <div><dt>04</dt><dd>Tervezett lakásszám</dd></div>
-  </dl>
-  <div class="hero__cta" data-in data-d="3">
-    <a class="btn btn--solid" href="kapcsolat.html">Kapcsolat <i>&rarr;</i></a>
-    <a class="btn" href="tel:+36704037217">+36 70 403 7217</a>
+  <div class="cta-grid">
+    <div>
+      <p class="s-cta__x" data-in data-d="1">Két munkanapon belül megírjuk, hány lakás fér el rajta
+        reálisan, mit kíván az organizáció, és mibe kerül a szerkezetkész, vízhatlan állapot. Ha a telek nem
+        beépíthető úgy, ahogy elképzelte, azt is megírjuk.</p>
+      <div class="hero__cta" data-in data-d="3">
+        <a class="btn btn--solid" href="kapcsolat.html">Kapcsolat <i>&rarr;</i></a>
+        <a class="btn" href="tel:+36704037217">+36 70 403 7217</a>
+      </div>
+    </div>
+    <div>
+      <p class="lab cta-lab" data-in data-d="2">Amit küldjön</p>
+      <dl class="spec cta-spec" data-in data-d="2">
+        <div><dt>01</dt><dd>Helyrajzi szám</dd></div>
+        <div><dt>02</dt><dd>Telekméret és az utcafront hossza</dd></div>
+        <div><dt>03</dt><dd>Meglévő terv, vázlat vagy tanulmányterv</dd></div>
+        <div><dt>04</dt><dd>Tervezett lakásszám</dd></div>
+      </dl>
+    </div>
   </div>
 </section>
 
