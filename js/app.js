@@ -175,9 +175,13 @@
         frows.forEach(function (r) {
           var ok = f === 'all' || (' ' + r.getAttribute('data-cat') + ' ').indexOf(' ' + f + ' ') !== -1;
           r.classList.toggle('is-hidden', !ok);
-          if (ok) shown++;
+          /* a szűréssel előkerülő sor azonnal látsszon: a reveal különben csak
+             a következő scroll-eventnél futna le, addig üresnek tűnne a lista */
+          if (ok) { r.classList.add('on'); shown++; }
         });
         if (counter) counter.textContent = shown;
+        /* a lista rövidülésével a viewportba ugró többi elem reveal-je is fusson le */
+        pass();
       });
     });
   }
