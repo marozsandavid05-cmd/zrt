@@ -9,6 +9,20 @@
    ZÉRÓ rajzolt SVG. A vizuál: fotó + tipográfia + fény.
    ========================================================================== */
 
+/* Helyi betűk (2026-10-13). Külső betű-kérés nincs.
+   Erode, Supreme: Fontshare, ITF Free Font License 2.0, 01. pont: saját weboldalon
+   self-host engedélyezett, a fájl változatlan (subset és konverzió nélkül).
+   Martian Mono: SIL Open Font License, Google Fonts, változó súly (300-400), latin + latin-ext. */
+@font-face{font-family:'Erode';src:url('../fonts/erode-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Erode';src:url('../fonts/erode-400i.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Erode';src:url('../fonts/erode-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Erode';src:url('../fonts/erode-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Supreme';src:url('../fonts/supreme-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Supreme';src:url('../fonts/supreme-400i.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Supreme';src:url('../fonts/supreme-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Martian Mono';src:url('../fonts/martian-mono-latin-ext.woff2') format('woff2');font-weight:300 400;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Martian Mono';src:url('../fonts/martian-mono-latin.woff2') format('woff2');font-weight:300 400;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
 /* ---------- 1. TOKENEK ---------- */
 :root{
   /* anyag-alapok */
@@ -82,7 +96,7 @@ html.lenis,html.lenis body{height:auto}
 h1,h2,h3,h4{font-family:var(--display);font-weight:400;letter-spacing:-.022em;
   line-height:1.06;text-wrap:balance;color:var(--ink)}
 a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
+img{display:block;max-width:100%;height:auto}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 ul,ol{list-style:none}
 p{text-wrap:pretty;max-width:68ch}
@@ -266,6 +280,20 @@ p{text-wrap:pretty;max-width:68ch}
 .hero__stat{display:flex;flex-direction:column;gap:.4rem}
 .hero__stat .fig{font-size:1.85rem}
 @media(max-width:720px){.hero{min-height:94svh}}
+/* álló telefonon a pinnelt hero tömörebb, hogy a teljes tartalom beférjen a 100svh-ba */
+@media(max-width:700px){
+  .hero{padding-top:calc(var(--nav-h) + 1.5vh);padding-bottom:var(--sp-3)}
+  .hero__t{margin-top:var(--sp-2)}
+  .hero__sub{margin-top:var(--sp-2);font-size:var(--t-0);line-height:1.6}
+  .hero__cta{margin-top:var(--sp-3);gap:.6rem}
+  .hero__cta .btn{padding:.9rem 1.2rem}
+  .hero__foot{margin-top:var(--sp-3);padding-top:var(--sp-2);gap:var(--sp-2) var(--sp-4)}
+  .hero__stat .fig{font-size:1.5rem}
+}
+/* ha a tartalom így sem fér be (alacsony telefon), a JS .is-tall-t tesz a pályára:
+   nincs ragadás, a hero sima, görgethető képernyő, a söprés a hero görgetésén fut */
+.js .herotrack.is-tall{height:auto}
+.js .herotrack.is-tall .hero{position:relative;height:auto;min-height:100svh}
 
 /* ---------- 9. SZEKCIÓ-FEJ ---------- */
 .shd{display:grid;gap:var(--sp-2);margin-bottom:clamp(2.2rem,5vh,3.6rem);
@@ -453,6 +481,8 @@ p{text-wrap:pretty;max-width:68ch}
 
 /* ---------- 13/f. SÚROLÓFÉNY-PÁLYA (pinnelés nélkül, sticky) ---------- */
 .raketrack{position:relative}
+/* a pálya csak .js alatt magas; reduced-motion alatt egy képernyő, a KÉSZ homlokzat áll */
+.js .raketrack{height:230svh}
 .raketrack__stick{position:sticky;top:0;height:100svh;overflow:clip;display:flex;align-items:flex-end}
 .raketrack__stick .rake{position:absolute;inset:0}
 .raketrack__stick .rake__layer,.raketrack__stick .rake__after,
@@ -469,6 +499,9 @@ p{text-wrap:pretty;max-width:68ch}
 .foot__col a{color:var(--ink-2);transition:color .3s}
 .foot__col a:hover{color:var(--okker)}
 .foot__mono{font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--ink-2)}
+.foot__about{margin-top:1rem;max-width:32ch}
+.foot__legal{color:var(--ink-2);transition:color .3s}
+.foot__legal:hover{color:var(--okker)}
 .foot__bar{margin-top:var(--sp-5);padding-top:var(--sp-3);border-top:1px solid var(--line);
   display:flex;flex-wrap:wrap;gap:.6rem var(--sp-4);justify-content:space-between}
 @media(max-width:900px){.foot__grid{grid-template-columns:1fr 1fr}}
@@ -515,12 +548,59 @@ p{text-wrap:pretty;max-width:68ch}
 .s-cta__row .hero__cta{margin-top:var(--sp-3)}
 @media(max-width:900px){.s-cta__row{grid-template-columns:1fr}}
 
+/* ---------- 14/c. ÖSSZEÁLLÍTÁS ALATT (ahol még nincs valós adat) ----------
+   Egy szöveg mindenhol, alatta két csendes kapcsolati út szövegként, nem
+   gombsorként. Hajszálvonal fent, okker címke, a mondat a display arccal. */
+.soon{display:grid;grid-template-columns:minmax(0,14rem) minmax(0,1fr);
+  gap:var(--sp-2) clamp(2rem,5vw,5rem);padding-top:var(--sp-3);
+  border-top:1px solid var(--line);align-items:baseline}
+.light .soon{border-color:var(--line-dark)}
+.soon__t{font-family:var(--display);font-size:var(--t-2);line-height:1.3;
+  letter-spacing:-.012em;max-width:34ch;color:var(--ink)}
+.light .soon__t{color:var(--ink-dark)}
+.soon__ways{display:flex;flex-wrap:wrap;gap:.2rem 2.2rem;margin-top:var(--sp-3)}
+.soon__ways a{display:inline-flex;align-items:center;min-height:44px;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--ink-2);
+  text-decoration:underline;text-decoration-color:var(--okker);text-underline-offset:.45em;
+  text-decoration-thickness:1px;transition:color .3s ease}
+.soon__ways a:hover{color:var(--okker)}
+.light .soon__ways a{color:var(--ink-dark-2)}
+.light .soon__ways a:hover{color:var(--okker)}
+.soon__ways b{font-weight:400;color:var(--ink);margin-left:.6em}
+.light .soon__ways b{color:var(--ink-dark)}
+@media(max-width:760px){.soon{grid-template-columns:1fr}}
+/* az összeállítás alatt blokk közvetlenül az oldal-fej vonala alatt ül: a fej már adott térközt */
+.sect--soon{padding-top:0;padding-bottom:clamp(3.5rem,9vh,6.5rem)}
+.sect--soon .soon{border-top:0;padding-top:0}
+.p-soon .phero{padding-bottom:clamp(2rem,5vh,3rem)}
+/* saját helyszíni fotók sora: a 443 px-es FB-képek sosem nőnek nagyobbra */
+.own{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,13rem),1fr));
+  gap:var(--sp-3);margin-top:var(--sp-5)}
+.own figure{max-width:440px}
+.own .shot img{aspect-ratio:3/4;object-fit:cover}
+
+/* ---------- 14/d. ÉRINTŐS ESZKÖZ: olvasható címke, 44 px-es érintési cél ----------
+   Csak durva mutatón (telefon, tablet) él, az asztali kompozíció változatlan. */
+@media (pointer:coarse){
+  .lab{font-size:.68rem;letter-spacing:.24em}
+  .spec dt{font-size:.64rem}
+  .dat thead th{font-size:.64rem}
+  .foot__col a,.foot__legal,.phero__crumb a,.chapx__nav a,.k-mail{
+    display:inline-flex;align-items:center;min-height:44px}
+  .foot__col{gap:0}
+  .chapx__nav{gap:0 1.2rem}
+  .brand span{font-size:.64rem}
+  .idx__go{font-size:.66rem}
+  .fig__unit{font-size:.3em}
+}
+
 /* ---------- 15. REDUCED MOTION: MINDIG KOMPONÁLT VÉGÁLLAPOT ---------- */
 @media (prefers-reduced-motion:reduce){
   .js [data-in]{opacity:1;transform:none;transition:none}
   .js .mask .ln>span{transform:none;transition:none}
   .rake{--sweep:100%}
   .rake__beam{display:none}
+  .js .raketrack{height:auto}
   .shot img{filter:saturate(1) contrast(1.02);transition:none}
   .js .herotrack{height:auto}
   .js .herotrack .hero{position:relative;height:auto;min-height:100svh}

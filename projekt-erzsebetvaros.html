@@ -4,508 +4,278 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.className += ' js';</script>
-<title>Foghíjbeépítés Erzsébetvárosban, 14 lakásos társasház | VAC-Team</title>
-<meta name="description" content="Minta esettanulmány: 14 lakásos társasház foghíjtelken, két tűzfal között, Erzsébetvárosban. Felvonulási terület nélkül, közterületről szervezett emeléssel.">
-<link rel="canonical" href="https://vac-team.hu/projekt-erzsebetvaros.html">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://vac-team.hu/projekt-erzsebetvaros.html">
-<meta property="og:title" content="Társasház két tűzfal között · Erzsébetváros">
-<meta property="og:description" content="Tizenkét méter utcafront, felvonulási terület és darupálya nélkül. Esettanulmány arról, hogyan lesz a szűk telekből ütemterv.">
-<meta property="og:image" content="https://vac-team.hu/media/og-kep.jpg">
+<title>Referencia-adatlap, Erzsébetváros · VAC-Team Építő Zrt.</title>
+<meta name="description" content="Referencia-adatlap. A részletes adatokat a következő frissítéssel tesszük közzé, kérésre addig is átküldjük.">
+<meta name="robots" content="noindex, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="VAC-Team Építő Zrt.">
 <meta property="og:locale" content="hu_HU">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1714'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23AE762B' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://api.fontshare.com">
-<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=erode@400,401,500,700&f%5B%5D=supreme@400,401,500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400&display=swap">
+<meta property="og:title" content="Referencia-adatlap, Erzsébetváros · VAC-Team Építő Zrt.">
+<meta property="og:description" content="Referencia-adatlap. Kérésre átküldjük.">
+<meta property="og:url" content="https://vacteam.hu/projekt-erzsebetvaros">
+<meta property="og:image" content="https://vacteam.hu/media/og-kep.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="VAC-Team Építő Zrt., generálkivitelezés és szerkezetépítés a pesti belvárosban">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Referencia-adatlap, Erzsébetváros · VAC-Team Építő Zrt.">
+<meta name="twitter:description" content="Referencia-adatlap. Kérésre átküldjük.">
+<meta name="twitter:image" content="https://vacteam.hu/media/og-kep.jpg">
+<meta name="theme-color" content="#1A1714">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="media/favicon.svg">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="stylesheet" href="css/style.css">
-<style>
-/* --- oldal-szkópos kiegészítés: esettanulmány, korlát / megoldás / eredmény --- */
-body.p-case .case-flag{margin-bottom:var(--sp-3)}
-body.p-case .case-spec{margin-top:clamp(2.2rem,5vh,3.4rem)}
-@media(min-width:900px){
-  body.p-case .case-spec{grid-template-columns:repeat(2,minmax(0,1fr));
-    column-gap:clamp(2rem,6vw,5rem)}
-}
-
-/* teljes szélességű nyitókép, parallax-tartalékkal */
-body.p-case .case-shot{height:clamp(46svh,62vh,740px)}
-body.p-case .case-shot img{width:100%;height:116%;object-fit:cover}
-body.p-case .case-cap{display:flex;flex-wrap:wrap;justify-content:space-between;
-  gap:.5rem var(--sp-4);padding-top:1rem}
-
-/* korlátok: sorregiszter + adathasáb */
-body.p-case .kor{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);
-  gap:clamp(2rem,5vw,5rem);align-items:start}
-body.p-case .krow{display:grid;grid-template-columns:3.4rem minmax(0,1fr);
-  gap:.4rem var(--sp-3);padding-block:clamp(1.3rem,3.2vh,2.1rem);
-  border-bottom:1px solid var(--line)}
-body.p-case .krow--first{border-top:1px solid var(--line)}
-body.p-case .krow h3{font-size:var(--t-2);max-width:24ch}
-body.p-case .krow p{margin-top:.75rem;color:var(--ink-2)}
-body.p-case .krow .lab{padding-top:.5em}
-body.p-case .kor__side{display:flex;flex-direction:column;gap:var(--sp-3);
-  position:sticky;top:calc(var(--nav-h) + 2rem)}
-body.p-case .kor__side .spec{width:100%}
-/* a hosszabb mono címkéknek (FELVONULÁSI TERÜLET) szűk hasábban több hely kell */
-body.p-case .kor__side .spec>div{grid-template-columns:minmax(0,11.5rem) minmax(0,1fr)}
-
-/* megoldás: kéthasábos regiszter, nem kártyarács */
-body.p-case .mego{margin-top:clamp(2.4rem,6vh,3.8rem)}
-@media(min-width:820px){
-  body.p-case .mego{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-body.p-case .mego .stack__i{gap:.55rem}
-body.p-case .mego .stack__i p{color:var(--ink-dark-2)}
-body.p-case .mego__wide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(1.5rem,5vw,4rem);align-items:center;margin-bottom:clamp(2rem,5vh,3.2rem)}
-body.p-case .mego__wide p + p{margin-top:var(--sp-2)}
-
-/* eredmény: szám-sor + dosszié-tábla + idézetsáv */
-body.p-case .figrow{display:flex;flex-wrap:wrap;gap:var(--sp-4) clamp(2rem,6vw,5rem);
-  margin-bottom:clamp(2.4rem,6vh,3.8rem)}
-body.p-case .figrow>div{display:flex;flex-direction:column;gap:.5rem}
-body.p-case .figrow .fig{font-size:clamp(2.1rem,4.6vw,3.1rem)}
-body.p-case .qband{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
-  gap:clamp(1.5rem,5vw,4rem);align-items:end;
-  margin-top:clamp(2.6rem,7vh,4.4rem);padding-top:clamp(2rem,5vh,3.2rem);
-  border-top:1px solid var(--line)}
-/* a sáv hasábja szűkebb a főoldali idézetnél, ezért a sorok itt nem törhetnek meg */
-body.p-case .qband .quote{font-size:clamp(1.55rem,3.2vw,3.2rem);max-width:26ch}
-
-/* helyszíni felvételek: az fb-fotók csak 443px szélesek, sosem nagyobbak */
-body.p-case .fbgrid{display:grid;grid-template-columns:repeat(3,minmax(0,440px));
-  gap:clamp(1rem,3vw,2rem);margin-top:var(--sp-3)}
-@media(max-width:1100px){body.p-case .fbgrid{grid-template-columns:repeat(2,minmax(0,440px))}}
-body.p-case .fbgrid img{width:100%;height:auto}
-body.p-case .fbnote{margin-top:var(--sp-4);max-width:62ch}
-body.p-case .case-cta{display:flex;flex-wrap:wrap;justify-content:space-between;
-  align-items:flex-end;gap:var(--sp-3) var(--sp-5);
-  margin-top:clamp(3rem,8vh,5rem);padding-top:var(--sp-4);border-top:1px solid var(--line)}
-body.p-case .case-cta__b{display:flex;flex-wrap:wrap;gap:.9rem}
-
-/* lapozó */
-body.p-case .pager{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);
-  gap:1px;background:var(--line);border-block:1px solid var(--line);
-  margin-bottom:clamp(3rem,9vh,6rem)}
-body.p-case .pg{background:var(--kova);display:flex;flex-direction:column;gap:.7rem;
-  padding-block:clamp(1.6rem,4.5vh,2.8rem)}
-body.p-case .pg--prev{padding-right:var(--sp-3)}
-body.p-case .pg--next{padding-left:var(--sp-3);text-align:right;align-items:flex-end}
-body.p-case .pg__t{font-family:var(--display);font-size:var(--t-3);line-height:1.1;
-  letter-spacing:-.022em;transition:color .4s ease}
-body.p-case .pg:hover .pg__t{color:var(--okker)}
-
-@media(max-width:900px){
-  body.p-case .kor{grid-template-columns:1fr}
-  body.p-case .mego__wide{grid-template-columns:1fr;align-items:start}
-  body.p-case .qband{grid-template-columns:1fr;align-items:start}
-}
-@media(max-width:760px){
-  body.p-case .fbgrid{grid-template-columns:minmax(0,440px)}
-  body.p-case .pager{grid-template-columns:1fr}
-  body.p-case .pg--prev{padding-right:0}
-  body.p-case .pg--next{padding-left:0;text-align:left;align-items:flex-start}
-}
-</style>
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org","@type":"BreadcrumbList",
-  "itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Főoldal","item":"https://vac-team.hu/"},
-    {"@type":"ListItem","position":2,"name":"Referenciák","item":"https://vac-team.hu/referenciak.html"},
-    {"@type":"ListItem","position":3,"name":"Erzsébetváros","item":"https://vac-team.hu/projekt-erzsebetvaros.html"}
-  ]
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "GeneralContractor",
+   "@id": "https://vacteam.hu/#ceg",
+   "name": "VAC-Team Építő Zrt.",
+   "legalName": "VAC-Team Építő Zártkörűen Működő Részvénytársaság",
+   "url": "https://vacteam.hu/",
+   "logo": {
+    "@type": "ImageObject",
+    "@id": "https://vacteam.hu/#logo",
+    "url": "https://vacteam.hu/media/logo-512.png",
+    "width": 512,
+    "height": 512
+   },
+   "image": "https://vacteam.hu/media/og-kep.jpg",
+   "telephone": "+36 70 403 7217",
+   "email": "vacteamepitozrt@gmail.com",
+   "vatID": "14658022-2-13",
+   "taxID": "14658022-2-13",
+   "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "Cégjegyzékszám",
+    "value": "13-10-042476"
+   },
+   "foundingDate": "2009",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kossuth Lajos út 79.",
+    "addressLocality": "Csomád",
+    "postalCode": "2161",
+    "addressRegion": "Pest vármegye",
+    "addressCountry": "HU"
+   },
+   "areaServed": [
+    {
+     "@type": "City",
+     "name": "Budapest"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "Budapesti agglomeráció"
+    }
+   ],
+   "employee": {
+    "@type": "Person",
+    "name": "Antal-Köz Csaba",
+    "jobTitle": "vezérigazgató"
+   },
+   "knowsAbout": [
+    "generálkivitelezés",
+    "monolit vasbeton szerkezetépítés",
+    "foghíjbeépítés",
+    "tetőtér-ráépítés",
+    "műemléki homlokzat-helyreállítás",
+    "csarnoképítés"
+   ],
+   "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Kivitelezési szakterületek",
+    "itemListElement": [
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Generálkivitelezés"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Monolit vasbeton szerkezetépítés"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Foghíjbeépítés"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Tetőtér-ráépítés"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Műemléki homlokzat-helyreállítás"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Csarnok és iparterület"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://vacteam.hu/#web",
+   "url": "https://vacteam.hu/",
+   "name": "VAC-Team Építő Zrt.",
+   "alternateName": "VAC-Team",
+   "inLanguage": "hu",
+   "publisher": {
+    "@type": "GeneralContractor",
+    "@id": "https://vacteam.hu/#ceg",
+    "name": "VAC-Team Építő Zrt."
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://vacteam.hu/projekt-erzsebetvaros#morzsa",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Főoldal",
+     "item": "https://vacteam.hu/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Referenciák",
+     "item": "https://vacteam.hu/referenciak"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Erzsébetváros",
+     "item": "https://vacteam.hu/projekt-erzsebetvaros"
+    }
+   ]
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://vacteam.hu/projekt-erzsebetvaros#oldal",
+   "url": "https://vacteam.hu/projekt-erzsebetvaros",
+   "name": "Referencia-adatlap, Erzsébetváros · VAC-Team Építő Zrt.",
+   "description": "Referencia-adatlap. A részletes adatokat a következő frissítéssel tesszük közzé, kérésre addig is átküldjük.",
+   "inLanguage": "hu",
+   "isPartOf": {
+    "@id": "https://vacteam.hu/#web"
+   },
+   "about": {
+    "@type": "GeneralContractor",
+    "@id": "https://vacteam.hu/#ceg",
+    "name": "VAC-Team Építő Zrt."
+   },
+   "dateModified": "2026-10-13",
+   "breadcrumb": {
+    "@id": "https://vacteam.hu/projekt-erzsebetvaros#morzsa"
+   }
+  }
+ ]
 }
 </script>
 </head>
-<body class="p-case">
+<body class="p-case p-soon">
 
 <!-- CHROME:NAV:start -->
 <nav class="nav">
   <div class="nav__in">
-    <a href="index.html" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
+    <a href="./" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
     <div class="nav__links">
-      <a href="mit-epitunk.html" class="nav__a">Mit építünk</a>
-      <a href="hogyan-epitunk.html" class="nav__a">Hogyan építünk</a>
-      <a href="referenciak.html" class="nav__a nav__a--sect">Referenciák</a>
-      <a href="szamok.html" class="nav__a">Számok</a>
-      <a href="rolunk.html" class="nav__a">Rólunk</a>
-      <a href="kapcsolat.html" class="nav__tel">Kapcsolat<b> &middot; +36 70 403 7217</b></a>
+      <a href="mit-epitunk" class="nav__a">Mit építünk</a>
+      <a href="hogyan-epitunk" class="nav__a">Hogyan építünk</a>
+      <a href="referenciak" class="nav__a nav__a--sect">Referenciák</a>
+      <a href="szamok" class="nav__a">Számok</a>
+      <a href="rolunk" class="nav__a">Rólunk</a>
+      <a href="kapcsolat" class="nav__tel">Kapcsolat<b> &middot; +36 70 403 7217</b></a>
     </div>
     <button class="burger" type="button" aria-expanded="false" aria-label="Menü"><i></i><i></i></button>
   </div>
 </nav>
 <div class="mob">
   <p class="lab">Oldalak</p>
-  <a href="index.html">Főoldal</a>
-  <a href="mit-epitunk.html">Mit építünk</a>
-  <a href="foghij.html" class="mob__sub">Foghíjbeépítés</a>
-  <a href="muemlek.html" class="mob__sub">Műemlék és homlokzat</a>
-  <a href="hogyan-epitunk.html">Hogyan építünk</a>
-  <a href="referenciak.html">Referenciák</a>
-  <a href="szamok.html">Számok</a>
-  <a href="rolunk.html">Rólunk</a>
-  <a href="kapcsolat.html">Kapcsolat</a>
+  <a href="./">Főoldal</a>
+  <a href="mit-epitunk">Mit építünk</a>
+  <a href="foghij" class="mob__sub">Foghíjbeépítés</a>
+  <a href="muemlek" class="mob__sub">Műemlék és homlokzat</a>
+  <a href="hogyan-epitunk">Hogyan építünk</a>
+  <a href="referenciak">Referenciák</a>
+  <a href="szamok">Számok</a>
+  <a href="rolunk">Rólunk</a>
+  <a href="kapcsolat">Kapcsolat</a>
   <p class="lab">Elérhetőség</p>
   <a href="tel:+36704037217">+36 70 403 7217</a>
 </div>
 <!-- CHROME:NAV:end -->
 
-<!-- ======================= ALOLDALI HERO + ADATLAP ======================= -->
+<!-- ======================= ÖSSZEÁLLÍTÁS ALATT ÁLLÓ ADATLAP ======================= -->
 <header class="phero wrap">
   <p class="phero__crumb lab" data-in>
-    <a href="index.html">Főoldal</a><i>/</i><a href="referenciak.html">Referenciák</a><i>/</i><span>Erzsébetváros</span>
+    <a href="./">Főoldal</a><i>/</i><a href="referenciak">Referenciák</a><i>/</i><span>Erzsébetváros</span>
   </p>
-  <p class="lab lab--ok case-flag" data-in>Minta projekt</p>
   <h1 class="phero__t mask">
-    <span class="ln"><span>Társasház</span></span>
-    <span class="ln"><span><em>két tűzfal között</em></span></span>
+    <span class="ln"><span>Referencia-adatlap</span></span>
   </h1>
-  <p class="phero__x" data-in data-d="1">Tizennégy lakás egy zártsorú foghíjtelken, a VII. kerületben.
-    Az utcai homlokzat 12,4 méter, felvonulási terület nincs, darupályának nincs helye. Ez az
-    esettanulmány azt mutatja meg, mit jelent ez a napi szervezésben, és mi lett a vége.</p>
-
-  <dl class="spec case-spec" data-in data-d="2">
-    <div><dt>Helyszín</dt><dd>VII. kerület, Erzsébetváros</dd></div>
-    <div><dt>Beavatkozás</dt><dd>Foghíjbeépítés, új építés</dd></div>
-    <div><dt>Lakás</dt><dd>14</dd></div>
-    <div><dt>Bruttó szintterület</dt><dd>1 650 m²</dd></div>
-    <div><dt>Szerep</dt><dd>Generálkivitelezés</dd></div>
-    <div><dt>Szerkezet</dt><dd>Monolit vasbeton váz, falazott kitöltéssel</dd></div>
-    <div><dt>Szerződés</dt><dd>Két ütem, az I. ütem fix áron</dd></div>
-    <div><dt>Év</dt><dd>2023&ndash;2025</dd></div>
-  </dl>
-
   <div class="phero__rule"></div>
 </header>
 
-<!-- ======================= NYITÓKÉP ======================= -->
-<section aria-label="Nyitókép">
-  <figure class="shot case-shot">
-    <img src="media/projektek/p1.webp" data-par="0.06" fetchpriority="high"
-         alt="Modern belvárosi lakóépület zártsorú beépítésben, két szomszédos régi épület közé illesztve">
-  </figure>
-  <div class="wrap case-cap">
-    <span class="lab">Zártsorú utcakép a beépült foghíjtelekkel</span>
-    <span class="lab">Illusztráció · az adatok minták</span>
-  </div>
-</section>
-
-<!-- ======================= 01 · A KORLÁT ======================= -->
-<section class="sect wrap">
-  <div class="shd">
-    <h2 class="shd__t" data-in>A telek adottságai</h2>
-    <p class="shd__x" data-in data-d="1">Hat körülmény, ami az egész kivitelezés menetét eldöntötte.
-      Egyik sem hiba és egyik sem meglepetés. A kockázat abból lesz, ha valaki nem számol velük már
-      az ajánlatadáskor, és menet közben derül ki, hogy a gép nem fér oda.</p>
-    <div class="shd__rule"></div>
-  </div>
-
-  <div class="kor">
+<section class="sect sect--soon wrap">
+  <div class="soon" data-in>
+    <p class="lab lab--ok">Összeállítás alatt</p>
     <div>
-      <div class="krow krow--first" data-in>
-        <span class="lab">01</span>
-        <div>
-          <h3>12,4 méter utcafront</h3>
-          <p>A telek két szomszédos tűzfal közé ékelődik. Ez a 12,4 méter egyszerre a kész épület
-            homlokzata, a munkaterület bejárata és az egyetlen útvonal, amin anyag, gép és ember
-            bejut. Ami ide nem fér be, azt nem lehet betervezni.</p>
-        </div>
-      </div>
-      <div class="krow" data-in data-d="1">
-        <span class="lab">02</span>
-        <div>
-          <h3>Zártsorú beépítés, lakott szomszédokkal</h3>
-          <p>Mindkét oldalon lakott épület áll, közvetlenül a telekhatáron. A bontás, az alapozás és
-            a zsaluzás úgy zajlik, hogy a szomszéd falszerkezetén ne keletkezzen repedés, és a
-            lakóknak ne kelljen elköltözniük.</p>
-        </div>
-      </div>
-      <div class="krow" data-in data-d="2">
-        <span class="lab">03</span>
-        <div>
-          <h3>Nincs felvonulási terület</h3>
-          <p>A telken belül nincs hely konténerre, anyagtárolóra és gépállásra. Amit aznap nem
-            építünk be, annak nincs hol állnia. Ez nem logisztikai kényelmetlenség, hanem az egész
-            beszállítói rend alapja.</p>
-        </div>
-      </div>
-      <div class="krow" data-in data-d="3">
-        <span class="lab">04</span>
-        <div>
-          <h3>Darupályának nincs helye</h3>
-          <p>Toronydaruhoz sem alapozási felület, sem szabad gémforgási tér nem áll rendelkezésre.
-            Az emelés így nem folyamatos szolgáltatás, hanem korlátos erőforrás, amit be kell osztani.</p>
-        </div>
-      </div>
-      <div class="krow" data-in>
-        <span class="lab">05</span>
-        <div>
-          <h3>Élő belvárosi utca</h3>
-          <p>A ház előtti szakaszon végig halad gyalogos és gépjárműforgalom. A munkaidő, a zajos
-            technológiák sorrendje és a szállítások időpontja ehhez igazodik, nem fordítva.</p>
-        </div>
-      </div>
-      <div class="krow" data-in data-d="1">
-        <span class="lab">06</span>
-        <div>
-          <h3>Mélyebb alapsík, mint a szomszédé</h3>
-          <p>A tervezett pinceszint alja a két szomszédos épület alapozási síkja alatt van. Az
-            alapok megtámasztása és a szomszédos falak alávitele nem egy későbbi munkanem, hanem a
-            kivitelezés első kritikus szakasza.</p>
-        </div>
-      </div>
-    </div>
-
-    <aside class="kor__side" data-in data-d="2">
-      <figure>
-        <div class="shot">
-          <img src="media/szolgaltatasok/foghij-tuzfal.webp" loading="lazy"
-               alt="Budapesti bérházak csupasz tégla tűzfalai egy beépítetlen foghíjtelek fölött">
-        </div>
-        <figcaption class="lab shot__cap">Két tűzfal, közöttük a beépítendő telek</figcaption>
-      </figure>
-      <p class="lab lab-rule">Telek adatlap</p>
-      <dl class="spec">
-        <div><dt>Utcafront</dt><dd>12,4 m</dd></div>
-        <div><dt>Beépítés</dt><dd>Zártsorú, két tűzfal között</dd></div>
-        <div><dt>Felvonulási terület</dt><dd>Nincs</dd></div>
-        <div><dt>Darupálya</dt><dd>Nincs</dd></div>
-        <div><dt>Szomszéd épület</dt><dd>2, mindkettő lakott</dd></div>
-        <div><dt>Alapsík eltérés</dt><dd>1,8 m a szomszédos alapozás alatt</dd></div>
-        <div><dt>Pinceszint</dt><dd>1</dd></div>
-      </dl>
-    </aside>
-  </div>
-</section>
-
-<!-- ======================= 02 · A MEGOLDÁS (világos világ) ======================= -->
-<section class="sect light">
-  <div class="wrap">
-    <div class="shd">
-      <h2 class="shd__t" data-in>A megoldás</h2>
-      <p class="shd__x" data-in data-d="1">A szűk telek nem tervezési, hanem szervezési feladat. Az
-        alábbi hat döntés a kiviteli terv és az organizációs terv része volt, nem az első elakadás
-        után született.</p>
-      <div class="shd__rule"></div>
-    </div>
-
-    <div class="mego__wide">
-      <figure data-in>
-        <div class="shot">
-          <img src="media/szolgaltatasok/melyepites.webp" loading="lazy"
-               alt="Acél szádfal-sor egy munkagödör határolásán, alulról fotózva">
-        </div>
-        <figcaption class="lab shot__cap">Munkagödör-határolás szádfallal</figcaption>
-      </figure>
-      <div data-in data-d="1">
-        <p>Az első négy hónap nem az épületről szólt, hanem a két szomszéd házról. Amíg a
-          megtámasztás nem állt, felmenő szerkezet nem indult. Ez az a szakasz, amit ajánlatadáskor
-          a legkönnyebb alábecsülni, és a legdrágább utólag helyrehozni.</p>
-        <p>A telek adottságaiból egy egyszerű szabály lett: a munkaterületen csak az az anyag
-          tartózkodik, ami aznap beépül. Minden más a beszállítónál vár, előre egyeztetett
-          időablakkal. Ehhez a beszállítói szerződések is hozzá lettek igazítva.</p>
-      </div>
-    </div>
-
-    <div class="stack mego" data-in data-d="2">
-      <div class="stack__i">
-        <p class="lab">01</p>
-        <h3>Organizáció közterületről</h3>
-        <p>A tárolás és az anyagátvétel a telken kívülre került. A közterület-foglalás mértéke,
-          rendje és időtartama az önkormányzattal előre egyeztetve, forgalomtechnikai tervvel és
-          gyalogos védőtetővel.</p>
-      </div>
-      <div class="stack__i">
-        <p class="lab">02</p>
-        <h3>Mobildaru, ütemezett emelési napokon</h3>
-        <p>Toronydaru helyett mobildaru, előre kijelölt napokon. Egy emelési nap anyagát a
-          beszállító órára pontosan hozza. A gép nem áll üresben, és nem foglalja az utcát a
-          munka többi napján.</p>
-      </div>
-      <div class="stack__i">
-        <p class="lab">03</p>
-        <h3>Szakaszos aláfalazás</h3>
-        <p>A szomszédos alapok alá rövid mezőkben, ütemezve került az új megtámasztás. Egyszerre
-          soha nem volt nyitva egynél több szakasz, és minden szakasz zárása után következett a
-          soron lévő.</p>
-      </div>
-      <div class="stack__i">
-        <p class="lab">04</p>
-        <h3>Folyamatos mozgásmérés</h3>
-        <p>A két szomszéd épületre geodéziai mérési pontok kerültek. A mérés a bontástól a szerkezet
-          zárásáig tartott, jegyzőkönyvvel. A jegyzőkönyvet a beruházó és a szomszédos társasházak
-          is megkapták.</p>
-      </div>
-      <div class="stack__i">
-        <p class="lab">05</p>
-        <h3>A telekre szabott zsaluzási ütemterv</h3>
-        <p>A zsaluzat körbefordulása a 12,4 méteres fronthoz igazodik. A táblakiosztás, a betonozási
-          szakaszok hossza és a mixerek időablakai egyetlen rendszert alkotnak, nem három külön
-          döntést.</p>
-      </div>
-      <div class="stack__i">
-        <p class="lab">06</p>
-        <h3>Engedélyek határidő előtt</h3>
-        <p>A közterület-foglalási engedély meghosszabbítása ütemterv szerint futott, nem az utolsó
-          héten. Egy lejárt engedély a belvárosban napokra állítja le a munkaterületet, és azt a
-          napot senki nem kapja vissza.</p>
-      </div>
+      <p class="soon__t">A részletes adatokat a következő frissítéssel tesszük közzé. Kérésre addig is átküldjük.</p>
+      <p class="soon__ways"><a href="tel:+36704037217">Telefon<b>+36 70 403 7217</b></a><a href="kapcsolat#k-form">Írjon nekünk az űrlapon</a></p>
     </div>
   </div>
 </section>
-
-<!-- ======================= 03 · AZ EREDMÉNY ======================= -->
-<section class="sect wrap">
-  <div class="shd">
-    <h2 class="shd__t" data-in>Az eredmény</h2>
-    <p class="shd__x" data-in data-d="1">Amit a beruházó a végén a kezébe kap: dátum, darabszám, és
-      két jegyzőkönyv arról, hogy a szomszéd házakon nem történt semmi. Az utóbbi a legfontosabb
-      tétel, mert abból lesz a per, ha hiányzik.</p>
-    <div class="shd__rule"></div>
-  </div>
-
-  <div class="figrow" data-in>
-    <div>
-      <span class="lab">Átadott lakás</span>
-      <span class="fig">14<span class="fig__unit">db</span></span>
-    </div>
-    <div>
-      <span class="lab">Bruttó szintterület</span>
-      <span class="fig">1&thinsp;650<span class="fig__unit">m²</span></span>
-    </div>
-    <div>
-      <span class="lab">Legnagyobb mért elmozdulás</span>
-      <span class="fig">3,1<span class="fig__unit">mm</span></span>
-    </div>
-    <div>
-      <span class="lab">Káresemény a szomszéd házakon</span>
-      <span class="fig">0<span class="fig__unit">db</span></span>
-    </div>
-  </div>
-
-  <table class="dat" data-in data-d="1">
-    <caption class="lab">Vállalás és teljesítés · minta projekt</caption>
-    <thead>
-      <tr><th scope="col">Tétel</th><th scope="col">Érték</th><th scope="col">Mivel igazolható</th></tr>
-    </thead>
-    <tbody>
-      <tr><th scope="row">Szerkezetkész, vízhatlan épület (I. ütem)</th>
-        <td class="num">2024. 07.</td><td class="lab">műszaki átadás-átvételi jegyzőkönyv</td></tr>
-      <tr><th scope="row">Kulcsátadás (II. ütem)</th>
-        <td class="num">2025. 05.</td><td class="lab">használatbavételi engedély</td></tr>
-      <tr><th scope="row">Csúszás az I. ütem szerződéses határidejéhez képest</th>
-        <td class="num">0 <b>nap</b></td><td class="lab">építési napló</td></tr>
-      <tr><th scope="row">Szomszéd épületeken mért legnagyobb elmozdulás</th>
-        <td class="num">3,1 <b>mm</b></td><td class="lab">geodéziai mozgásmérési jegyzőkönyv</td></tr>
-      <tr><th scope="row">Káresemény a szomszédos épületeken</th>
-        <td class="num">0 <b>db</b></td><td class="lab">biztosítói kárbejelentés nem indult</td></tr>
-      <tr><th scope="row">Közterület-foglalás a teljes kivitelezés alatt</th>
-        <td class="num">214 <b>nap</b></td><td class="lab">önkormányzati engedély</td></tr>
-    </tbody>
-  </table>
-
-  <div class="qband">
-    <blockquote class="quote mask">
-      <span class="ln"><span>Nem a kész homlokzat</span></span>
-      <span class="ln"><span>igazolja a munkát.</span></span>
-      <span class="ln"><span><em>Hanem a szomszéd háza.</em></span></span>
-    </blockquote>
-    <p class="muted" data-in data-d="1">Egy belvárosi foghíjnál a beruházó legnagyobb kockázata nem a
-      saját épülete, hanem a két szomszéd fala. Egy repedés miatt indított kártérítési ügy évekre
-      elhúzódik, és pontosan akkor futja ki a projekt eredményét, amikor a lakások már el vannak adva.
-      Ezért mérünk a bontástól a szerkezetzárásig, és ezért adjuk oda a jegyzőkönyvet a
-      társasházaknak is.</p>
-  </div>
-</section>
-
-<!-- ======================= 04 · HELYSZÍNI FELVÉTELEK ======================= -->
-<section class="sect wrap">
-  <p class="lab lab-rule" data-in>Helyszíni felvételek</p>
-
-  <div class="fbgrid">
-    <figure data-in data-d="1">
-      <div class="shot">
-        <img src="media/fb/fb-01.webp" width="443" height="590" loading="lazy"
-             alt="Autódaru gémje és kompakt emelőgép egy szűk belvárosi utcában, felülnézetből, kétoldalt klasszikus bérházhomlokzatokkal">
-      </div>
-      <figcaption class="lab shot__cap">Emelés közterületről, forgalom mellett</figcaption>
-    </figure>
-    <figure data-in data-d="2">
-      <div class="shot">
-        <img src="media/fb/fb-02.webp" width="443" height="590" loading="lazy"
-             alt="Két kompakt lánctalpas emelőgép kitámasztva a szűk utcában, jobbra az állványpallók és a födém betonacél-kiállásai">
-      </div>
-      <figcaption class="lab shot__cap">Két gép ugyanazon a sávon, ütemezve</figcaption>
-    </figure>
-    <figure data-in data-d="3">
-      <div class="shot">
-        <img src="media/fb/fb-03.webp" width="443" height="590" loading="lazy"
-             alt="Frissen betonozott tetőszinti födém betonacél-kiállásokkal, mellette az utca fölé nyúló betonpumpa gémje, szemben klasszikus bérházhomlokzat">
-      </div>
-      <figcaption class="lab shot__cap">Födémszakasz zárása, betonpumpával</figcaption>
-    </figure>
-  </div>
-
-  <p class="fbnote muted" data-in data-d="3">A fenti adatlap és a nyitókép minta. Ez a három felvétel
-    viszont a saját munkaterületünkről való, és pontosan azt a helyzetet mutatja, amiről ez az
-    esettanulmány szól: az utca a munkaterület, a gép a forgalom mellett dolgozik, és minden emelésnek
-    megvan a maga órája.</p>
-
-  <div class="case-cta">
-    <p data-in>Ha hasonló telken gondolkodik, küldje át a helyrajzi számot és a tervet. Két munkanapon
-      belül megírjuk, hogy az organizáció megoldható-e, és mibe kerül a szerkezetkész állapot.</p>
-    <div class="case-cta__b" data-in data-d="1">
-      <a class="btn btn--solid" href="kapcsolat.html">Projekt-egyeztetés <i>&rarr;</i></a>
-      <a class="btn" href="tel:+36704037217">+36 70 403 7217</a>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= LAPOZÓ ======================= -->
-<nav class="wrap" aria-label="Projekt-lapozó">
-  <div class="pager">
-    <a class="pg pg--prev" href="referenciak.html">
-      <span class="lab">Vissza a listához</span>
-      <span class="pg__t">Összes referencia</span>
-      <span class="lab">11 minta projekt</span>
-    </a>
-    <a class="pg pg--next" href="projekt-palotanegyed.html">
-      <span class="lab">Következő projekt</span>
-      <span class="pg__t">Műemléki homlokzat, Palotanegyed</span>
-      <span class="lab">VIII. · 1&nbsp;850 m² homlokzat · generál · 2023-2024</span>
-    </a>
-  </div>
-</nav>
 
 <!-- CHROME:FOOTER:start -->
 <footer class="foot">
   <div class="wrap">
     <div class="foot__grid">
       <div class="foot__col">
-        <a href="index.html" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
-        <p class="muted" style="margin-top:1rem;max-width:32ch">Generálkivitelezés és monolit vasbeton
+        <a href="./" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
+        <p class="muted foot__about">Generálkivitelezés és monolit vasbeton
           szerkezetépítés Budapesten és az agglomerációban.</p>
       </div>
       <div class="foot__col">
         <h4>Szakterületek</h4>
-        <a href="hogyan-epitunk.html#general">Generálkivitelezés</a>
-        <a href="hogyan-epitunk.html#szerkezet">Szerkezetépítés</a>
-        <a href="foghij.html">Foghíjbeépítés</a>
-        <a href="foghij.html#tetoter">Tetőtér-ráépítés</a>
-        <a href="muemlek.html">Műemlék és homlokzat</a>
-        <a href="mit-epitunk.html#csarnok">Csarnok és ipari</a>
+        <a href="hogyan-epitunk#general">Generálkivitelezés</a>
+        <a href="hogyan-epitunk#szerkezet">Szerkezetépítés</a>
+        <a href="foghij">Foghíjbeépítés</a>
+        <a href="foghij#tetoter">Tetőtér-ráépítés</a>
+        <a href="muemlek">Műemlék és homlokzat</a>
+        <a href="mit-epitunk#csarnok">Csarnok és ipari</a>
       </div>
       <div class="foot__col">
         <h4>Oldalak</h4>
-        <a href="mit-epitunk.html">Mit építünk</a>
-        <a href="hogyan-epitunk.html">Hogyan építünk</a>
-        <a href="referenciak.html">Referenciák</a>
-        <a href="szamok.html">Számok</a>
-        <a href="rolunk.html">Rólunk</a>
-        <a href="kapcsolat.html">Kapcsolat</a>
+        <a href="mit-epitunk">Mit építünk</a>
+        <a href="hogyan-epitunk">Hogyan építünk</a>
+        <a href="referenciak">Referenciák</a>
+        <a href="szamok">Számok</a>
+        <a href="rolunk">Rólunk</a>
+        <a href="kapcsolat">Kapcsolat</a>
       </div>
       <div class="foot__col">
         <h4>Cégadatok</h4>
@@ -520,15 +290,16 @@ body.p-case .pg:hover .pg__t{color:var(--okker)}
     <div class="foot__bar">
       <span class="lab">© 2026 VAC-Team Építő Zrt.</span>
       <span class="lab">Működési terület: Budapest és agglomeráció</span>
-      <span class="lab">Weboldal-koncepció, minta adatokkal</span>
+      <a class="lab foot__legal" href="adatvedelem">Adatkezelési tájékoztató</a>
+      <span class="lab">Tűzfal-fotó: László Eisenbacher, Wikimedia Commons, CC BY 3.0</span>
     </div>
   </div>
 </footer>
 <!-- CHROME:FOOTER:end -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
-<script src="js/app.js"></script>
+<script src="js/vendor/gsap.min.js" defer></script>
+<script src="js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="js/vendor/lenis.min.js" defer></script>
+<script src="js/app.js" defer></script>
 </body>
 </html>

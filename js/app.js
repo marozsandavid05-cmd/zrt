@@ -10,6 +10,20 @@
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
   var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
+  /* ---------- 0. TISZTA URL file:// ALATT ----------
+     A forrásban tiszta URL áll (foghij, ./), ezt a Cloudflare Pages szolgálja ki.
+     Dupla kattintásos megnyitásnál (file://) a .html kiterjesztést itt tesszük vissza. */
+  if (location.protocol === 'file:') {
+    [].slice.call(document.querySelectorAll('a[href]')).forEach(function (a) {
+      var h = a.getAttribute('href');
+      if (/^(?:[a-z]+:|#|\/)/i.test(h) || /\.[a-z0-9]+(?:#|$)/i.test(h)) return;
+      var p = h.split('#');
+      var base = p[0] === './' || p[0] === '' ? 'index' : p[0];
+      if (p[0] === '' && p.length > 1) return;
+      a.setAttribute('href', base + '.html' + (p.length > 1 ? '#' + p[1] : ''));
+    });
+  }
+
   /* ---------- 1. REVEAL: scroll-listener + biztonsági passzok ---------- */
   var ins = [].slice.call(document.querySelectorAll('[data-in]'));
   function runIn() {
@@ -50,6 +64,22 @@
      hero. A --sweep 0..100% között áll, a fénysáv a söprés élén ül.
      Reduced motion alatt a CSS 100%-on tartja: a KÉSZ homlokzat áll ott. */
   var rakes = [].slice.call(document.querySelectorAll('[data-rake]'));
+
+  /* a pinnelt pálya csak akkor ragad, ha a hero tartalma befér a képernyőbe;
+     különben a felső része a nav alá csúszna (alacsony telefon) */
+  var tracks = [].slice.call(document.querySelectorAll('.herotrack[data-rake-track]'));
+  function fitTracks() {
+    tracks.forEach(function (t) {
+      var inner = t.querySelector('.hero__in'), hero = t.querySelector('.hero');
+      if (!inner || !hero) return;
+      var cs = getComputedStyle(hero), nav = document.querySelector('.nav');
+      var need = inner.offsetHeight + (nav ? nav.offsetHeight : 78) + 8 + parseFloat(cs.paddingBottom);
+      t.classList.toggle('is-tall', need > innerHeight + 1);
+    });
+  }
+  fitTracks();
+  addEventListener('resize', fitTracks, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTracks);
   if (rakes.length && !reduce) {
     rakes.forEach(function (rk) {
       rk.classList.add('is-live');
@@ -61,7 +91,7 @@
     function measure() {
       for (var i = 0; i < rkState.length; i++) {
         var s = rkState[i];
-        var track = s.el.closest('[data-rake-track]');
+        var track = s.el.closest('[data-rake-track]:not(.is-tall)');
         var p;
         if (track) {
           var tr = track.getBoundingClientRect();

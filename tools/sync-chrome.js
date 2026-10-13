@@ -1,6 +1,8 @@
 /* Nav+footer szétmásoló: az index.html CHROME-marker blokkjait írja át minden
    más .html oldalba, és beállítja az aria-current="page"-et.
-   Futtatás:  node tools/sync-chrome.js   (a ZRT mappából vagy bárhonnan) */
+   A linkek tiszta URL-ek (foghij, nem foghij.html; főoldal: ./). file:// alatt az
+   app.js teszi vissza a .html-t, http(s) alatt a Cloudflare Pages szolgálja ki.
+   Futtatás:  node tools/sync-chrome.js   (a projekt gyökeréből vagy bárhonnan) */
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -14,6 +16,8 @@ function extract(html, name){
   if(!m) throw new Error(`Nincs CHROME:${name} blokk a masterben`);
   return m[0];
 }
+const slug = f => f === 'index.html' ? './' : f.replace(/\.html$/, '');
+const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 const master = fs.readFileSync(MASTER, 'utf8');
 const NAV = extract(master, 'NAV');
@@ -22,14 +26,12 @@ const FOOTER = extract(master, 'FOOTER');
 const pages = fs.readdirSync(ROOT).filter(f => f.endsWith('.html'));
 let changed = 0;
 
-/* aloldal -> nav-szülő: a mélyoldalakon a szekció nav-linkje halvány jelölést kap,
-   így a látogató tudja, melyik fő szekcióban jár (nav__a--sect osztály) */
+/* aloldal -> nav-szülő: a mélyoldalakon a szekció nav-linkje halvány jelölést kap */
 const PARENT = {
   'foghij.html': 'mit-epitunk.html',
   'muemlek.html': 'mit-epitunk.html',
   'projekt-erzsebetvaros.html': 'referenciak.html',
-  'projekt-palotanegyed.html': 'referenciak.html',
-  'kapcsolat.html': null
+  'projekt-palotanegyed.html': 'referenciak.html'
 };
 
 for(const page of pages){
@@ -37,28 +39,21 @@ for(const page of pages){
   let html = fs.readFileSync(file, 'utf8');
   const orig = html;
 
-  // friss chrome beírása (aria-current és szülő-jelölés nélkül indul)
   let nav = NAV.replace(/ aria-current="page"/g, '').replace(/ nav__a--sect/g, '');
-  let footer = FOOTER;
+  const footer = FOOTER;
 
-  // aria-current: a saját oldalára mutató linkek jelölése
-  const esc = page.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  nav = nav.replace(new RegExp(`(<a href="${esc}")`, 'g'), '$1 aria-current="page"');
+  nav = nav.replace(new RegExp(`(<a href="${esc(slug(page))}")`, 'g'), '$1 aria-current="page"');
 
-  // szülő-szekció jelölése a mélyoldalakon
   const parent = PARENT[page];
   if (parent) {
-    const pesc = parent.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    nav = nav.replace(new RegExp(`<a href="${pesc}" class="nav__a"`, 'g'),
-      `<a href="${parent}" class="nav__a nav__a--sect"`);
+    nav = nav.replace(new RegExp(`<a href="${esc(slug(parent))}" class="nav__a"`, 'g'),
+      `<a href="${slug(parent)}" class="nav__a nav__a--sect"`);
   }
 
   html = html.replace(/<!-- CHROME:NAV:start -->[\s\S]*?<!-- CHROME:NAV:end -->/, nav);
   html = html.replace(/<!-- CHROME:FOOTER:start -->[\s\S]*?<!-- CHROME:FOOTER:end -->/, footer);
 
-  if(html !== orig || page === 'index.html'){
-    if(page !== 'index.html'){ fs.writeFileSync(file, html, 'utf8'); changed++; }
-  }
+  if(html !== orig && page !== 'index.html'){ fs.writeFileSync(file, html, 'utf8'); changed++; }
   if(!/CHROME:NAV:start/.test(html)) console.warn(`FIGYELEM: ${page} nem tartalmaz CHROME:NAV markert`);
 }
 console.log(`sync-chrome kész: ${changed} oldal frissítve (${pages.length} oldal vizsgálva).`);
