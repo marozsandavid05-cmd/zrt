@@ -40,7 +40,9 @@ for(const page of pages){
   const orig = html;
 
   let nav = NAV.replace(/ aria-current="page"/g, '').replace(/ nav__a--sect/g, '');
-  const footer = FOOTER;
+  /* a jogi oldalon a lábléc saját linkje is jelölt (okker, aria-current) */
+  const footer = FOOTER.replace(/ aria-current="page"/g, '')
+    .replace(new RegExp(`(<a class="foot__legal" href="${esc(slug(page))}")`, 'g'), '$1 aria-current="page"');
 
   nav = nav.replace(new RegExp(`(<a href="${esc(slug(page))}")`, 'g'), '$1 aria-current="page"');
 
