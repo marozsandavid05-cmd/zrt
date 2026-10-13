@@ -32,6 +32,13 @@
 <style>
 /* oldal-szkópolt kiegészítés: a referencialista mono meta-oszlopa szélesebb,
    és két aszimmetrikus szövegoszlop a bontáshoz és a záráshoz */
+body.p-ref .r-list{padding-top:clamp(2rem,5vh,3.5rem)}
+body.p-ref .r-head{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;align-items:baseline;
+  justify-content:space-between;padding-block:clamp(1.6rem,4vh,2.6rem)}
+/* a meta három szedett sorra bomlik: hely és év · méret · szerep */
+body.p-ref .idx__m{line-height:1.62}
+/* a dokkolt előnézet mellett magasabb keret fér el a hosszú listához */
+body.p-ref .idxview__frame{aspect-ratio:3/4}
 body.p-ref .own{margin-top:0}
 body.p-ref .r-two{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);
   gap:var(--sp-4) clamp(2rem,5vw,5rem);align-items:start}
@@ -247,57 +254,211 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
 <!-- ======================= ALOLDALI HERO ======================= -->
 <header class="phero wrap">
   <p class="phero__crumb lab" data-in>
-    <a href="./">Főoldal</a><i>/</i><span>Referenciák</span>
+    <a href="index.html">Főoldal</a><i>/</i><span>Referenciák</span>
   </p>
   <h1 class="phero__t mask">
     <span class="ln"><span>Referenciák</span></span>
   </h1>
-  <p class="phero__x" data-in data-d="1">Minden projekt ugyanabban a formában kerül ide: helyszín,
-    lakásszám, terület, szerep, év. Jelző nélkül, a megbízó hozzájárulásával.</p>
+  <p class="phero__x" data-in data-d="1">Tizenegy projekt, mindegyik ugyanabban a formában: helyszín,
+    lakásszám, terület, szerep, év. Jelző nélkül. A lista minta adatokkal készült, a helyükre a valós
+    projektek kerülnek.</p>
   <div class="phero__rule"></div>
 </header>
 
-<!-- ======================= ÖSSZEÁLLÍTÁS ALATT ======================= -->
-<section class="sect sect--soon wrap r-list">
-  <div class="soon" data-in>
-    <p class="lab lab--ok">Összeállítás alatt</p>
-    <div>
-      <p class="soon__t">A részletes adatokat a következő frissítéssel tesszük közzé. Kérésre addig is átküldjük.</p>
-      <p class="soon__ways"><a href="tel:+36704037217">Telefon<b>+36 70 403 7217</b></a><a href="kapcsolat#k-form">Írjon nekünk az űrlapon</a></p>
+<!-- ======================= A LISTA ======================= -->
+<section class="sect wrap r-list">
+
+  <div class="filt" data-in>
+    <span class="lab filt__lab">Szűrés</span>
+    <button type="button" class="chip on" data-filter="all">Mind</button>
+    <button type="button" class="chip" data-filter="tarsashaz">Társasház</button>
+    <button type="button" class="chip" data-filter="foghij">Foghíj</button>
+    <button type="button" class="chip" data-filter="tetoter">Tetőtér</button>
+    <button type="button" class="chip" data-filter="muemlek">Műemlék</button>
+    <button type="button" class="chip" data-filter="csarnok">Csarnok</button>
+    <button type="button" class="chip" data-filter="szerkezet">Szerkezetépítés</button>
+    <button type="button" class="chip" data-filter="general">Generálkivitelezés</button>
+  </div>
+
+  <div class="r-head">
+    <p class="lab lab--ok" data-in>Minta projektek</p>
+    <p class="lab" data-in data-d="1"><span data-count>11</span> tétel · 2021-2025</p>
+  </div>
+
+  <div class="idxwrap">
+  <div class="idx">
+
+    <a class="idx__row" href="projekt-erzsebetvaros.html" data-in data-d="1" data-cat="tarsashaz foghij general" data-peek="media/projektek/p1.webp">
+      <span class="idx__n">01</span>
+      <span class="idx__t">Társasház két tűzfal között, Erzsébetváros</span>
+      <span class="idx__x">Tizenkét méter utcai homlokzat, felvonulási terület nélkül.</span>
+      <span class="idx__m">VII. · 2023-2025<br>
+        14 lakás · 1 650 m²<br>
+        generál</span>
+    </a>
+
+    <a class="idx__row" href="kapcsolat.html" data-in data-d="2" data-peek="media/projektek/p2.webp" data-cat="tarsashaz tetoter general szerkezet">
+      <span class="idx__n">02</span>
+      <span class="idx__t">Tetőtér-ráépítés lakott bérház fölé, Terézváros</span>
+      <span class="idx__x">A lakók a helyükön maradtak, a lépcsőház végig működött.</span>
+      <span class="idx__m">VI. · 2024-2025<br>
+        8 lakás · 940 m²<br>
+        generál · szerkezet</span>
+    </a>
+
+    <a class="idx__row" href="projekt-palotanegyed.html" data-in data-d="3" data-cat="muemlek general" data-peek="media/projektek/p3.webp">
+      <span class="idx__n">03</span>
+      <span class="idx__t">Műemléki homlokzat-helyreállítás, Palotanegyed</span>
+      <span class="idx__x">Restaurátori kutatás, örökségvédelmi engedély, védőtetős állvány.</span>
+      <span class="idx__m">VIII. · 2023-2024<br>
+        1 850 m² homlokzat<br>
+        generál</span>
+    </a>
+
+    <a class="idx__row" href="kapcsolat.html" data-in data-d="4" data-peek="media/szolgaltatasok/zsalu.webp" data-cat="tarsashaz szerkezet">
+      <span class="idx__n">04</span>
+      <span class="idx__t">Monolit vasbeton szerkezet belső udvaros bérháznál</span>
+      <span class="idx__x">Szerkezetkész, vízhatlan állapotig, fix áron.</span>
+      <span class="idx__m">VII. · 2022-2023<br>
+        21 lakás · 2 450 m²<br>
+        szerkezet</span>
+    </a>
+
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/projektek/p5.webp" data-cat="tarsashaz general szerkezet">
+      <span class="idx__n">05</span>
+      <span class="idx__t">Új építésű társasház, Józsefváros</span>
+      <span class="idx__x">Szabadon álló telek, mélygarázs, két ütemben szerződve.</span>
+      <span class="idx__m">VIII. · 2023-2024<br>
+        32 lakás · 3 400 m²<br>
+        generál · szerkezet</span>
+    </a>
+
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/projektek/p4.webp" data-cat="general">
+      <span class="idx__n">06</span>
+      <span class="idx__t">Irodaház homlokzat és födém-megerősítés</span>
+      <span class="idx__x">Működő bérlők mellett, szintenként ütemezve.</span>
+      <span class="idx__m">VI. · 2024<br>
+        2 800 m² homlokzat<br>
+        generál</span>
+    </a>
+
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/melyepites.webp" data-cat="szerkezet">
+      <span class="idx__n">07</span>
+      <span class="idx__t">Alapmegerősítés szomszédos épület mellett, Belváros</span>
+      <span class="idx__x">Talajszilárdítás, a szomszéd falán geodéziai mozgásfigyeléssel.</span>
+      <span class="idx__m">V. · 2023<br>
+        mélyépítés<br>
+        szerkezet</span>
+    </a>
+
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/tetoszerkezet.webp" data-cat="tarsashaz tetoter general">
+      <span class="idx__n">08</span>
+      <span class="idx__t">Tetőtér-beépítés bérházban, Józsefváros</span>
+      <span class="idx__x">A fedélszék megmaradt, az új szint könnyűszerkezetből épült.</span>
+      <span class="idx__m">VIII. · 2022-2023<br>
+        10 lakás · 1 150 m²<br>
+        generál</span>
+    </a>
+
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/csarnok.webp" data-cat="csarnok general">
+      <span class="idx__n">09</span>
+      <span class="idx__t">Ipari csarnok és kiszolgáló épület</span>
+      <span class="idx__x">Alapozástól a technológiai fogadószintig, egy szerződésben.</span>
+      <span class="idx__m">agglomeráció · 2024<br>
+        4 200 m² csarnok<br>
+        generál</span>
+    </a>
+
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/vasbeton-vaz.webp" data-cat="tarsashaz general szerkezet">
+      <span class="idx__n">10</span>
+      <span class="idx__t">Negyvennyolc lakásos társasház</span>
+      <span class="idx__x">A vállalt méretsáv felső vége, két ütemű átadással.</span>
+      <span class="idx__m">agglomeráció · 2021-2023<br>
+        48 lakás · 5 600 m²<br>
+        generál · szerkezet</span>
+    </a>
+
+    <a class="idx__row" href="kapcsolat.html" data-in data-peek="media/szolgaltatasok/homlokzat-klasszikus.webp" data-cat="muemlek general">
+      <span class="idx__n">11</span>
+      <span class="idx__t">Várfal- és műemlék-helyreállítás</span>
+      <span class="idx__x">Történeti falszövet, kézi bontás, helyben kevert mészhabarcs.</span>
+      <span class="idx__m">vidék · 2022<br>
+        műemléki helyszín<br>
+        generál</span>
+    </a>
+
+  </div>
+  <aside class="idxview" aria-hidden="true">
+    <div class="idxview__frame">
+      <img src="media/projektek/p1.webp" alt="" class="on">
+      <img src="media/projektek/p2.webp" alt="" loading="lazy">
+      <img src="media/projektek/p3.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/zsalu.webp" alt="" loading="lazy">
+      <img src="media/projektek/p5.webp" alt="" loading="lazy">
+      <img src="media/projektek/p4.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/melyepites.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/tetoszerkezet.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/csarnok.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/vasbeton-vaz.webp" alt="" loading="lazy">
+      <img src="media/szolgaltatasok/homlokzat-klasszikus.webp" alt="" loading="lazy">
     </div>
+    <p class="lab idxview__cap"><span data-cap>Társasház két tűzfal között</span><span class="lab--ok">Előnézet</span></p>
+  </aside>
   </div>
 </section>
 
-<!-- ======================= SAJÁT HELYSZÍNI FELVÉTELEK (világos világ) ======================= -->
-<section class="sect light r-own">
+<!-- ======================= KERÜLETI BONTÁS (világos világ) ======================= -->
+<section class="sect light r-map">
   <div class="wrap">
     <div class="shd">
-      <h2 class="shd__t" data-in>Saját munkaterületeink</h2>
-      <p class="shd__x" data-in data-d="1">Amíg az adatlapok elkészülnek, ezek a felvételek a saját belvárosi
-        munkaterületeinken készültek. Felvonulási terület nincs, az anyag közterületről érkezik, órára ütemezve.</p>
+      <h2 class="shd__t" data-in>Kerületi bontás</h2>
+      <p class="shd__x" data-in data-d="1">Hol dolgozunk ténylegesen. A tizenegy tétel hat helyszíncsoportra
+        oszlik, és a bontásból az is látszik, hogy melyik területen mi a jellemző beavatkozás.</p>
       <div class="shd__rule"></div>
     </div>
-    <div class="own">
-      <figure data-in>
-        <div class="shot"><img src="media/fb/fb-03.webp" width="443" height="590" loading="lazy"
-          alt="Frissen betonozott tetőszinti födém betonacél-kiállásokkal, mellette az utca fölé nyúló betonpumpa gémje, szemben klasszikus bérházhomlokzat"></div>
-        <figcaption class="lab shot__cap">Födémszakasz zárása</figcaption>
-      </figure>
-      <figure data-in data-d="1">
-        <div class="shot"><img src="media/fb/fb-01.webp" width="443" height="590" loading="lazy"
-          alt="Autódaru gémje egy szűk belvárosi utca fölé fordulva, alatta emelőgép és teherautó a lezárt sávban"></div>
-        <figcaption class="lab shot__cap">Emelés közterületről</figcaption>
-      </figure>
-      <figure data-in data-d="2">
-        <div class="shot"><img src="media/fb/fb-02.webp" width="443" height="590" loading="lazy"
-          alt="Felülnézet: autódaru gémje egy szűk belvárosi utcában, a lezárt sáv fölött"></div>
-        <figcaption class="lab shot__cap">Lezárt sáv, zártsorú utca</figcaption>
-      </figure>
-      <figure data-in data-d="3">
-        <div class="shot"><img src="media/fb/fb-04.webp" width="443" height="590" loading="lazy"
-          alt="Raklapos falazóanyag emelése az utcáról autódaruval a felső szintre"></div>
-        <figcaption class="lab shot__cap">Anyagemelés a födémszintre</figcaption>
-      </figure>
+
+    <div class="r-two">
+      <div>
+        <table class="dat" data-in>
+          <caption class="lab">Helyszínek és beavatkozások · 11 minta projekt</caption>
+          <thead>
+            <tr><th scope="col">Terület</th><th scope="col">Tétel</th><th scope="col">Jellemző beavatkozás</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">V. kerület, Belváros</th>
+              <td class="num">1 <b>projekt</b></td><td class="lab">alapmegerősítés, mélyépítés</td></tr>
+            <tr><th scope="row">VI. kerület, Terézváros</th>
+              <td class="num">2 <b>projekt</b></td><td class="lab">ráépítés, homlokzat és födém</td></tr>
+            <tr><th scope="row">VII. kerület, Erzsébetváros</th>
+              <td class="num">2 <b>projekt</b></td><td class="lab">foghíjbeépítés, monolit váz</td></tr>
+            <tr><th scope="row">VIII. kerület, Józsefváros</th>
+              <td class="num">3 <b>projekt</b></td><td class="lab">új építés, tetőtér, műemléki homlokzat</td></tr>
+            <tr><th scope="row">Budapesti agglomeráció</th>
+              <td class="num">2 <b>projekt</b></td><td class="lab">csarnok, nagy lakásszámú társasház</td></tr>
+            <tr><th scope="row">Vidéki műemléki helyszín</th>
+              <td class="num">1 <b>projekt</b></td><td class="lab">várfal, történeti falszövet</td></tr>
+          </tbody>
+        </table>
+
+        <p class="r-note muted" data-in data-d="1">A pontos címeket egyeztetésen mutatjuk meg. Megbízóink egy
+          része a projekt lezárása után sem kéri a nyilvános megjelenést, ezért a listában kerület, méret és
+          szerep szerepel, utcanév nem. Aki kéri, névre szóló referencialistát kap, a korábbi beruházók
+          elérhetőségével együtt.</p>
+      </div>
+
+      <aside class="r-side" data-in data-d="2">
+        <p class="lab lab-rule">Helyszíni felvétel</p>
+        <figure>
+          <div class="shot">
+            <img src="media/fb/fb-03.webp" width="443" height="590" loading="lazy"
+                 alt="Frissen betonozott tetőszinti födém betonacél-kiállásokkal, mellette az utca fölé nyúló betonpumpa gémje, szemben klasszikus bérházhomlokzat">
+          </div>
+          <figcaption class="lab shot__cap">Födémszakasz zárása, belvárosi munkaterület</figcaption>
+        </figure>
+        <p>A listánál az előnézeti képek illusztrációk. Ez a felvétel a sajátunk. A ház fölé beforduló
+          pumpagém azt a helyzetet mutatja, amiről a belvárosi projektek nagy része szól: felvonulási terület
+          nincs, az anyag közterületről érkezik, órára ütemezve.</p>
+      </aside>
     </div>
   </div>
 </section>
@@ -315,7 +476,7 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
         folyamatban lévő, valamint egy már átadott helyszínt. Hozza a műszaki ellenőrét vagy a tervezőjét,
         a kérdéseket a helyszínen a felelős műszaki vezető veszi át.</p>
       <div class="hero__cta" data-in data-d="2">
-        <a class="btn btn--solid" href="kapcsolat">Időpont egyeztetése <i>&rarr;</i></a>
+        <a class="btn btn--solid" href="kapcsolat.html">Időpont egyeztetése <i>&rarr;</i></a>
         <a class="btn" href="tel:+36704037217">+36 70 403 7217</a>
       </div>
     </div>
