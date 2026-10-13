@@ -493,7 +493,7 @@ p{text-wrap:pretty;max-width:68ch}
 /* ---------- 14. LÁBLÉC ---------- */
 .foot{border-top:1px solid var(--line);padding-block:var(--sp-6) var(--sp-4)}
 .foot__grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:var(--sp-4)}
-.foot__grid h4{font-family:var(--mono);font-size:.58rem;font-weight:400;letter-spacing:.24em;
+.foot__grid h4{font-family:var(--mono);font-size:.7rem;font-weight:400;letter-spacing:.22em;
   text-transform:uppercase;color:var(--ink-2);margin-bottom:var(--sp-2)}
 .foot__col{display:flex;flex-direction:column;gap:.55rem;font-size:.92rem}
 .foot__col a{color:var(--ink-2);transition:color .3s}
@@ -501,6 +501,10 @@ p{text-wrap:pretty;max-width:68ch}
 .foot__mono{font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--ink-2)}
 .foot__about{margin-top:1rem;max-width:32ch}
 .foot__legal{color:var(--ink-2);transition:color .3s}
+/* lábléc: a legkisebb betű is legalább .7rem (11,2 px), a mono címke-stílus marad */
+.foot .brand span{font-size:.7rem;letter-spacing:.24em}
+.foot__bar .lab{font-size:.7rem;letter-spacing:.2em}
+.foot__legals{display:flex;flex-wrap:wrap;gap:.6rem var(--sp-3)}
 .foot__legal:hover{color:var(--okker)}
 .foot__bar{margin-top:var(--sp-5);padding-top:var(--sp-3);border-top:1px solid var(--line);
   display:flex;flex-wrap:wrap;gap:.6rem var(--sp-4);justify-content:space-between}
@@ -578,6 +582,76 @@ p{text-wrap:pretty;max-width:68ch}
   gap:var(--sp-3);margin-top:var(--sp-5)}
 .own figure{max-width:440px}
 .own .shot img{aspect-ratio:3/4;object-fit:cover}
+
+/* ---------- 14/e. JOGI OLDALAK (impresszum, adatkezelési tájékoztató) ----------
+   A szöveget a Claude tesztelés\vacteam-jogi-beepites-2026-10-13\jogi-build.py írja
+   a JOGI markerek közé, szó szerint Aphelios .md-jéből. Kézzel ne szerkeszd.
+   Két különböző szerkezet: az impresszum regiszter-sorok (címke balra, adat jobbra),
+   a tájékoztató függő pontszámos olvasóhasáb. Olvasási sorhossz ~36em. */
+.lg-head .lg-meta{margin-top:var(--sp-3);font-size:.72rem;letter-spacing:.2em}
+.lg-head .lg-lead{margin-top:var(--sp-2)}
+.lg-body{font-size:1rem;line-height:1.72;color:var(--ink)}
+.lg-body>*+*{margin-top:var(--sp-2)}
+.lg-body p{max-width:36em}
+.lg-body a{border-bottom:1px solid var(--okker);overflow-wrap:anywhere;
+  transition:color .3s ease,border-color .3s ease}
+.lg-body a:hover{color:var(--okker);border-bottom-color:var(--okker)}
+.lg-body h3{font-size:var(--t-2);line-height:1.2;margin-top:var(--sp-5);max-width:28ch}
+.lg-body h3:first-child{margin-top:0}
+.lg-ul{display:grid;gap:.7rem;max-width:36em}
+.lg-ul li{position:relative;padding-left:1.6rem}
+.lg-ul li::before{content:'';position:absolute;left:0;top:.86em;width:.75rem;height:1px;
+  background:var(--okker)}
+.lg-dl{display:grid;border-top:1px solid var(--line);max-width:44em}
+.lg-dl>div{display:grid;grid-template-columns:minmax(0,10.5rem) minmax(0,1fr);gap:.4rem 1.4rem;
+  padding-block:.85rem;border-bottom:1px solid var(--line)}
+.lg-dl dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-2);padding-top:.3em;line-height:1.5}
+@media(max-width:560px){.lg-dl>div{grid-template-columns:1fr}}
+
+/* tájékoztató: tartalomjegyzék két hasábban, alatta függő pontszámok */
+.lg-adat{padding-bottom:clamp(4rem,10vh,7.5rem)}
+.lg-toc{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);
+  gap:var(--sp-2) clamp(2rem,5vw,5rem);padding-bottom:clamp(2.5rem,6vh,4rem);
+  border-bottom:1px solid var(--line)}
+.lg-toc ol{columns:2;column-gap:clamp(2rem,4vw,4rem);max-width:48rem}
+.lg-toc li{break-inside:avoid}
+.lg-toc a{display:flex;gap:.9rem;align-items:baseline;min-height:44px;align-items:center;
+  font-size:.95rem;color:var(--ink-2);transition:color .3s ease}
+.lg-toc a:hover{color:var(--okker)}
+.lg-toc i{font-style:normal;font-family:var(--mono);font-size:.7rem;color:var(--okker);
+  flex:0 0 1.9rem}
+.lg-toc .lab{font-size:.7rem;letter-spacing:.24em}
+@media(max-width:760px){.lg-toc{grid-template-columns:1fr}.lg-toc ol{columns:1}}
+.lg-sec{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);
+  gap:var(--sp-2) clamp(2rem,5vw,5rem);padding-block:clamp(2.5rem,6vh,4rem);
+  border-bottom:1px solid var(--line);scroll-margin-top:calc(var(--nav-h) + 1rem)}
+.lg-sec:last-child{border-bottom:0}
+/* a cím maga is kéthasábos rács, ugyanazzal az osztással: szám a margóban, cím a hasábban */
+.lg-sec h2{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);
+  column-gap:clamp(2rem,5vw,5rem);align-items:baseline;font-size:var(--t-3);line-height:1.12}
+.lg-sec h2 .lg-num{font-size:var(--t-4);line-height:.9;letter-spacing:-.03em;color:var(--okker);
+  font-variant-numeric:tabular-nums}
+.lg-sec h2 .lg-ttl{max-width:22ch}
+.lg-sec .lg-body{grid-column:2;margin-top:var(--sp-1)}
+@media(max-width:760px){
+  .lg-sec{grid-template-columns:1fr}
+  .lg-sec h2{grid-template-columns:1fr;row-gap:.6rem}
+  .lg-sec h2 .lg-num{font-size:var(--t-3)}
+  .lg-sec .lg-body{grid-column:1}
+}
+
+/* impresszum: regiszter-sorok */
+.reg{padding-bottom:clamp(4rem,10vh,7.5rem)}
+.reg__row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);
+  gap:var(--sp-3) clamp(2rem,6vw,6rem);padding-block:clamp(2rem,5vh,3.25rem);
+  border-bottom:1px solid var(--line)}
+.reg__row:first-child{padding-top:0}
+.reg__row:last-child{border-bottom:0}
+.reg__row h2{font-size:var(--t-2);line-height:1.2;max-width:16ch}
+.reg__row .lg-dl>div{grid-template-columns:minmax(0,15rem) minmax(0,1fr)}
+@media(max-width:860px){.reg__row{grid-template-columns:1fr;gap:var(--sp-2)}}
+@media(max-width:560px){.reg__row .lg-dl>div{grid-template-columns:1fr}}
 
 /* ---------- 14/d. ÉRINTŐS ESZKÖZ: olvasható címke, 44 px-es érintési cél ----------
    Csak durva mutatón (telefon, tablet) él, az asztali kompozíció változatlan. */
