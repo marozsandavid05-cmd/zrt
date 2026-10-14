@@ -514,10 +514,20 @@ p{text-wrap:pretty;max-width:68ch}
 .foot__legal:hover{color:var(--okker);text-decoration-thickness:2px}
 .foot__legal[aria-current="page"]{color:var(--okker)}
 .foot__copy{display:flex;flex-wrap:wrap;gap:.4rem var(--sp-4);max-width:none}
+/* készítői sor (2026-10-14): saját harmadik réteg a jogi sáv alatt. Folyó betű, nem mono
+   (a © sortól elválik), kisebb és halkabb a jogi linkeknél (azoktól is elválik). */
+.foot__made{flex:1 0 100%;max-width:none;margin-top:var(--sp-1);padding-top:var(--sp-1);
+  border-top:1px solid var(--line);font-size:.8rem;line-height:1.5;color:var(--ink-2)}
+.foot__made a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);
+  text-decoration:underline;text-decoration-color:var(--okker);text-decoration-thickness:1px;
+  text-underline-offset:.35em;transition:color .3s ease}
+.foot__made a:hover{color:var(--okker)}
 @media(max-width:640px){
   .foot__bar{flex-direction:column;align-items:flex-start}
   .foot__legals{flex-direction:column;gap:0}
   .foot__copy{flex-direction:column;gap:.35rem}
+  .foot__bar{gap:var(--sp-3)}
+  .foot__made{flex:none;align-self:stretch;margin-top:0}
 }
 @media(max-width:900px){.foot__grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.foot__grid{grid-template-columns:1fr}}
@@ -598,9 +608,8 @@ p{text-wrap:pretty;max-width:68ch}
    A szöveget a Claude tesztelés\vacteam-jogi-beepites-2026-10-13\jogi-build.py írja
    a JOGI markerek közé, szó szerint Aphelios .md-jéből. Kézzel ne szerkeszd.
    Két különböző szerkezet (2026-10-14):
-   - impresszum = adatlap: a cégadatok egy világos „vakolat" lapon, mezőrácsban
-     (mono címke fölött, olvasható érték alatt), a tárhely külön sáv, a készítő,
-     a szerzői jog és a képforrás egy háromhasábos kolofonban;
+   - impresszum (2026-10-14 óta) = a tájékoztató szerkezete, kisebb: ragadó
+     tartalomjegyzék, számozott pontok, okker mono címke | világos érték sorok;
    - tájékoztató = ragadó tartalomjegyzék balra, olvasóhasáb jobbra, pontonként
      tagolva: alpontok saját felületen, jogok és címzettek listaként, a rövid
      pontok kiemelt állításként. */
@@ -624,81 +633,16 @@ p{text-wrap:pretty;max-width:68ch}
   color:var(--okker);padding-top:.32em;line-height:1.5}
 @media(max-width:560px){.lg-dl>div{grid-template-columns:1fr}}
 
-/* ===== impresszum: adatlap ===== */
-@media(min-width:901px){.lg-head--imp .lg-head__row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
-.imp-jump .lab{font-size:.7rem;letter-spacing:.24em;margin-bottom:.6rem}
-.imp-jump ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--sp-4)}
-.imp-jump a{display:flex;align-items:center;min-height:44px;font-size:.95rem;color:var(--ink-2);
-  border-bottom:1px solid var(--line);transition:color .3s ease}
-.imp-jump a:hover{color:var(--okker)}
-@media(max-width:560px){.imp-jump ol{grid-template-columns:1fr}}
-
-.imp{padding-bottom:clamp(4rem,10vh,7.5rem)}
-.imp-grp{scroll-margin-top:calc(var(--nav-h) + 1.5rem)}
-.imp-grp h2{font-size:var(--t-3);line-height:1.1;max-width:24ch}
-
-/* a vakolat lap: a cég adatlapja, egyetlen világos felület a sötét oldalon */
-.imp-sheet{padding:clamp(1.75rem,5vw,4.5rem);display:grid;gap:clamp(3rem,7vh,4.5rem)}
-.imp-sheet .imp-grp+.imp-grp{padding-top:clamp(2.5rem,6vh,3.5rem);border-top:1px solid var(--line-dark-2)}
-.imp-sheet .lg-body{color:var(--ink-dark)}
-.imp-sheet .lg-body p{font-size:var(--t-1);line-height:1.6;max-width:44em}
-.imp-sheet .lg-body a:hover{color:#8A5B1E}
-.imp-body{margin-top:var(--sp-4)}
-
-/* mezőrács: címke fölül, érték alul; három hasáb, hosszú érték két-három hasábot fog */
-.imp-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(1.5rem,3vw,3rem)}
-.imp-f{padding-block:1.05rem 1.2rem;border-top:1px solid var(--line-2);min-width:0}
-.light .imp-f{border-top-color:var(--line-dark-2)}
-.imp-f--w2{grid-column:span 2}
-.imp-f--w3{grid-column:1 / -1}
-.imp-f dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-  line-height:1.5;color:var(--ink-2)}
-.light .imp-f dt{color:var(--ink-dark-2)}
-.imp-f dd{margin-top:.45rem;font-size:var(--t-1);line-height:1.45;overflow-wrap:anywhere}
-.imp-f--w3 dd{font-family:var(--display);font-size:var(--t-2);line-height:1.25;letter-spacing:-.012em}
-/* azonosítók: mono, egy kattintással kijelölhető (másolásra) */
-.imp-f--id dd{font-family:var(--mono);font-size:1rem;letter-spacing:.04em;font-variant-numeric:tabular-nums;
+/* ===== impresszum: a tájékoztató nyelvén (2026-10-14, t_9f961d85) =====
+   Ugyanaz a ragadó tartalomjegyzék + számozott pontok, mint a tájékoztatóban, sötét
+   kova alapon. Világos lap NINCS: élesben a cache-ből jövő régi CSS mellett a krém
+   szöveg krém lapra került (1,05:1). Az impresszum minden szövege kova alapon ül. */
+.lg-adat--imp .lg-dl{max-width:50em}
+.lg-adat--imp .lg-dl>div{grid-template-columns:minmax(0,19.5rem) minmax(0,1fr)}
+/* azonosítók: mono, táblázatos számjegy, egy kattintással kijelölhető (másolásra) */
+.lg-id{font-family:var(--mono);font-size:.95rem;letter-spacing:.03em;font-variant-numeric:tabular-nums;
   user-select:all;-webkit-user-select:all}
-.light .imp-f--id dd{color:var(--ink-dark)}
-.imp-sheet .lg-body .imp-fields{margin-top:var(--sp-3)}
-
-/* tárhely: sötét sáv, név balra nagyban, adatai jobbra */
-.imp-grp--host{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);
-  gap:var(--sp-3) clamp(2rem,6vw,6rem);padding-block:clamp(3.5rem,9vh,6rem);
-  border-bottom:1px solid var(--line)}
-.imp-grp--host .imp-body{margin-top:0}
-.imp-ent{font-family:var(--display);font-size:var(--t-2);line-height:1.2;letter-spacing:-.012em}
-.imp-grp--host .imp-fields{margin-top:var(--sp-3)}
-/* tárhely adatai: vízszintes sorok (címke balra, érték jobbra), nem mezőrács */
-.imp-fields--rows{grid-template-columns:minmax(0,1fr);max-width:46rem;border-bottom:1px solid var(--line-2)}
-.imp-fields--rows .imp-f{display:grid;grid-template-columns:minmax(0,17rem) minmax(0,1fr);
-  gap:.3rem 1.5rem;align-items:baseline;grid-column:auto;padding-block:.95rem}
-.imp-fields--rows .imp-f dd{margin-top:0}
-
-/* kolofon: három rövid tétel egymás mellett */
-.imp-colo{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1.3fr);
-  gap:var(--sp-5) clamp(2rem,4.5vw,4.5rem);padding-top:clamp(3rem,8vh,5rem)}
-.imp-grp--colo h2{font-size:var(--t-2);line-height:1.2}
-.imp-grp--colo .imp-body{margin-top:var(--sp-2)}
-.imp-grp--colo .lg-body{font-size:.95rem;line-height:1.7;color:var(--ink-2)}
-.imp-grp--colo .lg-body a{color:var(--ink)}
-.imp-grp--colo .lg-body a:hover{color:var(--okker)}
-
-@media(max-width:1000px){
-  .imp-fields{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .imp-f--w2{grid-column:1 / -1}
-  .imp-colo{grid-template-columns:1fr 1fr}
-  .imp-colo .imp-grp:last-child{grid-column:1 / -1}
-}
-@media(max-width:760px){
-  .imp-grp--host{grid-template-columns:1fr}
-  .imp-colo{grid-template-columns:1fr;gap:var(--sp-5)}
-}
-@media(max-width:560px){
-  .imp-fields{grid-template-columns:1fr}
-  .imp-fields--rows .imp-f{grid-template-columns:1fr}
-  .imp-sheet{margin-inline:calc(var(--gut) * -.5)}
-}
+@media(max-width:560px){.lg-adat--imp .lg-dl>div{grid-template-columns:1fr}}
 
 /* ===== tájékoztató: ragadó tartalomjegyzék + tagolt olvasóhasáb ===== */
 .lg-adat{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);
