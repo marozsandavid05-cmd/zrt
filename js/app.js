@@ -30,12 +30,23 @@
      semmit nem csinál). Telefonon a mailto marad: az a telefon levelezőjét nyitja meg.
      A telefonszám tel: link, telefonon közvetlenül hívást indít. */
   if (fine) {
-    [].slice.call(document.querySelectorAll('a[href^="mailto:"]')).forEach(function (a) {
-      var to = a.getAttribute('href').slice(7).split('?')[0];
+    var toGmail = function (a) {
+      var h = a.getAttribute('href') || '';
+      if (h.indexOf('mailto:') !== 0) return;
+      var to = h.slice(7).split('?')[0];
       a.setAttribute('href', 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to));
       a.setAttribute('target', '_blank');
       a.setAttribute('rel', 'noopener');
-    });
+    };
+    var allMail = function () { [].slice.call(document.querySelectorAll('a[href^="mailto:"]')).forEach(toGmail); };
+    allMail();
+    /* élesben a Cloudflare e-mail-védelme a címet csak később írja vissza mailto-ra,
+       ezért betöltés után és kattintáskor is átírjuk */
+    addEventListener('load', allMail);
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="mailto:"]');
+      if (a) toGmail(a);
+    }, true);
   }
 
   /* ---------- 1. REVEAL: scroll-listener + biztonsági passzok ---------- */
