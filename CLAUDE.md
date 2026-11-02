@@ -61,4 +61,5 @@ VAC-Team Építő Zrt. · Cg. 13-10-042476 · adószám 14658022-2-13 · 2161 Cs
 - `node tools/sync-chrome.js` minden nav/footer változás után.
 - Headless screenshot 1440/768/375 szélességen, végiggörgetéssel (a reveal különben nem sül el).
 - **Külön reduced-motion járat** (`reducedMotion:'reduce'`): minden elem látható, `--sweep:100%`.
+- **Első képernyő (2026-11-02):** `hajtas-meres.py` (`Claude tesztelés\vac-seo-1102\`) 9 méretben, 0 hiba kell. Minták: `.fscr` (fejléc + első fotósáv egy képernyőben, foghíj), `.phero--cover` (tipográfiai borító, műemlék, hogyan-építünk), `.phero--mcover` (csak telefonon, mit-építünk). Az ugrólink a nav-masterben él (`.skip`, `#tartalom` a NAV:end utáni első elem). A build-jelölő kommentek (CHROME, REF, JOGI) maradnak, minden más komment élesítés előtt ki (`komment-ki.js`).
 - Kézi próba: `file:///C:/Users/szonj/OneDrive/Desktop/David/ZRT/weboldal 2/index.html`
