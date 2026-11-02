@@ -74,7 +74,14 @@
       if (!inner || !hero) return;
       var cs = getComputedStyle(hero), nav = document.querySelector('.nav');
       var need = inner.offsetHeight + (nav ? nav.offsetHeight : 78) + 8 + parseFloat(cs.paddingBottom);
-      t.classList.toggle('is-tall', need > innerHeight + 1);
+      var tall = need > innerHeight + 1;
+      t.classList.toggle('is-tall', tall);
+      /* alacsony ablakban is ragad: a hero előbb felgörget, amíg az alja a képernyő aljához ér,
+         ott megáll, és csak a söprés végén megy tovább az oldal */
+      var low = tall && !reduce;
+      t.classList.toggle('is-pin-low', low);
+      if (low) t.style.setProperty('--hero-h', Math.ceil(inner.offsetHeight + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) + 'px');
+      else t.style.removeProperty('--hero-h');
     });
   }
   fitTracks();
@@ -91,7 +98,7 @@
     function measure() {
       for (var i = 0; i < rkState.length; i++) {
         var s = rkState[i];
-        var track = s.el.closest('[data-rake-track]:not(.is-tall)');
+        var track = s.el.closest('[data-rake-track]:not(.is-tall), [data-rake-track].is-pin-low');
         var p;
         if (track) {
           var tr = track.getBoundingClientRect();
@@ -269,6 +276,7 @@
           }
           o.disabled = !any;
         });
+        if (x._sync) x._sync();
       });
       var active = cat !== 'all' || Object.keys(s).length > 0;
       if (moreN) moreN.textContent = Object.keys(s).length ? '(' + Object.keys(s).length + ')' : '';
@@ -313,6 +321,123 @@
       c.addEventListener('click', function () { cat = c.getAttribute('data-filter'); apply(true); });
     });
     sels.forEach(function (x) { x.addEventListener('change', function () { apply(true); }); });
+
+    /* Saját lenyíló lista egérrel használt gépen: a natív lista az operációs rendszer
+       rajzolja, ezért a gomb fölé vagy a többi szűrő fölé is nyílhat. Ez mindig közvetlenül
+       a mező alatt nyílik. Érintőképernyőn a natív választó marad. A valódi select a
+       háttérben megmarad, az állapot és a szűrés továbbra is abból dolgozik. */
+    var openDrop = null;
+    function closeDrop(focusBtn) {
+      if (!openDrop) return;
+      var d = openDrop; openDrop = null;
+      d.list.hidden = true;
+      d.btn.setAttribute('aria-expanded', 'false');
+      d.wrap.classList.remove('is-open');
+      if (focusBtn) d.btn.focus();
+    }
+    if (fine) sels.forEach(function (x, idx) {
+      var wrap = x.parentNode, lab = wrap.parentNode.querySelector('.lab');
+      if (lab && !lab.id) lab.id = 'rsel-l-' + idx;
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'rsel__btn';
+      btn.setAttribute('aria-haspopup', 'listbox'); btn.setAttribute('aria-expanded', 'false');
+      var list = document.createElement('ul');
+      list.className = 'rsel__list'; list.id = 'rsel-o-' + idx; list.hidden = true;
+      list.setAttribute('role', 'listbox'); list.setAttribute('tabindex', '-1');
+      list.setAttribute('data-lenis-prevent', '');
+      if (lab) list.setAttribute('aria-labelledby', lab.id);
+      btn.id = 'rsel-b-' + idx;
+      if (lab) btn.setAttribute('aria-labelledby', lab.id + ' ' + btn.id);
+      btn.setAttribute('aria-controls', list.id);
+      x.tabIndex = -1; x.setAttribute('aria-hidden', 'true');
+      wrap.classList.add('is-enh');
+      wrap.appendChild(btn); wrap.appendChild(list);
+      var d = { sel: x, btn: btn, list: list, wrap: wrap };
+      x._sync = function () {
+        var o = x.options[x.selectedIndex];
+        btn.textContent = o ? o.textContent : '';
+        btn.classList.toggle('is-set', !!x.value);
+      };
+      function items() { return [].slice.call(list.querySelectorAll('[role="option"]')); }
+      function build() {
+        list.innerHTML = '';
+        [].slice.call(x.options).forEach(function (o, i) {
+          var li = document.createElement('li');
+          li.setAttribute('role', 'option'); li.id = list.id + '-' + i; li.tabIndex = -1;
+          li.textContent = o.textContent; li.setAttribute('data-v', o.value);
+          li.setAttribute('aria-selected', o.value === x.value ? 'true' : 'false');
+          if (o.disabled) li.setAttribute('aria-disabled', 'true');
+          list.appendChild(li);
+        });
+      }
+      function pick(li) {
+        if (!li || li.getAttribute('aria-disabled') === 'true') return;
+        var v = li.getAttribute('data-v');
+        closeDrop(true);
+        if (x.value !== v) { x.value = v; x.dispatchEvent(new Event('change', { bubbles: true })); }
+      }
+      function move(from, dir) {
+        var all = items().filter(function (li) { return li.getAttribute('aria-disabled') !== 'true'; });
+        if (!all.length) return;
+        var i = all.indexOf(from);
+        var n = dir === 'first' ? all[0] : dir === 'last' ? all[all.length - 1]
+          : all[Math.max(0, Math.min(all.length - 1, (i < 0 ? 0 : i + dir)))];
+        n.focus({ preventScroll: true });
+        n.scrollIntoView({ block: 'nearest' });
+      }
+      function open() {
+        if (openDrop === d) return;
+        closeDrop(false);
+        build();
+        list.hidden = false; wrap.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        openDrop = d;
+        /* a lista a mező alatt nyílik; ha alul nem fér ki, az oldal annyit görget, hogy kiférjen */
+        var r = btn.getBoundingClientRect();
+        var want = Math.min(list.scrollHeight, 320);
+        var room = innerHeight - r.bottom - 16;
+        list.style.maxHeight = Math.max(180, Math.min(320, room > want ? want : Math.max(room, want))) + 'px';
+        var lr = list.getBoundingClientRect();
+        var over = lr.bottom - (innerHeight - 12);
+        if (over > 0) {
+          if (window.__lenis) window.__lenis.scrollTo(scrollY + over, { immediate: true, force: true });
+          else scrollBy(0, over);
+        }
+        var cur = list.querySelector('[aria-selected="true"]') || items()[0];
+        if (cur) { cur.focus({ preventScroll: true }); cur.scrollIntoView({ block: 'nearest' }); }
+      }
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (openDrop === d) closeDrop(true); else open();
+      });
+      btn.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); open(); }
+      });
+      list.addEventListener('click', function (e) {
+        var li = e.target.closest('[role="option"]');
+        if (li) { e.preventDefault(); pick(li); }
+      });
+      list.addEventListener('keydown', function (e) {
+        var li = document.activeElement && document.activeElement.closest('[role="option"]');
+        if (e.key === 'ArrowDown') { e.preventDefault(); move(li, 1); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); move(li, -1); }
+        else if (e.key === 'Home') { e.preventDefault(); move(li, 'first'); }
+        else if (e.key === 'End') { e.preventDefault(); move(li, 'last'); }
+        else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(li); }
+        else if (e.key === 'Escape') { e.preventDefault(); closeDrop(true); }
+        else if (e.key === 'Tab') closeDrop(false);
+      });
+      /* a címkére kattintás a saját gombot nyissa, ne a rejtett selectet fókuszálja */
+      var lbl = wrap.closest('label');
+      if (lbl) lbl.addEventListener('click', function (e) {
+        if (!wrap.contains(e.target)) { e.preventDefault(); btn.focus(); open(); }
+      });
+      x._sync();
+    });
+    document.addEventListener('pointerdown', function (e) {
+      if (openDrop && !openDrop.wrap.contains(e.target)) closeDrop(false);
+    });
+    addEventListener('resize', function () { closeDrop(false); });
     clears.forEach(function (b) {
       b.addEventListener('click', function () {
         cat = 'all';

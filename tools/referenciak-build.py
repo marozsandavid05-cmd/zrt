@@ -258,8 +258,11 @@ def build():
         if p["sajat"]:
             r = p["sajat"]
             alt = p["nev"] + (", látványterv" if r.get("latvanyterv") else ", fotó a helyszínről")
-            oldal += (f'<img class="ref__img" src="{r["kis"]}" width="96" height="{round(96 * r["h"] / r["w"])}" '
-                      f'alt="{esc(alt)}" loading="lazy" decoding="async">')
+            img = (f'<img class="ref__img" src="{r["kis"]}" width="96" height="{round(96 * r["h"] / r["w"])}" '
+                   f'alt="{esc(alt)}" loading="lazy" decoding="async">')
+            # a kis kép is az albumra visz; billentyűvel a cím-link éri el, ezért ez nem kap fókuszt
+            oldal += (f'<a class="ref__imgl" href="{esc(p["link"])}" target="_blank" rel="noopener" '
+                      f'tabindex="-1" aria-hidden="true">{img}</a>' if p["link"] else img)
         if p["link"]:
             oldal += (f'<a class="ref__fb" href="{esc(p["link"])}" target="_blank" rel="noopener" '
                       f'aria-label="Fotók a Facebookon: {esc(p["nev"])} (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a>')
@@ -268,8 +271,10 @@ def build():
             f'      <span class="ref__n">{i:02d}</span>\n'
             f'      <div class="ref__b">\n'
             f'        <p class="lab ref__cat">{esc(katok)}</p>\n'
-            f'        <h3 class="ref__t">{esc(p["nev"])}</h3>\n'
-            f'        <ul class="ref__keys" aria-label="Jellemzők">{kul_html}</ul>\n'
+            + (f'        <h3 class="ref__t"><a class="ref__tl" href="{esc(p["link"])}" target="_blank" rel="noopener">'
+               f'{esc(p["nev"])}<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>\n'
+               if p["link"] else f'        <h3 class="ref__t">{esc(p["nev"])}</h3>\n')
+            + f'        <ul class="ref__keys" aria-label="Jellemzők">{kul_html}</ul>\n'
             + (f'        {kihivas_html(p["kihivas"])}\n' if p["kihivas"] else "")
             + f'      </div>\n'
             + (f'      <div class="ref__s">{oldal}</div>\n' if oldal else "")

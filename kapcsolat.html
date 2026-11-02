@@ -30,7 +30,7 @@
 <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="css/style.css?v=20261102">
+<link rel="stylesheet" href="css/style.css?v=20261102e">
 <style>
 /* --- kapcsolat: egy képernyős lap, a telefonszám a fő vizuál --- */
 body.p-kapcsolat .k-line{padding-block:clamp(2.5rem,7vh,4.5rem);
@@ -55,6 +55,7 @@ body.p-kapcsolat .k-cols{display:grid;
 @media(max-width:900px){body.p-kapcsolat .k-cols{grid-template-columns:1fr}}
 body.p-kapcsolat .k-h{font-size:var(--t-2);margin-top:var(--sp-2)}
 body.p-kapcsolat .k-lead{margin-top:var(--sp-2);color:var(--ink-2);max-width:50ch}
+body.p-kapcsolat .light .k-lead{color:var(--ink-dark-2)}
 
 body.p-kapcsolat .k-form{display:grid;gap:var(--sp-3);margin-top:clamp(2rem,5vh,3rem)}
 body.p-kapcsolat .k-pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3)}
@@ -484,7 +485,7 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
 <script src="js/vendor/gsap.min.js" defer></script>
 <script src="js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="js/vendor/lenis.min.js" defer></script>
-<script src="js/app.js?v=20261102" defer></script>
+<script src="js/app.js?v=20261102c" defer></script>
 <script>
 /* Az űrlap a Web3Forms-on keresztül küld: a beírt adatok JSON-ként mennek az
    api.web3forms.com címre, onnan érkezik email a Zrt. postafiókjába. A válasz

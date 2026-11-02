@@ -9,7 +9,7 @@
    ZÉRÓ rajzolt SVG. A vizuál: fotó + tipográfia + fény.
    ========================================================================== */
 
-/* Helyi betűk (2026-10-13). Külső betű-kérés nincs.
+/* Helyi betűk. Külső betű-kérés nincs.
    Erode, Supreme: Fontshare, ITF Free Font License 2.0, 01. pont: saját weboldalon
    self-host engedélyezett, a fájl változatlan (subset és konverzió nélkül).
    Martian Mono: SIL Open Font License, Google Fonts, változó súly (300-400), latin + latin-ext. */
@@ -133,6 +133,7 @@ p{text-wrap:pretty;max-width:68ch}
 .fig__pre{font-family:var(--mono);font-size:.3em;font-weight:300;letter-spacing:0;
   vertical-align:1.55em;color:var(--ink-2);margin-right:.18em}
 .light .fig__pre{color:var(--ink-dark-2)}
+.light .fig__unit{color:#785423}
 .fig__unit{font-family:var(--mono);font-size:.24em;font-weight:300;letter-spacing:.14em;
   text-transform:uppercase;color:var(--okker);margin-left:.55em;vertical-align:2.05em}
 
@@ -165,7 +166,7 @@ p{text-wrap:pretty;max-width:68ch}
 .nav__tel{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
   padding:.6rem 1rem;border:1px solid var(--line-2);transition:border-color .35s,color .35s;
   white-space:nowrap}
-.nav__tel b{font-weight:400;color:var(--ink-2);transition:color .35s}
+.nav__tel b{font-weight:400;color:#E7DECF;transition:color .35s}
 .nav__tel:hover{border-color:var(--okker);color:var(--okker)}
 .nav__tel:hover b{color:var(--okker)}
 @media(max-width:1280px){.nav__tel b{display:none}}
@@ -279,6 +280,7 @@ p{text-wrap:pretty;max-width:68ch}
   display:flex;flex-wrap:wrap;gap:var(--sp-4) var(--sp-6);align-items:flex-end}
 .hero__stat{display:flex;flex-direction:column;gap:.4rem}
 .hero__stat .fig{font-size:1.85rem}
+.hero__stat .fig__unit{color:#C69A5E}
 @media(max-width:720px){.hero{min-height:94svh}}
 /* álló telefonon a pinnelt hero tömörebb, hogy a teljes tartalom beférjen a 100svh-ba */
 @media(max-width:700px){
@@ -294,6 +296,17 @@ p{text-wrap:pretty;max-width:68ch}
    nincs ragadás, a hero sima, görgethető képernyő, a söprés a hero görgetésén fut */
 .js .herotrack.is-tall{height:auto}
 .js .herotrack.is-tall .hero{position:relative;height:auto;min-height:100svh}
+/* alacsony ablak: a JS .is-pin-low-t tesz rá, a hero az alján ragad, amíg a söprés végigér */
+.js .herotrack.is-tall.is-pin-low{height:calc(var(--hero-h) + 130svh)}
+.js .herotrack.is-tall.is-pin-low .hero{position:sticky;top:calc(100svh - var(--hero-h));height:var(--hero-h);min-height:0}
+/* alacsony asztali ablak (laptop böngészősávval): tömörebb hero, hogy befférjen, és betöltéstől ragadjon */
+@media (min-width:701px) and (max-height:820px){
+  .hero{padding-top:calc(var(--nav-h) + 2.5vh);padding-bottom:var(--sp-3)}
+  .hero__t{margin-top:var(--sp-2)}
+  .hero__sub{margin-top:var(--sp-2)}
+  .hero__cta{margin-top:var(--sp-3)}
+  .hero__foot{margin-top:var(--sp-3);padding-top:var(--sp-2)}
+}
 
 /* ---------- 9. SZEKCIÓ-FEJ ---------- */
 .shd{display:grid;gap:var(--sp-2);margin-bottom:clamp(2.2rem,5vh,3.6rem);
@@ -388,7 +401,7 @@ p{text-wrap:pretty;max-width:68ch}
 .light .dat .num{color:var(--ink-dark)}
 .dat .num b{font-weight:400;color:var(--okker)}
 /* világos alapon az okker egység 3:1 alatt marad: a tinta felé sötétített okker 4,7:1 */
-.light .dat .num b{color:var(--ink-dark-2);color:color-mix(in srgb,var(--okker) 70%,var(--ink-dark))}
+.light .dat .num b{color:var(--ink-dark-2);color:#785423}
 @media(max-width:640px){
   .dat thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .dat tbody tr{display:grid;grid-template-columns:1fr auto;gap:.2rem .8rem;
@@ -490,7 +503,7 @@ p{text-wrap:pretty;max-width:68ch}
 .raketrack__stick .rake__layer,.raketrack__stick .rake__after,
 .raketrack__stick .rake__layer img{height:100%}
 .raketrack__cap{position:relative;width:100%;padding:var(--sp-4) 0;
-  background:linear-gradient(180deg,#1A171400,#1A1714E6)}
+  background:linear-gradient(180deg,#1A171400,#1A1714C4 38%,#1A1714F2)}
 
 /* ---------- 14. LÁBLÉC ---------- */
 .foot{border-top:1px solid var(--line);padding-block:var(--sp-6) var(--sp-4)}
@@ -505,7 +518,7 @@ p{text-wrap:pretty;max-width:68ch}
 /* lábléc: a legkisebb betű is legalább .7rem (11,2 px), a mono címke-stílus marad */
 .foot .brand span{font-size:.7rem;letter-spacing:.24em}
 .foot__bar .lab{font-size:.7rem;letter-spacing:.2em}
-/* jogi sáv (2026-10-14): a két jogi link saját sor, olvasható méretű, aláhúzott link,
+/* jogi sáv: a két jogi link saját sor, olvasható méretű, aláhúzott link,
    elválasztva a © sortól. A © és a működési terület csendes mono címke alatta. */
 .foot__bar{margin-top:var(--sp-5);padding-top:var(--sp-3);border-top:1px solid var(--line);
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-2) var(--sp-4)}
@@ -516,7 +529,7 @@ p{text-wrap:pretty;max-width:68ch}
 .foot__legal:hover{color:var(--okker);text-decoration-thickness:2px}
 .foot__legal[aria-current="page"]{color:var(--okker)}
 .foot__copy{display:flex;flex-wrap:wrap;gap:.4rem var(--sp-4);max-width:none}
-/* készítői sor (2026-10-14): saját harmadik réteg a jogi sáv alatt. Folyó betű, nem mono
+/* készítői sor: saját harmadik réteg a jogi sáv alatt. Folyó betű, nem mono
    (a © sortól elválik), kisebb és halkabb a jogi linkeknél (azoktól is elválik). */
 .foot__made{flex:1 0 100%;max-width:none;margin-top:var(--sp-1);padding-top:var(--sp-1);
   border-top:1px solid var(--line);font-size:.8rem;line-height:1.5;color:var(--ink-2)}
@@ -606,15 +619,7 @@ p{text-wrap:pretty;max-width:68ch}
 .own figure{max-width:440px}
 .own .shot img{aspect-ratio:3/4;object-fit:cover}
 
-/* ---------- 14/e. JOGI OLDALAK (impresszum, adatkezelési tájékoztató) ----------
-   A szöveget a Claude tesztelés\vacteam-jogi-beepites-2026-10-13\jogi-build.py írja
-   a JOGI markerek közé, szó szerint Aphelios .md-jéből. Kézzel ne szerkeszd.
-   Két különböző szerkezet (2026-10-14):
-   - impresszum (2026-10-14 óta) = a tájékoztató szerkezete, kisebb: ragadó
-     tartalomjegyzék, számozott pontok, okker mono címke | világos érték sorok;
-   - tájékoztató = ragadó tartalomjegyzék balra, olvasóhasáb jobbra, pontonként
-     tagolva: alpontok saját felületen, jogok és címzettek listaként, a rövid
-     pontok kiemelt állításként. */
+/* ---------- 14/e. JOGI OLDALAK (impresszum, adatkezelési tájékoztató) ---------- */
 .lg-head__row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
   gap:var(--sp-4) clamp(2rem,6vw,6rem);align-items:end}
 .lg-head__row .phero__t{max-width:none}
@@ -632,13 +637,10 @@ p{text-wrap:pretty;max-width:68ch}
 .lg-dl>div{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr);gap:.3rem 1.4rem;
   padding-block:.9rem;border-bottom:1px solid var(--line)}
 .lg-dl dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--okker);padding-top:.32em;line-height:1.5}
+  color:#BA8B4B;padding-top:.32em;line-height:1.5}
 @media(max-width:560px){.lg-dl>div{grid-template-columns:1fr}}
 
-/* ===== impresszum: a tájékoztató nyelvén (2026-10-14, t_9f961d85) =====
-   Ugyanaz a ragadó tartalomjegyzék + számozott pontok, mint a tájékoztatóban, sötét
-   kova alapon. Világos lap NINCS: élesben a cache-ből jövő régi CSS mellett a krém
-   szöveg krém lapra került (1,05:1). Az impresszum minden szövege kova alapon ül. */
+/* ===== impresszum: sötét alapon, ragadó tartalomjegyzékkel ===== */
 .lg-adat--imp .lg-dl{max-width:50em}
 .lg-adat--imp .lg-dl>div{grid-template-columns:minmax(0,19.5rem) minmax(0,1fr)}
 /* azonosítók: mono, táblázatos számjegy, egy kattintással kijelölhető (másolásra) */
@@ -686,7 +688,7 @@ p{text-wrap:pretty;max-width:68ch}
 .lg-subblk>*+*{margin-top:var(--sp-2)}
 .lg-subblk h3{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.9rem;align-items:baseline;
   font-size:var(--t-2);line-height:1.22;max-width:none;scroll-margin-top:calc(var(--nav-h) + 1rem)}
-.lg-sub{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--okker)}
+.lg-sub{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:#BA8B4B}
 .lg-subblk .lg-dl{max-width:none;border-top-color:var(--line-2)}
 .lg-subblk .lg-dl>div{border-bottom-color:var(--line-2)}
 .lg-subblk .lg-dl>div:last-child{border-bottom:0;padding-bottom:0}

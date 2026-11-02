@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="css/style.css?v=20261102">
+<link rel="stylesheet" href="css/style.css?v=20261102e">
 <style>
 /* oldal-szkópolt kiegészítés: két aszimmetrikus szövegoszlop a bontáshoz és a záráshoz */
 body.p-ref .phero{padding-top:calc(var(--nav-h) + clamp(2.5rem,8vh,6rem));padding-bottom:clamp(1.4rem,3vh,2.2rem)}
@@ -36,13 +36,10 @@ body.p-ref .r-list{padding-top:0;scroll-margin-top:calc(var(--nav-h) + 1.2rem)}
 body.p-ref .r-head{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;align-items:baseline;
   justify-content:space-between;padding-block:clamp(1.6rem,4vh,2.6rem)}
 /* az előnézet fekvő fotókhoz: a Facebook-képek többsége 4:3 */
-body.p-ref .idxview__frame{aspect-ratio:4/3;max-width:440px}
-/* alacsony képernyőn a keret a nyitóképernyőn belül marad (a felirattal együtt) */
-@media(max-height:820px){body.p-ref .idxview__frame{max-height:calc(100svh - 32rem)}}
-body.p-ref .idxview__cap{max-width:440px}
+body.p-ref .idxview__frame{aspect-ratio:4/3;max-height:calc(100svh - var(--nav-h) - 6rem)}
 body.p-ref .r-main{min-width:0}
 @media(min-width:981px){
-  body.p-ref .idxwrap{grid-template-columns:minmax(0,1.9fr) minmax(0,1fr)}
+  body.p-ref .idxwrap{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
 }
 
 /* szűrők: csak JS alatt, mert nélküle nincs mit szűrni, a lista teljes */
@@ -68,6 +65,27 @@ body.p-ref .r-head__r{display:flex;align-items:center;gap:var(--sp-3);flex-wrap:
 .rsel select.is-set{border-color:var(--okker)}
 .rsel select option{background:var(--kova-2);color:var(--ink)}
 .rsel select option:disabled{color:#8C8073}
+/* saját lenyíló lista (egérrel használt gépen): mindig a mező alatt nyílik */
+.rsel__w.is-enh select{position:absolute;inset:0;opacity:0;pointer-events:none}
+.rsel__btn{display:block;width:100%;min-height:44px;padding:.6rem 2.4rem .6rem .85rem;text-align:left;
+  background:var(--kova-2);color:var(--ink);border:1px solid var(--line-2);border-radius:0;
+  font-family:var(--sans);font-size:.92rem;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  transition:border-color .3s ease}
+.rsel__btn:hover,.rsel__btn.is-set,.rsel__w.is-open .rsel__btn{border-color:var(--okker)}
+.rsel__btn:focus-visible{outline:2px solid var(--okker);outline-offset:2px}
+.rsel__w.is-open::after{transform:translateY(-20%) rotate(225deg)}
+.rsel__w::after{transition:transform .25s ease}
+.rsel__list{position:absolute;z-index:60;top:calc(100% + 4px);left:0;right:0;margin:0;padding:.3rem 0;list-style:none;
+  max-height:320px;overflow-y:auto;overscroll-behavior:contain;background:var(--kova-2);
+  border:1px solid var(--okker);box-shadow:0 18px 40px -12px #0A0908CC}
+.rsel__list[hidden]{display:none}
+.rsel__list [role=option]{padding:.55rem .85rem;font-family:var(--sans);font-size:.92rem;line-height:1.35;
+  color:var(--ink);cursor:pointer;outline:0}
+.rsel__list [role=option]:hover,.rsel__list [role=option]:focus{background:#2E2721;color:var(--ink)}
+.rsel__list [role=option][aria-selected=true]{color:#BA8B4B}
+.rsel__list [role=option][aria-selected=true]::before{content:'';display:inline-block;width:.38rem;height:.38rem;
+  margin-right:.55rem;vertical-align:.12em;background:#BA8B4B}
+.rsel__list [role=option][aria-disabled=true]{color:#8C8073;cursor:default;background:none}
 .rclear{display:none;min-height:40px;padding:.5rem .9rem;font-family:var(--mono);font-size:.66rem;
   letter-spacing:.12em;text-transform:uppercase;color:var(--ink);border:1px solid var(--line-2);
   text-decoration:underline;text-decoration-color:var(--okker);text-underline-offset:.4em;
@@ -117,6 +135,11 @@ body.p-ref .r-head__r{min-height:40px}
   transition:color .3s ease}
 .ref__fb i{font-style:normal;color:var(--okker);text-decoration:none}
 .ref__fb:hover{color:var(--okker)}
+/* a projekt neve is az albumra visz: a teljes cím kattintható, a fókusz látható */
+.ref__tl{color:inherit;text-decoration:none}
+.ref__tl:hover,.ref__tl:focus-visible{color:var(--okker);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.ref__tl:focus-visible{outline:2px solid var(--okker);outline-offset:4px}
+.ref__imgl{display:block;line-height:0}
 @media (hover:hover) and (pointer:fine){
   .ref:hover .ref__n,.ref:hover .ref__t{color:var(--okker)}
 }
@@ -648,29 +671,29 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
       <span class="ref__n">01</span>
       <div class="ref__b">
         <p class="lab ref__cat">Generálkivitelezés</p>
-        <h3 class="ref__t">ILKA-Villa Irodaház</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103492612339884&amp;type=3" target="_blank" rel="noopener">ILKA-Villa Irodaház<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>irodaépület</li><li>szabadon álló</li><li>tetőtér-beépítés és ráépítés</li><li>generál</li><li>felújítás</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Kb. 250 m² alapterületű díszterem közbenső alátámasztás nélküli, látszó fatartókkal</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103492612339884-k.webp" width="96" height="72" alt="ILKA-Villa Irodaház, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103492612339884&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: ILKA-Villa Irodaház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103492612339884&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103492612339884-k.webp" width="96" height="72" alt="ILKA-Villa Irodaház, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103492612339884&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: ILKA-Villa Irodaház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="general" data-funkcio="lakoepulet" data-beepites="szabadon-allo" data-terulet="zoldmezos" data-vedettseg="" data-munka="general" data-tipus="uj-epites" data-peek="media/referenciak/fb-103516372337508.webp" data-peekcap="Lőrinc Liget Lakópark (40+40+40+19 lakásos lakóépület)" data-in>
       <span class="ref__n">02</span>
       <div class="ref__b">
         <p class="lab ref__cat">Generálkivitelezés</p>
-        <h3 class="ref__t">Lőrinc Liget Lakópark (40+40+40+19 lakásos lakóépület)</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103516372337508&amp;type=3" target="_blank" rel="noopener">Lőrinc Liget Lakópark (40+40+40+19 lakásos lakóépület)<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>szabadon álló</li><li>zöldmezős</li><li>generál</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Félbemaradt, átvett, egyidejű kivitelezés, szűk határidővel, párhuzamos organizáció, feltöltött terület, cölöpalapozás</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103516372337508-k.webp" width="96" height="63" alt="Lőrinc Liget Lakópark (40+40+40+19 lakásos lakóépület), fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103516372337508&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Lőrinc Liget Lakópark (40+40+40+19 lakásos lakóépület) (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103516372337508&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103516372337508-k.webp" width="96" height="63" alt="Lőrinc Liget Lakópark (40+40+40+19 lakásos lakóépület), fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103516372337508&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Lőrinc Liget Lakópark (40+40+40+19 lakásos lakóépület) (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="general" data-funkcio="lakoepulet" data-beepites="szabadon-allo" data-terulet="zoldmezos" data-vedettseg="" data-munka="general" data-tipus="uj-epites" data-peek="media/referenciak/fb-103492612339884.webp" data-peekcap="" data-in>
       <span class="ref__n">03</span>
       <div class="ref__b">
         <p class="lab ref__cat">Generálkivitelezés</p>
-        <h3 class="ref__t">Veresegyház, Sportföld u., 30 lakásos</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103506475671831&amp;type=3" target="_blank" rel="noopener">Veresegyház, Sportföld u., 30 lakásos<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>szabadon álló</li><li>zöldmezős</li><li>generál</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk határidő</p></div>
       </div>
@@ -681,108 +704,108 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
       <span class="ref__n">04</span>
       <div class="ref__b">
         <p class="lab ref__cat">Társasházak és lakóépületek · Tetőtér-beépítés, ráépítés</p>
-        <h3 class="ref__t">Hársfa u. 59/a. · 14 lakásos társasház</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.990148893765104&amp;type=3" target="_blank" rel="noopener">Hársfa u. 59/a. · 14 lakásos társasház<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>zártsorú</li><li>tetőtér-beépítés és ráépítés</li><li>szerkezet</li><li>építőmesteri</li><li>tetőépítés</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szomszédos épületek állagmegőrzése (tűzfal bontás, újraépítés), belső alapmegerősítés,</p><details class="ref__more"><summary>További részletek</summary><p>szűk felvonulási terület, percekre beosztott organizáció, mindennapos megrendelői módosítás, nem szokványos rendeltetési egységű szomszédos épületek</p></details></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-990148893765104-k.webp" width="96" height="72" alt="Hársfa u. 59/a. · 14 lakásos társasház, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.990148893765104&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Hársfa u. 59/a. · 14 lakásos társasház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.990148893765104&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-990148893765104-k.webp" width="96" height="72" alt="Hársfa u. 59/a. · 14 lakásos társasház, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.990148893765104&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Hársfa u. 59/a. · 14 lakásos társasház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="lakohaz" data-funkcio="lakoepulet" data-beepites="zartsoru foghijbeepites" data-terulet="rehabilitacios" data-vedettseg="" data-munka="general" data-tipus="uj-epites" data-peek="media/referenciak/fb-990099780436682.webp" data-peekcap="Lujza u. 10. · 20 lakásos társasház" data-in>
       <span class="ref__n">05</span>
       <div class="ref__b">
         <p class="lab ref__cat">Társasházak és lakóépületek</p>
-        <h3 class="ref__t">Lujza u. 10. · 20 lakásos társasház</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.990099780436682&amp;type=3" target="_blank" rel="noopener">Lujza u. 10. · 20 lakásos társasház<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>zártsorú</li><li>foghíjbeépítés</li><li>rehabilitációs</li><li>generál</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Átvett veszélyes munkaterület, szomszédos épületek állagmegőrzése (tűzfal erősítés, horgonyzás),</p><details class="ref__more"><summary>További részletek</summary><p>beszakadt utcai közműhálózat helyreállítása, szomszédos épületek alapmegerősítése, feltöltött tömörítettlen munkagödör, cölöpalapozás, szűk felvonulási terület, percekre beosztott organizáció</p></details></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-990099780436682-k.webp" width="96" height="47" alt="Lujza u. 10. · 20 lakásos társasház, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.990099780436682&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Lujza u. 10. · 20 lakásos társasház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.990099780436682&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-990099780436682-k.webp" width="96" height="47" alt="Lujza u. 10. · 20 lakásos társasház, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.990099780436682&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Lujza u. 10. · 20 lakásos társasház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="lakohaz" data-funkcio="lakoepulet" data-beepites="szabadon-allo" data-terulet="zoldmezos" data-vedettseg="" data-munka="general" data-tipus="uj-epites" data-peek="media/referenciak/fb-103491492339996.webp" data-peekcap="Homoktövis Lakópark, 24 + 12 + 3 × 9 lakás" data-in>
       <span class="ref__n">06</span>
       <div class="ref__b">
         <p class="lab ref__cat">Társasházak és lakóépületek</p>
-        <h3 class="ref__t">Homoktövis Lakópark, 24 + 12 + 3 × 9 lakás</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103491492339996&amp;type=3" target="_blank" rel="noopener">Homoktövis Lakópark, 24 + 12 + 3 × 9 lakás<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>szabadon álló</li><li>zöldmezős</li><li>generál</li><li>új építés</li></ul>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103491492339996-k.webp" width="96" height="72" alt="Homoktövis Lakópark, 24 + 12 + 3 × 9 lakás, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103491492339996&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Homoktövis Lakópark, 24 + 12 + 3 × 9 lakás (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103491492339996&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103491492339996-k.webp" width="96" height="72" alt="Homoktövis Lakópark, 24 + 12 + 3 × 9 lakás, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103491492339996&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Homoktövis Lakópark, 24 + 12 + 3 × 9 lakás (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="lakohaz" data-funkcio="lakoepulet" data-beepites="szabadon-allo" data-terulet="zoldmezos" data-vedettseg="" data-munka="general" data-tipus="uj-epites" data-peek="media/referenciak/fb-103500559005756.webp" data-peekcap="Bagaria u., 51 lakásos + 9 lakásos sorház" data-in>
       <span class="ref__n">07</span>
       <div class="ref__b">
         <p class="lab ref__cat">Társasházak és lakóépületek</p>
-        <h3 class="ref__t">Bagaria u., 51 lakásos + 9 lakásos sorház</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103500559005756&amp;type=3" target="_blank" rel="noopener">Bagaria u., 51 lakásos + 9 lakásos sorház<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>szabadon álló</li><li>zöldmezős</li><li>generál</li><li>új építés</li></ul>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103500559005756-k.webp" width="96" height="72" alt="Bagaria u., 51 lakásos + 9 lakásos sorház, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103500559005756&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Bagaria u., 51 lakásos + 9 lakásos sorház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103500559005756&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103500559005756-k.webp" width="96" height="72" alt="Bagaria u., 51 lakásos + 9 lakásos sorház, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103500559005756&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Bagaria u., 51 lakásos + 9 lakásos sorház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="lakohaz" data-funkcio="lakoepulet" data-beepites="zartsoru foghijbeepites" data-terulet="rehabilitacios" data-vedettseg="" data-munka="homlokzat epitomesteri" data-tipus="uj-epites" data-peek="media/referenciak/fb-103501859005626.webp" data-peekcap="Szív u., 31 lakásos" data-in>
       <span class="ref__n">08</span>
       <div class="ref__b">
         <p class="lab ref__cat">Társasházak és lakóépületek</p>
-        <h3 class="ref__t">Szív u., 31 lakásos</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103501859005626&amp;type=3" target="_blank" rel="noopener">Szív u., 31 lakásos<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>zártsorú</li><li>foghíjbeépítés</li><li>rehabilitációs</li><li>homlokzat</li><li>építőmesteri</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk határidő, téliesítési feladatok</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103501859005626-k.webp" width="96" height="128" alt="Szív u., 31 lakásos, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103501859005626&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Szív u., 31 lakásos (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103501859005626&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103501859005626-k.webp" width="96" height="128" alt="Szív u., 31 lakásos, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103501859005626&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Szív u., 31 lakásos (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="lakohaz" data-funkcio="lakoepulet" data-beepites="szabadon-allo" data-terulet="rehabilitacios" data-vedettseg="" data-munka="epitomesteri" data-tipus="uj-epites" data-peek="media/referenciak/fb-103509265671552.webp" data-peekcap="Élessarok, 100 lakásos" data-in>
       <span class="ref__n">09</span>
       <div class="ref__b">
         <p class="lab ref__cat">Társasházak és lakóépületek</p>
-        <h3 class="ref__t">Élessarok, 100 lakásos</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103509265671552&amp;type=3" target="_blank" rel="noopener">Élessarok, 100 lakásos<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>szabadon álló</li><li>rehabilitációs</li><li>építőmesteri</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk határidő, téliesítési feladatok</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103509265671552-k.webp" width="96" height="72" alt="Élessarok, 100 lakásos, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103509265671552&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Élessarok, 100 lakásos (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103509265671552&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103509265671552-k.webp" width="96" height="72" alt="Élessarok, 100 lakásos, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103509265671552&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Élessarok, 100 lakásos (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="lakohaz" data-funkcio="lakoepulet" data-beepites="szabadon-allo" data-terulet="zoldmezos" data-vedettseg="" data-munka="epitomesteri homlokzat" data-tipus="uj-epites" data-peek="media/referenciak/fb-103515815670897.webp" data-peekcap="Liliomdomb Lakópark" data-in>
       <span class="ref__n">10</span>
       <div class="ref__b">
         <p class="lab ref__cat">Társasházak és lakóépületek</p>
-        <h3 class="ref__t">Liliomdomb Lakópark</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103515815670897&amp;type=3" target="_blank" rel="noopener">Liliomdomb Lakópark<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>szabadon álló</li><li>zöldmezős</li><li>építőmesteri</li><li>homlokzat</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk határidő</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103515815670897-k.webp" width="96" height="72" alt="Liliomdomb Lakópark, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103515815670897&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Liliomdomb Lakópark (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103515815670897&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103515815670897-k.webp" width="96" height="72" alt="Liliomdomb Lakópark, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103515815670897&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Liliomdomb Lakópark (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="lakohaz" data-funkcio="lakoepulet" data-beepites="szabadon-allo" data-terulet="zoldmezos" data-vedettseg="" data-munka="general" data-tipus="uj-epites" data-peek="media/referenciak/fb-103519585670520.webp" data-peekcap="12 lakásos luxuslakópark Madárhegy" data-in>
       <span class="ref__n">11</span>
       <div class="ref__b">
         <p class="lab ref__cat">Társasházak és lakóépületek</p>
-        <h3 class="ref__t">12 lakásos luxuslakópark Madárhegy</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103519585670520&amp;type=3" target="_blank" rel="noopener">12 lakásos luxuslakópark Madárhegy<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>szabadon álló</li><li>zöldmezős</li><li>generál</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Félbemaradt, átvett, egyidejű kivitelezés, szűk határidővel, párhuzamos organizáció, szakszerűtlenül kivitelezett munkarészek átalakítása</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103519585670520-k.webp" width="96" height="72" alt="12 lakásos luxuslakópark Madárhegy, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103519585670520&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: 12 lakásos luxuslakópark Madárhegy (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103519585670520&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103519585670520-k.webp" width="96" height="72" alt="12 lakásos luxuslakópark Madárhegy, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103519585670520&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: 12 lakásos luxuslakópark Madárhegy (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="tetoter" data-funkcio="lakoepulet vendeglatas" data-beepites="szabadon-allo" data-terulet="tetoter-beepites-es-raepites" data-vedettseg="" data-munka="general" data-tipus="felujitas" data-peek="media/referenciak/fb-606012888845375.webp" data-peekcap="Kapy u. 52. · tetőátépítés, tetőtér-beépítés és homlokzatfelújítás" data-in>
       <span class="ref__n">12</span>
       <div class="ref__b">
         <p class="lab ref__cat">Tetőtér-beépítés, ráépítés</p>
-        <h3 class="ref__t">Kapy u. 52. · tetőátépítés, tetőtér-beépítés és homlokzatfelújítás</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.606012888845375&amp;type=3" target="_blank" rel="noopener">Kapy u. 52. · tetőátépítés, tetőtér-beépítés és homlokzatfelújítás<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>vendéglátás</li><li>szabadon álló</li><li>tetőtér-beépítés és ráépítés</li><li>generál</li><li>felújítás</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Lakott épületen lakótér feletti födémcsere és tetőépítés, működő étterem és üzlethelyiség,</p><details class="ref__more"><summary>További részletek</summary><p>szűk felvonulási terület, forgalmas, központi elhelyezkedés, buszmegálló, működő vendégparkoló</p></details></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-606012888845375-k.webp" width="96" height="54" alt="Kapy u. 52. · tetőátépítés, tetőtér-beépítés és homlokzatfelújítás, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.606012888845375&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Kapy u. 52. · tetőátépítés, tetőtér-beépítés és homlokzatfelújítás (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.606012888845375&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-606012888845375-k.webp" width="96" height="54" alt="Kapy u. 52. · tetőátépítés, tetőtér-beépítés és homlokzatfelújítás, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.606012888845375&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Kapy u. 52. · tetőátépítés, tetőtér-beépítés és homlokzatfelújítás (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="tetoter" data-funkcio="lakoepulet" data-beepites="zartsoru" data-terulet="tetoter-beepites-es-raepites" data-vedettseg="helyi-vedettsegu" data-munka="homlokzat epitomesteri elektromos" data-tipus="felujitas" data-peek="media/referenciak/fb-103517365670742.webp" data-peekcap="Kálmán Ház" data-in>
       <span class="ref__n">13</span>
       <div class="ref__b">
         <p class="lab ref__cat">Tetőtér-beépítés, ráépítés</p>
-        <h3 class="ref__t">Kálmán Ház</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103517365670742&amp;type=3" target="_blank" rel="noopener">Kálmán Ház<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>zártsorú</li><li>tetőtér-beépítés és ráépítés</li><li>helyi védettségű</li><li>homlokzat</li><li>építőmesteri</li><li>elektromos</li><li>felújítás</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Lakott épületen lakótér feletti födémcsere és tetőépítés, szűk felvonulási terület, forgalmas, központi elhelyezkedés, trolivezeték</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103517365670742-k.webp" width="96" height="171" alt="Kálmán Ház, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103517365670742&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Kálmán Ház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103517365670742&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103517365670742-k.webp" width="96" height="171" alt="Kálmán Ház, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103517365670742&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Kálmán Ház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="homlokzat" data-funkcio="lakoepulet" data-beepites="zartsoru" data-terulet="felujitas" data-vedettseg="helyi-vedettsegu" data-munka="veszelytelenites homlokzat" data-tipus="felujitas" data-peek="media/referenciak/fb-242148581898476.webp" data-peekcap="" data-in>
@@ -799,77 +822,77 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
       <span class="ref__n">15</span>
       <div class="ref__b">
         <p class="lab ref__cat">Homlokzat- és épületfelújítás</p>
-        <h3 class="ref__t">Péterfy S. u. 37. · utcai és udvari homlokzat, lépcsőház felújítása</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.242148581898476&amp;type=3" target="_blank" rel="noopener">Péterfy S. u. 37. · utcai és udvari homlokzat, lépcsőház felújítása<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>zártsorú</li><li>felújítás</li><li>helyi védettségű</li><li>veszélytelenítés</li><li>homlokzat</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk határidő, minimális felvonulási terület</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-242148581898476-k.webp" width="96" height="129" alt="Péterfy S. u. 37. · utcai és udvari homlokzat, lépcsőház felújítása, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.242148581898476&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Péterfy S. u. 37. · utcai és udvari homlokzat, lépcsőház felújítása (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.242148581898476&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-242148581898476-k.webp" width="96" height="129" alt="Péterfy S. u. 37. · utcai és udvari homlokzat, lépcsőház felújítása, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.242148581898476&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Péterfy S. u. 37. · utcai és udvari homlokzat, lépcsőház felújítása (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="homlokzat" data-funkcio="lakoepulet" data-beepites="szabadon-allo" data-terulet="rehabilitacios" data-vedettseg="" data-munka="homlokzat" data-tipus="uj-epites" data-peek="media/referenciak/fb-103512755671203.webp" data-peekcap="CORVIN Fontana-Ház" data-in>
       <span class="ref__n">16</span>
       <div class="ref__b">
         <p class="lab ref__cat">Homlokzat- és épületfelújítás</p>
-        <h3 class="ref__t">CORVIN Fontana-Ház</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103512755671203&amp;type=3" target="_blank" rel="noopener">CORVIN Fontana-Ház<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>szabadon álló</li><li>rehabilitációs</li><li>homlokzat</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Félbemaradt, átvett, egyidejű kivitelezés, szűk határidővel, szakszerűtlenül kivitelezett munkarészek átalakítása</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103512755671203-k.webp" width="96" height="72" alt="CORVIN Fontana-Ház, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103512755671203&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: CORVIN Fontana-Ház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103512755671203&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103512755671203-k.webp" width="96" height="72" alt="CORVIN Fontana-Ház, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103512755671203&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: CORVIN Fontana-Ház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="homlokzat" data-funkcio="irodaepulet" data-beepites="belso" data-terulet="belso" data-vedettseg="" data-munka="szarazepites" data-tipus="felujitas" data-peek="media/referenciak/fb-103521549003657.webp" data-peekcap="Szófia-Ház" data-in>
       <span class="ref__n">17</span>
       <div class="ref__b">
         <p class="lab ref__cat">Homlokzat- és épületfelújítás</p>
-        <h3 class="ref__t">Szófia-Ház</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103521549003657&amp;type=3" target="_blank" rel="noopener">Szófia-Ház<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>irodaépület</li><li>belső</li><li>szárazépítés</li><li>felújítás</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk határidő, minimális felvonulási terület</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103521549003657-k.webp" width="96" height="128" alt="Szófia-Ház, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103521549003657&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Szófia-Ház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103521549003657&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103521549003657-k.webp" width="96" height="128" alt="Szófia-Ház, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103521549003657&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Szófia-Ház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="homlokzat" data-funkcio="lakoepulet" data-beepites="szabadon-allo" data-terulet="rehabilitacios" data-vedettseg="" data-munka="homlokzat" data-tipus="uj-epites" data-peek="media/referenciak/fb-242391818540819.webp" data-peekcap="WESTSIDE GARDEN" data-in>
       <span class="ref__n">18</span>
       <div class="ref__b">
         <p class="lab ref__cat">Homlokzat- és épületfelújítás</p>
-        <h3 class="ref__t">WESTSIDE GARDEN</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.242391818540819&amp;type=3" target="_blank" rel="noopener">WESTSIDE GARDEN<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>szabadon álló</li><li>rehabilitációs</li><li>homlokzat</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Félbemaradt, átvett, több épület egyidejű kivitelezés, szűk határidővel, szakszerűtlenül kivitelezett munkarészek átalakítása</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-242391818540819-k.webp" width="96" height="72" alt="WESTSIDE GARDEN, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.242391818540819&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: WESTSIDE GARDEN (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.242391818540819&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-242391818540819-k.webp" width="96" height="72" alt="WESTSIDE GARDEN, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.242391818540819&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: WESTSIDE GARDEN (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="homlokzat" data-funkcio="kozepulet" data-beepites="zartsoru" data-terulet="felujitas" data-vedettseg="muemlek" data-munka="homlokzat" data-tipus="felujitas" data-peek="media/referenciak/fb-242729281840406.webp" data-peekcap="Andrássy u. 64. · homlokzatfelújítás" data-in>
       <span class="ref__n">19</span>
       <div class="ref__b">
         <p class="lab ref__cat">Homlokzat- és épületfelújítás</p>
-        <h3 class="ref__t">Andrássy u. 64. · homlokzatfelújítás</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.242729281840406&amp;type=3" target="_blank" rel="noopener">Andrássy u. 64. · homlokzatfelújítás<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>középület</li><li>zártsorú</li><li>felújítás</li><li>műemlék</li><li>homlokzat</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk határidő, minimális felvonulási terület, kiemelt műemléki környezet, forgalmas terület</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-242729281840406-k.webp" width="96" height="72" alt="Andrássy u. 64. · homlokzatfelújítás, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.242729281840406&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Andrássy u. 64. · homlokzatfelújítás (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.242729281840406&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-242729281840406-k.webp" width="96" height="72" alt="Andrássy u. 64. · homlokzatfelújítás, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.242729281840406&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Andrássy u. 64. · homlokzatfelújítás (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="szerkezet" data-funkcio="lakoepulet" data-beepites="szabadon-allo" data-terulet="zoldmezos" data-vedettseg="" data-munka="vasbeton-szerkezet" data-tipus="uj-epites" data-peek="media/referenciak/fb-241802765266391.webp" data-peekcap="Villaépület, Turista utca" data-in>
       <span class="ref__n">20</span>
       <div class="ref__b">
         <p class="lab ref__cat">Szerkezetépítés</p>
-        <h3 class="ref__t">Villaépület, Turista utca</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.241802765266391&amp;type=3" target="_blank" rel="noopener">Villaépület, Turista utca<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>szabadon álló</li><li>zöldmezős</li><li>vasbeton szerkezet</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk terület a hegyoldali lejtőn, 7 m mély munkagödör (heves esőzések miatt vízgyűjtő), a terepadottságok miatti organizálás</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-241802765266391-k.webp" width="96" height="54" alt="Villaépület, Turista utca, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.241802765266391&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Villaépület, Turista utca (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.241802765266391&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-241802765266391-k.webp" width="96" height="54" alt="Villaépület, Turista utca, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.241802765266391&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Villaépület, Turista utca (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="szerkezet" data-funkcio="lakoepulet" data-beepites="zartsoru foghijbeepites" data-terulet="rehabilitacios" data-vedettseg="" data-munka="vasbeton-szerkezet" data-tipus="uj-epites" data-peek="media/referenciak/fb-103524579003354.webp" data-peekcap="14 lakásos társasház SERAP Ház" data-in>
       <span class="ref__n">21</span>
       <div class="ref__b">
         <p class="lab ref__cat">Szerkezetépítés</p>
-        <h3 class="ref__t">14 lakásos társasház SERAP Ház</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103524579003354&amp;type=3" target="_blank" rel="noopener">14 lakásos társasház SERAP Ház<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>lakóépület</li><li>zártsorú</li><li>foghíjbeépítés</li><li>rehabilitációs</li><li>vasbeton szerkezet</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk határidő, minimális felvonulási terület, COVID alatti munkavégzés, régészeti feltárás, római kori épületrész megvédése</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103524579003354-k.webp" width="96" height="72" alt="14 lakásos társasház SERAP Ház, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103524579003354&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: 14 lakásos társasház SERAP Ház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103524579003354&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103524579003354-k.webp" width="96" height="72" alt="14 lakásos társasház SERAP Ház, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103524579003354&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: 14 lakásos társasház SERAP Ház (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="szerkezet" data-funkcio="kozepulet" data-beepites="szabadon-allo" data-terulet="rehabilitacios" data-vedettseg="" data-munka="vasbeton-szerkezet" data-tipus="uj-epites" data-peek="media/referenciak/fb-241802765266391.webp" data-peekcap="" data-in>
@@ -896,11 +919,11 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
       <span class="ref__n">24</span>
       <div class="ref__b">
         <p class="lab ref__cat">Szerkezetépítés</p>
-        <h3 class="ref__t">Vajdahunyad u. 6. · földmunka, alapsüllyesztés és szerkezetépítés</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103528095669669&amp;type=3" target="_blank" rel="noopener">Vajdahunyad u. 6. · földmunka, alapsüllyesztés és szerkezetépítés<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>szálloda</li><li>zártsorú</li><li>foghíjbeépítés</li><li>rehabilitációs</li><li>mélyépítés</li><li>szerkezet</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szomszédos épületek állagmegőrzése (tűzfal erősítés, jet grouting+horgonyzás),</p><details class="ref__more"><summary>További részletek</summary><p>beszakadt udvari rész torkret támasztása, utcafronti munkatér elhatárolás, közműhálózat védelme, feltöltött törmelékkel teli munkagödör, szűk felvonulási terület, percekre beosztott organizáció</p></details></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103528095669669-k.webp" width="96" height="128" alt="Vajdahunyad u. 6. · földmunka, alapsüllyesztés és szerkezetépítés, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103528095669669&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Vajdahunyad u. 6. · földmunka, alapsüllyesztés és szerkezetépítés (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103528095669669&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103528095669669-k.webp" width="96" height="128" alt="Vajdahunyad u. 6. · földmunka, alapsüllyesztés és szerkezetépítés, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103528095669669&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Vajdahunyad u. 6. · földmunka, alapsüllyesztés és szerkezetépítés (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="ipari" data-funkcio="ipari irodaepulet" data-beepites="szabadon-allo" data-terulet="zoldmezos" data-vedettseg="" data-munka="alapozas" data-tipus="uj-epites" data-peek="media/referenciak/fb-103513619004450.webp" data-peekcap="" data-in>
@@ -916,11 +939,11 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
       <span class="ref__n">26</span>
       <div class="ref__b">
         <p class="lab ref__cat">Ipari, kereskedelmi és sportlétesítmények</p>
-        <h3 class="ref__t">NKE Sportcsarnok</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103513619004450&amp;type=3" target="_blank" rel="noopener">NKE Sportcsarnok<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>középület</li><li>szabadon álló</li><li>barnamezős</li><li>homlokzat</li><li>új építés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk határidő</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103513619004450-k.webp" width="96" height="64" alt="NKE Sportcsarnok, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103513619004450&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: NKE Sportcsarnok (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103513619004450&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103513619004450-k.webp" width="96" height="64" alt="NKE Sportcsarnok, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103513619004450&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: NKE Sportcsarnok (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="ipari" data-funkcio="irodaepulet" data-beepites="szabadon-allo" data-terulet="rehabilitacios belso" data-vedettseg="" data-munka="hideg-meleg-burkolas homlokzat" data-tipus="uj-epites" data-peek="media/referenciak/fb-103513619004450.webp" data-peekcap="" data-in>
@@ -937,11 +960,11 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
       <span class="ref__n">28</span>
       <div class="ref__b">
         <p class="lab ref__cat">Ipari, kereskedelmi és sportlétesítmények</p>
-        <h3 class="ref__t">Duna Autó LADA-szalon</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103514275671051&amp;type=3" target="_blank" rel="noopener">Duna Autó LADA-szalon<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>autószalon</li><li>zártsorú</li><li>rehabilitációs</li><li>generál</li><li>felújítás</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Homlokzaton elhelyezett 14 m hosszú előregyártott monolit vb gerenda helyszínre szállítása és bedaruzása, a működő autószalonok és szervizek között/mellett</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103514275671051-k.webp" width="96" height="72" alt="Duna Autó LADA-szalon, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103514275671051&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Duna Autó LADA-szalon (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103514275671051&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103514275671051-k.webp" width="96" height="72" alt="Duna Autó LADA-szalon, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103514275671051&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: Duna Autó LADA-szalon (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="pm" data-funkcio="lakoepulet" data-beepites="zartsoru" data-terulet="rehabilitacios" data-vedettseg="" data-munka="projektmenedzsment" data-tipus="uj-epites" data-peek="media/referenciak/fb-103532975669181.webp" data-peekcap="" data-in>
@@ -957,44 +980,44 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
       <span class="ref__n">30</span>
       <div class="ref__b">
         <p class="lab ref__cat">Projektmenedzsment és tervezés</p>
-        <h3 class="ref__t">150 szobás gyógyszálloda</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103525652336580&amp;type=3" target="_blank" rel="noopener">150 szobás gyógyszálloda<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>szálloda</li><li>wellness és fitness</li><li>vendéglátás</li><li>szabadon álló</li><li>zöldmezős</li><li>projektmenedzsment</li><li>előkészítés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">UNESCO védett terület, állami gyógyfürdőközpont a szomszédságban, helyi ásványvízkészlet védelme</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103525652336580-k.webp" width="96" height="54" alt="150 szobás gyógyszálloda, látványterv" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103525652336580&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: 150 szobás gyógyszálloda (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103525652336580&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103525652336580-k.webp" width="96" height="54" alt="150 szobás gyógyszálloda, látványterv" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103525652336580&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: 150 szobás gyógyszálloda (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="pm" data-funkcio="szalloda wellness-es-fitness vendeglatas" data-beepites="szabadon-allo" data-terulet="zoldmezos" data-vedettseg="" data-munka="projektmenedzsment" data-tipus="elokeszites" data-peek="media/referenciak/fb-103508589004953.webp" data-peekcap="400 szobás szálloda wellnessel, 3 étteremmel, TV-s konferenciateremmel, államfői fogadó szárnnyal, védelmi útvonalakkal · Astana · látványterv" data-in>
       <span class="ref__n">31</span>
       <div class="ref__b">
         <p class="lab ref__cat">Projektmenedzsment és tervezés</p>
-        <h3 class="ref__t">400 szobás szálloda wellnessel, 3 étteremmel, TV-s konferenciateremmel, államfői fogadó szárnnyal, védelmi útvonalakkal · Astana</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103508589004953&amp;type=3" target="_blank" rel="noopener">400 szobás szálloda wellnessel, 3 étteremmel, TV-s konferenciateremmel, államfői fogadó szárnnyal, védelmi útvonalakkal · Astana<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>szálloda</li><li>wellness és fitness</li><li>vendéglátás</li><li>szabadon álló</li><li>zöldmezős</li><li>projektmenedzsment</li><li>előkészítés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Kazahsztán Elnöki Szállodája, több kormányfő együttes fogadására alkalmas (NATO előírásoknak megfelelő) szálloda megvalósíthatóságának terve. Főbb szempontok:</p><details class="ref__more"><summary>További részletek</summary><ul><li>repülőtérről való közúti megközelítés</li><li>városi utak, terek zsilipelése</li><li>érkezési platform szolgálati helyiségekkel</li><li>TV közvetítésre alkalmas tanács- és színházteremmel</li><li>államfők elszállásolására alkalmas toronnyal</li><li>menekítési útvonalakkal</li><li>különböző kultúrákhoz alkalmazkodó wellnessel</li><li>különböző kultúrákhoz alkalmazkodó éttermekkel</li><li>72 órás szigetüzem biztosítása</li></ul></details></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103508589004953-k.webp" width="96" height="50" alt="400 szobás szálloda wellnessel, 3 étteremmel, TV-s konferenciateremmel, államfői fogadó szárnnyal, védelmi útvonalakkal · Astana, látványterv" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103508589004953&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: 400 szobás szálloda wellnessel, 3 étteremmel, TV-s konferenciateremmel, államfői fogadó szárnnyal, védelmi útvonalakkal · Astana (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103508589004953&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103508589004953-k.webp" width="96" height="50" alt="400 szobás szálloda wellnessel, 3 étteremmel, TV-s konferenciateremmel, államfői fogadó szárnnyal, védelmi útvonalakkal · Astana, látványterv" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103508589004953&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: 400 szobás szálloda wellnessel, 3 étteremmel, TV-s konferenciateremmel, államfői fogadó szárnnyal, védelmi útvonalakkal · Astana (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="pm" data-funkcio="kozepulet" data-beepites="szabadon-allo" data-terulet="rehabilitacios" data-vedettseg="" data-munka="projektmenedzsment" data-tipus="elokeszites" data-peek="media/referenciak/fb-103993218956490.webp" data-peekcap="ALTISZ Gubacsi · látványterv" data-in>
       <span class="ref__n">32</span>
       <div class="ref__b">
         <p class="lab ref__cat">Projektmenedzsment és tervezés</p>
-        <h3 class="ref__t">ALTISZ Gubacsi</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103993218956490&amp;type=3" target="_blank" rel="noopener">ALTISZ Gubacsi<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>középület</li><li>szabadon álló</li><li>rehabilitációs</li><li>projektmenedzsment</li><li>előkészítés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Versenysportolók részére, speciális oktatási rendszerhez alkalmazkodó, oktatási intézet</p></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103993218956490-k.webp" width="96" height="43" alt="ALTISZ Gubacsi, látványterv" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103993218956490&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: ALTISZ Gubacsi (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103993218956490&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103993218956490-k.webp" width="96" height="43" alt="ALTISZ Gubacsi, látványterv" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103993218956490&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: ALTISZ Gubacsi (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="pm" data-funkcio="kozepulet" data-beepites="szabadon-allo" data-terulet="rehabilitacios" data-vedettseg="" data-munka="projektmenedzsment" data-tipus="elokeszites" data-peek="media/referenciak/fb-103532975669181.webp" data-peekcap="ALTISZ Vác · látványterv" data-in>
       <span class="ref__n">33</span>
       <div class="ref__b">
         <p class="lab ref__cat">Projektmenedzsment és tervezés</p>
-        <h3 class="ref__t">ALTISZ Vác</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103532975669181&amp;type=3" target="_blank" rel="noopener">ALTISZ Vác<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>középület</li><li>szabadon álló</li><li>rehabilitációs</li><li>projektmenedzsment</li><li>előkészítés</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Versenysportolók részére, speciális oktatási rendszerhez alkalmazkodó,</p><details class="ref__more"><summary>További részletek</summary><p>oktatási intézet. Meglévő szerkezetkész épületek felhasználásával, iskolavárosi környezetbe történő beintegrálással</p></details></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103532975669181-k.webp" width="96" height="51" alt="ALTISZ Vác, látványterv" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103532975669181&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: ALTISZ Vác (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103532975669181&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103532975669181-k.webp" width="96" height="51" alt="ALTISZ Vác, látványterv" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103532975669181&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: ALTISZ Vác (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="pm" data-funkcio="kozepulet" data-beepites="szabadon-allo" data-terulet="rehabilitacios" data-vedettseg="" data-munka="projektmenedzsment" data-tipus="elokeszites" data-peek="media/referenciak/fb-103532975669181.webp" data-peekcap="" data-in>
@@ -1051,11 +1074,11 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
       <span class="ref__n">39</span>
       <div class="ref__b">
         <p class="lab ref__cat">Műemléki munkák és kiemelt épületek</p>
-        <h3 class="ref__t">BGF BAGOLYVÁR Kollégium</h3>
+        <h3 class="ref__t"><a class="ref__tl" href="https://www.facebook.com/media/set/?set=a.103998258955986&amp;type=3" target="_blank" rel="noopener">BGF BAGOLYVÁR Kollégium<span class="sr-only"> (fotók a Facebookon, új lapon nyílik)</span></a></h3>
         <ul class="ref__keys" aria-label="Jellemzők"><li>kollégium</li><li>belső</li><li>generál</li><li>felújítás</li></ul>
         <div class="ref__k"><p class="lab ref__kl">Kihívás</p><p class="ref__kx">Szűk, 2 hónapos határidő a teljes szobaállomány és közösségi területek elektromos rendszerének felújítása,</p><details class="ref__more"><summary>További részletek</summary><p>a közösségi és szociális területek szakipari felújítása, az intézményvezetői területek komplett szakipari felújítása, a fsz-en és az 1. emeleten vendégszobák, apartmanok kialakítása. Mindeközben az intézmény nyári üzemben továbbra is működik, ill. megrendezésre kerül a Gólyatábor</p></details></div>
       </div>
-      <div class="ref__s"><img class="ref__img" src="media/referenciak/fb-103998258955986-k.webp" width="96" height="54" alt="BGF BAGOLYVÁR Kollégium, fotó a helyszínről" loading="lazy" decoding="async"><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103998258955986&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: BGF BAGOLYVÁR Kollégium (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
+      <div class="ref__s"><a class="ref__imgl" href="https://www.facebook.com/media/set/?set=a.103998258955986&amp;type=3" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="ref__img" src="media/referenciak/fb-103998258955986-k.webp" width="96" height="54" alt="BGF BAGOLYVÁR Kollégium, fotó a helyszínről" loading="lazy" decoding="async"></a><a class="ref__fb" href="https://www.facebook.com/media/set/?set=a.103998258955986&amp;type=3" target="_blank" rel="noopener" aria-label="Fotók a Facebookon: BGF BAGOLYVÁR Kollégium (új lapon nyílik)">Fotók a Facebookon<i aria-hidden="true">&#8599;</i></a></div>
     </article>
 
     <article class="ref" data-ref data-cat="muemlek" data-funkcio="kozepulet" data-beepites="szabadon-allo" data-terulet="rehabilitacios" data-vedettseg="" data-munka="falazas" data-tipus="uj-epites" data-peek="media/referenciak/fb-242729281840406.webp" data-peekcap="" data-in>
@@ -1240,6 +1263,6 @@ body.p-ref .r-cta__x{margin-top:var(--sp-3);max-width:52ch;color:var(--ink-2)}
 <script src="js/vendor/gsap.min.js" defer></script>
 <script src="js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="js/vendor/lenis.min.js" defer></script>
-<script src="js/app.js?v=20261102" defer></script>
+<script src="js/app.js?v=20261102c" defer></script>
 </body>
 </html>
