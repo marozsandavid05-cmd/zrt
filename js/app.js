@@ -1,5 +1,5 @@
 /* ==========================================================================
-   VAC-TEAM „ARANYÓRA" — mozgásmotor
+   VAC-TEAM „ARANYÓRA”, mozgásmotor
    Elv: a KÉSZ állapot az alapértelmezés. Minden rejtett kezdőállapot csak
    .js alatt él, és minden effektnek van komponált végállapota. GSAP nélkül
    is teljes az oldal: a súrolófény, a reveal és a nav natív JS-en fut.
@@ -170,49 +170,172 @@
   }
 
   /* ---------- 5. DOKKOLT ELŐNÉZET a tipográfiai indexen ----------
-     A kép egy ragadó keretben áll a lista mellett, sosem takar szöveget.
-     Hover váltja a képet és a feliratot; az utolsó kép bent marad. */
+     A kép egy ragadó keretben áll a lista mellett, sosem takar szöveget. */
   var dock = document.querySelector('.idxview__frame');
   if (dock && fine) {
-    var dimgs = [].slice.call(dock.querySelectorAll('img'));
+    /* Hover vagy billentyűs fókusz váltja a képet és a feliratot. Ha a keretben még
+       nincs meg a kép, itt jön létre, így a hosszú listák képei csak igény szerint töltődnek. */
     var dcap = document.querySelector('.idxview__cap [data-cap]');
-    [].slice.call(document.querySelectorAll('[data-peek]')).forEach(function (r) {
-      r.addEventListener('mouseenter', function () {
-        var src = r.getAttribute('data-peek');
-        for (var i = 0; i < dimgs.length; i++) {
-          dimgs[i].classList.toggle('on', dimgs[i].getAttribute('src') === src);
-        }
-        if (dcap) {
+    function dockShow(r) {
+      var src = r.getAttribute('data-peek');
+      var dimgs = [].slice.call(dock.querySelectorAll('img'));
+      var found = dimgs.some(function (im) { return im.getAttribute('src') === src; });
+      if (!found) {
+        var im = document.createElement('img');
+        im.alt = ''; im.decoding = 'async'; im.setAttribute('src', src);
+        dock.appendChild(im);
+        dimgs.push(im);
+        void im.offsetWidth;
+      }
+      for (var i = 0; i < dimgs.length; i++) {
+        dimgs[i].classList.toggle('on', dimgs[i].getAttribute('src') === src);
+      }
+      if (dcap) {
+        if (r.hasAttribute('data-peekcap')) dcap.textContent = r.getAttribute('data-peekcap');
+        else {
           var t = r.querySelector('.idx__t');
           if (t) dcap.textContent = t.textContent;
         }
-      });
+      }
+    }
+    [].slice.call(document.querySelectorAll('[data-peek]')).forEach(function (r) {
+      r.addEventListener('mouseenter', function () { dockShow(r); });
+      r.addEventListener('focusin', function () { dockShow(r); });
     });
   }
 
-  /* ---------- 5/b. SZŰRŐ CHIPEK a referencialistán ----------
-     Egy aktív chip; a sorok data-cat tagek alapján rejtődnek. A tételszámláló
-     követi a szűrést. */
-  var chips = [].slice.call(document.querySelectorAll('.chip[data-filter]'));
-  if (chips.length) {
-    var frows = [].slice.call(document.querySelectorAll('.idx__row[data-cat]'));
+  /* ---------- 5/b. SZŰRŐK a referencialistán ----------
+     Szakterület-chipek (egy aktív) és legördülők a keresőkulcsokra, ÉS
+     kapcsolatban. A sorok data-cat és data-<kulcs> tagek alapján rejtődnek, a
+     tételszámláló követi a szűrést. Az állapot a címsor hash-ében él
+     (#szakterulet=tetoter&beepites=foghijbeepites), így linkelhető. */
+  var rf = document.querySelector('[data-rf]');
+  if (rf) {
+    var chips = [].slice.call(rf.querySelectorAll('.chip[data-filter]'));
+    var sels = [].slice.call(rf.querySelectorAll('select[data-key]'));
+    var frows = [].slice.call(document.querySelectorAll('[data-ref]'));
     var counter = document.querySelector('[data-count]');
-    chips.forEach(function (c) {
-      c.addEventListener('click', function () {
-        chips.forEach(function (x) { x.classList.toggle('on', x === c); });
-        var f = c.getAttribute('data-filter');
-        var shown = 0;
-        frows.forEach(function (r) {
-          var ok = f === 'all' || (' ' + r.getAttribute('data-cat') + ' ').indexOf(' ' + f + ' ') !== -1;
-          r.classList.toggle('is-hidden', !ok);
-          /* a szűréssel előkerülő sor azonnal látsszon: a reveal különben csak
-             a következő scroll-eventnél futna le, addig üresnek tűnne a lista */
-          if (ok) { r.classList.add('on'); shown++; }
-        });
-        if (counter) counter.textContent = shown;
-        /* a lista rövidülésével a viewportba ugró többi elem reveal-je is fusson le */
-        pass();
+    var empty = document.querySelector('[data-empty]');
+    var clears = [].slice.call(document.querySelectorAll('[data-clear]'));
+    var listTop = document.getElementById('lista');
+    var cat = 'all';
+    /* telefonon a részletes szűrők alapból csukva, asztalon mindig nyitva */
+    var more = rf.querySelector('[data-rmore]');
+    var moreN = rf.querySelector('[data-rmore-n]');
+    var narrow = matchMedia('(max-width:640px)');
+    function syncMore() { if (more) more.open = !narrow.matches || !!rf.querySelector('select.is-set'); }
+    syncMore();
+    if (narrow.addEventListener) narrow.addEventListener('change', syncMore);
+
+    function has(r, key, val) {
+      return (' ' + (r.getAttribute(key) || '') + ' ').indexOf(' ' + val + ' ') !== -1;
+    }
+    function state() {
+      var s = {};
+      sels.forEach(function (x) { if (x.value) s[x.getAttribute('data-key')] = x.value; });
+      return s;
+    }
+    function match(r, c, s, skip) {
+      if (c !== 'all' && !has(r, 'data-cat', c)) return false;
+      for (var k in s) {
+        if (k === skip) continue;
+        if (!has(r, 'data-' + k, s[k])) return false;
+      }
+      return true;
+    }
+    function apply(writeHash) {
+      var s = state(), shown = 0;
+      frows.forEach(function (r) {
+        var ok = match(r, cat, s);
+        r.classList.toggle('is-hidden', !ok);
+        /* a szűréssel előkerülő sor azonnal látsszon: a reveal különben csak
+           a következő scroll-eventnél futna le, addig üresnek tűnne a lista */
+        if (ok) { r.classList.add('on'); shown++; }
       });
+      chips.forEach(function (x) {
+        var on = x.getAttribute('data-filter') === cat;
+        x.classList.toggle('on', on);
+        x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      /* az az opció, amelyik a többi szűrővel együtt üres listát adna, letiltva */
+      sels.forEach(function (x) {
+        var k = x.getAttribute('data-key');
+        x.classList.toggle('is-set', !!x.value);
+        [].slice.call(x.options).forEach(function (o) {
+          if (!o.value || o.value === x.value) { o.disabled = false; return; }
+          var any = false;
+          for (var i = 0; i < frows.length && !any; i++) {
+            if (match(frows[i], cat, s, k) && has(frows[i], 'data-' + k, o.value)) any = true;
+          }
+          o.disabled = !any;
+        });
+      });
+      var active = cat !== 'all' || Object.keys(s).length > 0;
+      if (moreN) moreN.textContent = Object.keys(s).length ? '(' + Object.keys(s).length + ')' : '';
+      clears.forEach(function (b) { if (b.classList.contains('rclear')) b.disabled = !active; });
+      if (counter) counter.textContent = shown;
+      if (empty) empty.hidden = shown > 0;
+      if (writeHash && history.replaceState) {
+        var parts = [];
+        if (cat !== 'all') parts.push('szakterulet=' + cat);
+        for (var k in s) parts.push(k + '=' + s[k]);
+        history.replaceState(null, '', parts.length ? '#' + parts.join('&') : location.pathname + location.search);
+      }
+      /* a lista rövidülésével a viewportba ugró többi elem reveal-je is fusson le */
+      pass();
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    }
+    function fromHash() {
+      var h = location.hash.replace(/^#/, '');
+      if (!h || h.indexOf('=') === -1) return false;
+      cat = 'all';
+      sels.forEach(function (x) { x.value = ''; });
+      h.split('&').forEach(function (p) {
+        var kv = p.split('='), k = kv[0], v = decodeURIComponent(kv[1] || '');
+        if (k === 'szakterulet') {
+          if (chips.some(function (c) { return c.getAttribute('data-filter') === v; })) cat = v;
+          return;
+        }
+        sels.forEach(function (x) {
+          if (x.getAttribute('data-key') === k &&
+              [].some.call(x.options, function (o) { return o.value === v; })) x.value = v;
+        });
+      });
+      return true;
+    }
+    function toList() {
+      if (!listTop) return;
+      /* a szűrés után a lap rövidebb lett: a Lenis méretét frissíteni kell, mielőtt görget */
+      if (window.__lenis) { window.__lenis.resize(); window.__lenis.scrollTo(listTop, { force: true }); }
+      else listTop.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    }
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () { cat = c.getAttribute('data-filter'); apply(true); });
+    });
+    sels.forEach(function (x) { x.addEventListener('change', function () { apply(true); }); });
+    clears.forEach(function (b) {
+      b.addEventListener('click', function () {
+        cat = 'all';
+        sels.forEach(function (x) { x.value = ''; });
+        apply(true);
+        if (chips[0]) chips[0].focus();
+      });
+    });
+    /* oldalon belüli szűrő-linkek (szakterületi bontás) */
+    [].slice.call(document.querySelectorAll('a[href^="#szakterulet="]')).forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        history.replaceState(null, '', a.getAttribute('href'));
+        fromHash(); apply(false); toList();
+      });
+    });
+    if (fromHash()) {
+      apply(false);
+      syncMore();
+      setTimeout(toList, 350);
+    } else apply(false);
+    addEventListener('hashchange', function () {
+      if (fromHash()) { apply(false); syncMore(); toList(); }
     });
   }
 

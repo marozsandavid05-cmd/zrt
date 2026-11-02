@@ -387,6 +387,8 @@ p{text-wrap:pretty;max-width:68ch}
   color:var(--ink)}
 .light .dat .num{color:var(--ink-dark)}
 .dat .num b{font-weight:400;color:var(--okker)}
+/* világos alapon az okker egység 3:1 alatt marad: a tinta felé sötétített okker 4,7:1 */
+.light .dat .num b{color:var(--ink-dark-2);color:color-mix(in srgb,var(--okker) 70%,var(--ink-dark))}
 @media(max-width:640px){
   .dat thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .dat tbody tr{display:grid;grid-template-columns:1fr auto;gap:.2rem .8rem;

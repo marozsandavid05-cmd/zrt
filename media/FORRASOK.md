@@ -41,3 +41,7 @@ Licencek: a Pexels-képek a [Pexels License](https://www.pexels.com/license/) al
 2. A foghij-tuzfal.webp az egyetlen kötelező forrásmegjelölésű kép (CC BY 3.0). Javasolt megjelölés a weboldal impresszumában vagy a kép közelében: „Fotó: László Eisenbacher, Wikimedia Commons, CC BY 3.0".
 3. Elutasított típusok a válogatásnál: kézfogós és beállított bukósisakos stock, olvasható géplogók (Volvo, L&T, BUILDGROUP), turista-ikonok (Parlament, Vajdahunyad), USA-külvárosi házak, túl vidám ingatlanmarketing-fények.
 4. A _candidates ideiglenes mappa törölve, csak a kész webp fájlok maradtak.
+
+## media/referenciak/ (2026-11-02)
+
+A referenciák listájának előnézeti képei a VAC-Team saját, nyilvános Facebook-albumaiból (a cég saját fotói és látványtervei, albumonként egy kép). Letöltő: `tools/fb-elonezet.py`, a kiválasztott fotó azonosítója albumonként a `tools/fb-elonezet.json`-ban. Két méret: `fb-<album>.webp` (legfeljebb 880 px széles, az oldalon legfeljebb 440 CSS px-en jelenik meg) és `fb-<album>-k.webp` (192 px, telefonos bélyegkép). A 150 szobás gyógyszálloda, az astanai szálloda, az ALTISZ Gubacsi és az ALTISZ Vác képe látványterv, ezt a felirat jelzi. Stock kép ebben a mappában nincs.
