@@ -24,6 +24,20 @@
     });
   }
 
+  /* ---------- 0/b. E-MAIL KATTINTÁSRA A GMAILBE ----------
+     Egérrel használt gépen az e-mail-cím a Gmail új levél ablakát nyitja meg új lapon,
+     a címzett már kitöltve (sok gépen nincs beállított levelezőprogram, a mailto ott
+     semmit nem csinál). Telefonon a mailto marad: az a telefon levelezőjét nyitja meg.
+     A telefonszám tel: link, telefonon közvetlenül hívást indít. */
+  if (fine) {
+    [].slice.call(document.querySelectorAll('a[href^="mailto:"]')).forEach(function (a) {
+      var to = a.getAttribute('href').slice(7).split('?')[0];
+      a.setAttribute('href', 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to));
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener');
+    });
+  }
+
   /* ---------- 1. REVEAL: scroll-listener + biztonsági passzok ---------- */
   var ins = [].slice.call(document.querySelectorAll('[data-in]'));
   function runIn() {
