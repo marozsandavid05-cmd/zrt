@@ -1,18 +1,9 @@
-/* ==========================================================================
-   VAC-TEAM „ARANYÓRA”, mozgásmotor
-   Elv: a KÉSZ állapot az alapértelmezés. Minden rejtett kezdőállapot csak
-   .js alatt él, és minden effektnek van komponált végállapota. GSAP nélkül
-   is teljes az oldal: a súrolófény, a reveal és a nav natív JS-en fut.
-   ========================================================================== */
 (function () {
   'use strict';
 
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
   var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-  /* ---------- 0. TISZTA URL file:// ALATT ----------
-     A forrásban tiszta URL áll (foghij, ./), ezt a Cloudflare Pages szolgálja ki.
-     Dupla kattintásos megnyitásnál (file://) a .html kiterjesztést itt tesszük vissza. */
   if (location.protocol === 'file:') {
     [].slice.call(document.querySelectorAll('a[href]')).forEach(function (a) {
       var h = a.getAttribute('href');
@@ -24,11 +15,6 @@
     });
   }
 
-  /* ---------- 0/b. E-MAIL KATTINTÁSRA A GMAILBE ----------
-     Egérrel használt gépen az e-mail-cím a Gmail új levél ablakát nyitja meg új lapon,
-     a címzett már kitöltve (sok gépen nincs beállított levelezőprogram, a mailto ott
-     semmit nem csinál). Telefonon a mailto marad: az a telefon levelezőjét nyitja meg.
-     A telefonszám tel: link, telefonon közvetlenül hívást indít. */
   if (fine) {
     var toGmail = function (a) {
       var h = a.getAttribute('href') || '';
@@ -40,8 +26,7 @@
     };
     var allMail = function () { [].slice.call(document.querySelectorAll('a[href^="mailto:"]')).forEach(toGmail); };
     allMail();
-    /* élesben a Cloudflare e-mail-védelme a címet csak később írja vissza mailto-ra,
-       ezért betöltés után és kattintáskor is átírjuk */
+
     addEventListener('load', allMail);
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href^="mailto:"]');
@@ -49,7 +34,6 @@
     }, true);
   }
 
-  /* ---------- 1. REVEAL: scroll-listener + biztonsági passzok ---------- */
   var ins = [].slice.call(document.querySelectorAll('[data-in]'));
   function runIn() {
     for (var i = 0; i < ins.length; i++) {
@@ -83,15 +67,8 @@
   setTimeout(pass, 1200);
   addEventListener('load', pass);
 
-  /* ---------- 2. SÚROLÓFÉNY (a signature) ----------
-     Minden [data-rake] elem saját pályán fut. A pálya vagy a legközelebbi
-     [data-rake-track] szülő (magas konténer + sticky gyerek), vagy maga a
-     hero. A --sweep 0..100% között áll, a fénysáv a söprés élén ül.
-     Reduced motion alatt a CSS 100%-on tartja: a KÉSZ homlokzat áll ott. */
   var rakes = [].slice.call(document.querySelectorAll('[data-rake]'));
 
-  /* a pinnelt pálya csak akkor ragad, ha a hero tartalma befér a képernyőbe;
-     különben a felső része a nav alá csúszna (alacsony telefon) */
   var tracks = [].slice.call(document.querySelectorAll('.herotrack[data-rake-track]'));
   function fitTracks() {
     tracks.forEach(function (t) {
@@ -101,8 +78,7 @@
       var need = inner.offsetHeight + (nav ? nav.offsetHeight : 78) + 8 + parseFloat(cs.paddingBottom);
       var tall = need > innerHeight + 1;
       t.classList.toggle('is-tall', tall);
-      /* alacsony ablakban is ragad: a hero előbb felgörget, amíg az alja a képernyő aljához ér,
-         ott megáll, és csak a söprés végén megy tovább az oldal */
+
       var low = tall && !reduce;
       t.classList.toggle('is-pin-low', low);
       if (low) t.style.setProperty('--hero-h', Math.ceil(inner.offsetHeight + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) + 'px');
@@ -148,8 +124,7 @@
         var pct = s.cur * 100;
         s.el.style.setProperty('--sweep', pct.toFixed(2) + '%');
         if (s.beam) {
-          /* a fénysáv a KONTÉNER szélességéhez igazodik, nem a viewporthoz,
-             így szűkebb blokkban is pontosan a söprés élén ül */
+
           var w = s.el.offsetWidth || innerWidth;
           s.beam.style.transform =
             'translateX(' + (s.cur * w).toFixed(1) + 'px) translateX(-50%) skewX(-9deg)';
@@ -165,7 +140,6 @@
     addEventListener('load', measure);
   }
 
-  /* ---------- 3. NAV: delta-hiszterézis + tömör állapot ---------- */
   var nav = document.querySelector('.nav');
   var lastY = scrollY, dn = 0, up = 0, menuOpen = false;
   addEventListener('scroll', function () {
@@ -179,7 +153,6 @@
     else if (up > 14) nav.classList.remove('nav--up');
   }, { passive: true });
 
-  /* ---------- 4. MOBIL MENÜ ---------- */
   var burger = document.querySelector('.burger');
   var mob = document.querySelector('.mob');
   if (burger && mob) {
@@ -201,12 +174,9 @@
     });
   }
 
-  /* ---------- 5. DOKKOLT ELŐNÉZET a tipográfiai indexen ----------
-     A kép egy ragadó keretben áll a lista mellett, sosem takar szöveget. */
   var dock = document.querySelector('.idxview__frame');
   if (dock && fine) {
-    /* Hover vagy billentyűs fókusz váltja a képet és a feliratot. Ha a keretben még
-       nincs meg a kép, itt jön létre, így a hosszú listák képei csak igény szerint töltődnek. */
+
     var dcap = document.querySelector('.idxview__cap [data-cap]');
     function dockShow(r) {
       var src = r.getAttribute('data-peek');
@@ -236,11 +206,6 @@
     });
   }
 
-  /* ---------- 5/b. SZŰRŐK a referencialistán ----------
-     Szakterület-chipek (egy aktív) és legördülők a keresőkulcsokra, ÉS
-     kapcsolatban. A sorok data-cat és data-<kulcs> tagek alapján rejtődnek, a
-     tételszámláló követi a szűrést. Az állapot a címsor hash-ében él
-     (#szakterulet=tetoter&beepites=foghijbeepites), így linkelhető. */
   var rf = document.querySelector('[data-rf]');
   if (rf) {
     var chips = [].slice.call(rf.querySelectorAll('.chip[data-filter]'));
@@ -251,7 +216,7 @@
     var clears = [].slice.call(document.querySelectorAll('[data-clear]'));
     var listTop = document.getElementById('lista');
     var cat = 'all';
-    /* telefonon a részletes szűrők alapból csukva, asztalon mindig nyitva */
+
     var more = rf.querySelector('[data-rmore]');
     var moreN = rf.querySelector('[data-rmore-n]');
     var narrow = matchMedia('(max-width:640px)');
@@ -280,8 +245,7 @@
       frows.forEach(function (r) {
         var ok = match(r, cat, s);
         r.classList.toggle('is-hidden', !ok);
-        /* a szűréssel előkerülő sor azonnal látsszon: a reveal különben csak
-           a következő scroll-eventnél futna le, addig üresnek tűnne a lista */
+
         if (ok) { r.classList.add('on'); shown++; }
       });
       chips.forEach(function (x) {
@@ -289,7 +253,7 @@
         x.classList.toggle('on', on);
         x.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
-      /* az az opció, amelyik a többi szűrővel együtt üres listát adna, letiltva */
+
       sels.forEach(function (x) {
         var k = x.getAttribute('data-key');
         x.classList.toggle('is-set', !!x.value);
@@ -314,7 +278,7 @@
         for (var k in s) parts.push(k + '=' + s[k]);
         history.replaceState(null, '', parts.length ? '#' + parts.join('&') : location.pathname + location.search);
       }
-      /* a lista rövidülésével a viewportba ugró többi elem reveal-je is fusson le */
+
       pass();
       if (window.ScrollTrigger) ScrollTrigger.refresh();
     }
@@ -338,7 +302,7 @@
     }
     function toList() {
       if (!listTop) return;
-      /* a szűrés után a lap rövidebb lett: a Lenis méretét frissíteni kell, mielőtt görget */
+
       if (window.__lenis) { window.__lenis.resize(); window.__lenis.scrollTo(listTop, { force: true }); }
       else listTop.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
     }
@@ -347,10 +311,6 @@
     });
     sels.forEach(function (x) { x.addEventListener('change', function () { apply(true); }); });
 
-    /* Saját lenyíló lista egérrel használt gépen: a natív lista az operációs rendszer
-       rajzolja, ezért a gomb fölé vagy a többi szűrő fölé is nyílhat. Ez mindig közvetlenül
-       a mező alatt nyílik. Érintőképernyőn a natív választó marad. A valódi select a
-       háttérben megmarad, az állapot és a szűrés továbbra is abból dolgozik. */
     var openDrop = null;
     function closeDrop(focusBtn) {
       if (!openDrop) return;
@@ -417,7 +377,7 @@
         list.hidden = false; wrap.classList.add('is-open');
         btn.setAttribute('aria-expanded', 'true');
         openDrop = d;
-        /* a lista a mező alatt nyílik; ha alul nem fér ki, az oldal annyit görget, hogy kiférjen */
+
         var r = btn.getBoundingClientRect();
         var want = Math.min(list.scrollHeight, 320);
         var room = innerHeight - r.bottom - 16;
@@ -452,7 +412,7 @@
         else if (e.key === 'Escape') { e.preventDefault(); closeDrop(true); }
         else if (e.key === 'Tab') closeDrop(false);
       });
-      /* a címkére kattintás a saját gombot nyissa, ne a rejtett selectet fókuszálja */
+
       var lbl = wrap.closest('label');
       if (lbl) lbl.addEventListener('click', function (e) {
         if (!wrap.contains(e.target)) { e.preventDefault(); btn.focus(); open(); }
@@ -471,7 +431,7 @@
         if (chips[0]) chips[0].focus();
       });
     });
-    /* oldalon belüli szűrő-linkek (szakterületi bontás) */
+
     [].slice.call(document.querySelectorAll('a[href^="#szakterulet="]')).forEach(function (a) {
       a.addEventListener('click', function (e) {
         e.preventDefault();
@@ -489,7 +449,6 @@
     });
   }
 
-  /* ---------- 5/c. FEJEZET-JELÖLŐ a ragadó indexen (GSAP-mentes) ---------- */
   var chapNav = document.querySelector('.chapx__nav');
   if (chapNav) {
     var links = [].slice.call(chapNav.querySelectorAll('a[href^="#"]'));
@@ -512,7 +471,6 @@
     setTimeout(mark, 600);
   }
 
-  /* ---------- 6. LENIS (self-rAF, NEM gsap.ticker) ---------- */
   if (!reduce && typeof Lenis !== 'undefined') {
     var lenis = new Lenis({
       duration: 1.15,
@@ -526,7 +484,6 @@
     });
   }
 
-  /* ---------- 7. GSAP: kizárólag degradálható extra ---------- */
   if (typeof gsap !== 'undefined' && !reduce) {
     gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.config({ ignoreMobileResize: true });
@@ -539,14 +496,12 @@
       });
     });
 
-    /* vízszintes folyosó: pin + eltolás, natív fallbackkel */
     document.querySelectorAll('[data-corridor]').forEach(function (host) {
       var track = host.querySelector('[data-corridor-track]');
       if (!track) return;
       if (matchMedia('(max-width:900px)').matches) return;
       if (track.scrollWidth <= innerWidth) return;
-      /* horgony-ugrás (#csarnok) vízszintesen elgörgetheti a konténert, mielőtt
-         a GSAP ráteszi a saját x transzformot: nullázni kell, különben eltolódnak a panelek */
+
       host.scrollLeft = 0;
       host.style.overflow = 'hidden';
       gsap.to(track, {
@@ -559,7 +514,6 @@
       });
     });
 
-    /* idle-refresh: SOHA nem görgetés közben */
     var lastScrollT = 0, tries = 0;
     addEventListener('scroll', function () { lastScrollT = performance.now(); }, { passive: true });
     function idleRefresh() {

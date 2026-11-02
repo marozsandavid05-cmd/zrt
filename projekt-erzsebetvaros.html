@@ -26,7 +26,7 @@
 <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="css/style.css?v=20261102e">
+<link rel="stylesheet" href="css/style.css?v=20261102h">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -49,11 +49,18 @@
    "email": "vacteamepitozrt@gmail.com",
    "vatID": "14658022-2-13",
    "taxID": "14658022-2-13",
-   "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "Cégjegyzékszám",
-    "value": "13-10-042476"
-   },
+   "identifier": [
+    {
+     "@type": "PropertyValue",
+     "propertyID": "Cégjegyzékszám",
+     "value": "13-10-042476"
+    },
+    {
+     "@type": "PropertyValue",
+     "propertyID": "MKIK építőipari kivitelezői névjegyzék, nyilvántartási szám",
+     "value": "26B79262"
+    }
+   ],
    "foundingDate": "2009",
    "address": {
     "@type": "PostalAddress",
@@ -70,7 +77,7 @@
     },
     {
      "@type": "AdministrativeArea",
-     "name": "Budapesti agglomeráció"
+     "name": "Pest megye"
     }
    ],
    "employee": {
@@ -80,11 +87,15 @@
    },
    "knowsAbout": [
     "generálkivitelezés",
+    "társasház kivitelezés",
     "monolit vasbeton szerkezetépítés",
     "foghíjbeépítés",
-    "tetőtér-ráépítés",
-    "műemléki homlokzat-helyreállítás",
-    "csarnoképítés"
+    "tetőtér-beépítés",
+    "emeletráépítés",
+    "homlokzat-felújítás",
+    "műemlék homlokzat-felújítás",
+    "csarnoképítés",
+    "építőipari projektmenedzsment"
    ],
    "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -94,42 +105,48 @@
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Generálkivitelezés"
+       "name": "Generálkivitelezés",
+       "url": "https://vacteam.hu/hogyan-epitunk#general"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Monolit vasbeton szerkezetépítés"
+       "name": "Monolit vasbeton szerkezetépítés",
+       "url": "https://vacteam.hu/hogyan-epitunk#szerkezet"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Foghíjbeépítés"
+       "name": "Foghíjbeépítés",
+       "url": "https://vacteam.hu/foghij"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Tetőtér-ráépítés"
+       "name": "Tetőtér-beépítés és emeletráépítés",
+       "url": "https://vacteam.hu/foghij#tetoter"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Műemléki homlokzat-helyreállítás"
+       "name": "Műemlék homlokzat-felújítás",
+       "url": "https://vacteam.hu/muemlek"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Csarnok és iparterület"
+       "name": "Csarnok és iparterület",
+       "url": "https://vacteam.hu/mit-epitunk#csarnok"
       }
      }
     ]
@@ -199,6 +216,7 @@
 <body class="p-case p-soon">
 
 <!-- CHROME:NAV:start -->
+<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
 <nav class="nav">
   <div class="nav__in">
     <a href="./" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
@@ -229,8 +247,7 @@
 </div>
 <!-- CHROME:NAV:end -->
 
-<!-- ======================= ÖSSZEÁLLÍTÁS ALATT ÁLLÓ ADATLAP ======================= -->
-<header class="phero wrap">
+<header class="phero wrap" id="tartalom">
   <p class="phero__crumb lab" data-in>
     <a href="./">Főoldal</a><i>/</i><a href="referenciak">Referenciák</a><i>/</i><span>Erzsébetváros</span>
   </p>
@@ -260,7 +277,7 @@
           szerkezetépítés Budapesten és az agglomerációban.</p>
       </div>
       <div class="foot__col">
-        <h4>Szakterületek</h4>
+        <h2 class="foot__h">Szakterületek</h2>
         <a href="hogyan-epitunk#general">Generálkivitelezés</a>
         <a href="hogyan-epitunk#szerkezet">Szerkezetépítés</a>
         <a href="foghij">Foghíjbeépítés</a>
@@ -269,7 +286,7 @@
         <a href="mit-epitunk#csarnok">Csarnok és ipari</a>
       </div>
       <div class="foot__col">
-        <h4>Oldalak</h4>
+        <h2 class="foot__h">Oldalak</h2>
         <a href="mit-epitunk">Mit építünk</a>
         <a href="hogyan-epitunk">Hogyan építünk</a>
         <a href="referenciak">Referenciák</a>
@@ -278,7 +295,7 @@
         <a href="kapcsolat">Kapcsolat</a>
       </div>
       <div class="foot__col">
-        <h4>Cégadatok</h4>
+        <h2 class="foot__h">Cégadatok</h2>
         <span class="foot__mono">VAC-Team Építő Zrt.</span>
         <span class="foot__mono">Cg. 13-10-042476</span>
         <span class="foot__mono">Adószám 14658022-2-13</span>
@@ -305,6 +322,6 @@
 <script src="js/vendor/gsap.min.js" defer></script>
 <script src="js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="js/vendor/lenis.min.js" defer></script>
-<script src="js/app.js?v=20261102e" defer></script>
+<script src="js/app.js?v=20261102h" defer></script>
 </body>
 </html>

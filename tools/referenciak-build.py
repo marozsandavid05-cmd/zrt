@@ -281,7 +281,9 @@ def build():
             + '    </article>')
 
     elso = P[0]
-    dock = [f'      <img src="{elso["peek"]}" alt="" class="on" decoding="async">']
+    dm = next((r for r in FB.values() if r.get("fajl") == elso["peek"]), {})
+    dock = [f'      <img src="{elso["peek"]}" width="{dm.get("w", 880)}" height="{dm.get("h", 660)}" '
+            f'alt="" class="on" decoding="async">']
     lista = (
         '  <div class="refs">\n' + "\n\n".join(sorok)
         + '\n  <p class="ref-empty" data-empty hidden>Ehhez a szűréshez nincs projekt a listában. '
@@ -333,13 +335,14 @@ def build():
     ld = {"@context": "https://schema.org", "@type": "ItemList",
           "@id": "https://vacteam.hu/referenciak#projektek", "name": "A VAC-Team Építő Zrt. referenciái",
           "numberOfItems": n,
-          "itemListElement": [{"@type": "ListItem", "position": i, "name": p["nev"]} for i, p in enumerate(P, 1)]}
+          "itemListElement": [dict({"@type": "ListItem", "position": i, "name": p["nev"]},
+                                   **({"url": p["link"]} if p["link"] else {})) for i, p in enumerate(P, 1)]}
     ld_html = '<script type="application/ld+json">\n' + json.dumps(ld, ensure_ascii=False, indent=1) + '\n</script>'
 
     t = PAGE.read_text(encoding="utf-8")
-    desc = (f"A VAC-Team Építő Zrt. {n} referenciája nyolc szakterületen, a generálkivitelezéstől "
-            "a műemléki munkákig, a munka nehézségével és fotókkal.")
-    t = re.sub(r'(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")[^"]*(")',
+    desc = (f"A VAC-Team Építő Zrt. {n} referenciája: társasház, tetőtér-beépítés, homlokzat-felújítás, "
+            "szerkezetépítés és műemlék, a munka nehézségével.")
+    t = re.sub(r'(<meta name="description" content=")[^"]*(")',
                lambda m: m.group(1) + desc + m.group(2), t)
     t = re.sub(r'("@id": "https://vacteam.hu/referenciak#oldal",[\s\S]*?"description": ")[^"]*(")',
                lambda m: m.group(1) + desc + m.group(2), t, count=1)

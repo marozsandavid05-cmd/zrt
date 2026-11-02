@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://vacteam.hu/media/og-kep.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="VAC-Team Építő Zrt., generálkivitelezés és szerkezetépítés a pesti belvárosban">
+<meta property="og:image:alt" content="Munkások pillérvasalást kötnek egy monolit vasbeton épület legfelső szintjén">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kapcsolat és projekt-egyeztetés · VAC-Team Építő Zrt.">
 <meta name="twitter:description" content="Telefonáljon, vagy írja meg röviden a telket és a tervet. Két munkanapon belül érdemi választ adunk.">
@@ -30,9 +30,8 @@
 <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="css/style.css?v=20261102e">
+<link rel="stylesheet" href="css/style.css?v=20261102h">
 <style>
-/* --- kapcsolat: egy képernyős lap, a telefonszám a fő vizuál --- */
 body.p-kapcsolat .k-line{padding-block:clamp(2.5rem,7vh,4.5rem);
   border-bottom:1px solid var(--line)}
 body.p-kapcsolat .k-tel{display:block;margin-top:var(--sp-3);
@@ -129,11 +128,18 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
    "email": "vacteamepitozrt@gmail.com",
    "vatID": "14658022-2-13",
    "taxID": "14658022-2-13",
-   "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "Cégjegyzékszám",
-    "value": "13-10-042476"
-   },
+   "identifier": [
+    {
+     "@type": "PropertyValue",
+     "propertyID": "Cégjegyzékszám",
+     "value": "13-10-042476"
+    },
+    {
+     "@type": "PropertyValue",
+     "propertyID": "MKIK építőipari kivitelezői névjegyzék, nyilvántartási szám",
+     "value": "26B79262"
+    }
+   ],
    "foundingDate": "2009",
    "address": {
     "@type": "PostalAddress",
@@ -150,7 +156,7 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
     },
     {
      "@type": "AdministrativeArea",
-     "name": "Budapesti agglomeráció"
+     "name": "Pest megye"
     }
    ],
    "employee": {
@@ -160,11 +166,15 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
    },
    "knowsAbout": [
     "generálkivitelezés",
+    "társasház kivitelezés",
     "monolit vasbeton szerkezetépítés",
     "foghíjbeépítés",
-    "tetőtér-ráépítés",
-    "műemléki homlokzat-helyreállítás",
-    "csarnoképítés"
+    "tetőtér-beépítés",
+    "emeletráépítés",
+    "homlokzat-felújítás",
+    "műemlék homlokzat-felújítás",
+    "csarnoképítés",
+    "építőipari projektmenedzsment"
    ],
    "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -174,42 +184,48 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Generálkivitelezés"
+       "name": "Generálkivitelezés",
+       "url": "https://vacteam.hu/hogyan-epitunk#general"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Monolit vasbeton szerkezetépítés"
+       "name": "Monolit vasbeton szerkezetépítés",
+       "url": "https://vacteam.hu/hogyan-epitunk#szerkezet"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Foghíjbeépítés"
+       "name": "Foghíjbeépítés",
+       "url": "https://vacteam.hu/foghij"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Tetőtér-ráépítés"
+       "name": "Tetőtér-beépítés és emeletráépítés",
+       "url": "https://vacteam.hu/foghij#tetoter"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Műemléki homlokzat-helyreállítás"
+       "name": "Műemlék homlokzat-felújítás",
+       "url": "https://vacteam.hu/muemlek"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Csarnok és iparterület"
+       "name": "Csarnok és iparterület",
+       "url": "https://vacteam.hu/mit-epitunk#csarnok"
       }
      }
     ]
@@ -261,9 +277,15 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
     "@id": "https://vacteam.hu/#ceg",
     "name": "VAC-Team Építő Zrt."
    },
-   "dateModified": "2026-10-13",
+   "dateModified": "2026-11-02",
    "breadcrumb": {
     "@id": "https://vacteam.hu/kapcsolat#morzsa"
+   },
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://vacteam.hu/media/og-kep.jpg",
+    "width": 1200,
+    "height": 630
    }
   }
  ]
@@ -273,6 +295,7 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
 <body class="p-kapcsolat">
 
 <!-- CHROME:NAV:start -->
+<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
 <nav class="nav">
   <div class="nav__in">
     <a href="./" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
@@ -303,8 +326,7 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
 </div>
 <!-- CHROME:NAV:end -->
 
-<!-- ======================= FEJ ======================= -->
-<header class="phero wrap">
+<header class="phero wrap" id="tartalom">
   <p class="lab phero__crumb">
     <a href="./">Főoldal</a><i>/</i><span>Kapcsolat</span>
   </p>
@@ -315,7 +337,6 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
   <div class="phero__rule"></div>
 </header>
 
-<!-- ======================= A VONAL ======================= -->
 <section class="wrap k-line">
   <p class="lab lab-rule">Közvetlen vonal</p>
   <a class="k-tel" href="tel:+36704037217">+36 70 403 7217</a>
@@ -325,7 +346,6 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
   </div>
 </section>
 
-<!-- ======================= ŰRLAP + CÉGADATOK ======================= -->
 <section class="wrap k-main">
   <div class="k-cols">
 
@@ -361,7 +381,7 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
         </div>
         <div class="k-field">
           <label class="lab" for="k-telek">A telek címe vagy kerülete</label>
-          <input id="k-telek" name="telek" type="text">
+          <input id="k-telek" name="telek" type="text" autocomplete="off">
         </div>
         <div class="k-field">
           <label class="lab" for="k-terv">Mit terveznek építeni?</label>
@@ -405,7 +425,6 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
   </div>
 </section>
 
-<!-- ======================= HOL TALÁLKOZUNK ======================= -->
 <section class="sect light k-place">
   <div class="wrap">
     <div class="k-place__g">
@@ -440,7 +459,7 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
           szerkezetépítés Budapesten és az agglomerációban.</p>
       </div>
       <div class="foot__col">
-        <h4>Szakterületek</h4>
+        <h2 class="foot__h">Szakterületek</h2>
         <a href="hogyan-epitunk#general">Generálkivitelezés</a>
         <a href="hogyan-epitunk#szerkezet">Szerkezetépítés</a>
         <a href="foghij">Foghíjbeépítés</a>
@@ -449,7 +468,7 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
         <a href="mit-epitunk#csarnok">Csarnok és ipari</a>
       </div>
       <div class="foot__col">
-        <h4>Oldalak</h4>
+        <h2 class="foot__h">Oldalak</h2>
         <a href="mit-epitunk">Mit építünk</a>
         <a href="hogyan-epitunk">Hogyan építünk</a>
         <a href="referenciak">Referenciák</a>
@@ -458,7 +477,7 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
         <a href="kapcsolat">Kapcsolat</a>
       </div>
       <div class="foot__col">
-        <h4>Cégadatok</h4>
+        <h2 class="foot__h">Cégadatok</h2>
         <span class="foot__mono">VAC-Team Építő Zrt.</span>
         <span class="foot__mono">Cg. 13-10-042476</span>
         <span class="foot__mono">Adószám 14658022-2-13</span>
@@ -485,12 +504,8 @@ body.p-kapcsolat .k-place__img .shot img{width:100%;height:100%;object-fit:cover
 <script src="js/vendor/gsap.min.js" defer></script>
 <script src="js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="js/vendor/lenis.min.js" defer></script>
-<script src="js/app.js?v=20261102e" defer></script>
+<script src="js/app.js?v=20261102h" defer></script>
 <script>
-/* Az űrlap a Web3Forms-on keresztül küld: a beírt adatok JSON-ként mennek az
-   api.web3forms.com címre, onnan érkezik email a Zrt. postafiókjába. A válasz
-   címzettje (reply-to) a látogató email-címe, így a levélre válaszolni lehet.
-   A kulcs a fiókhoz tartozó azonosító, nem jelszó, nyilvános oldalon is állhat. */
 (function () {
   var ACCESS_KEY = 'e84081c5-858c-4de6-8ff6-337e58f724bc';
 

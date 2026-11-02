@@ -4,37 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.className += ' js';</script>
-<title>Műemléki homlokzat-helyreállítás Budapesten · VAC-Team</title>
-<meta name="description" content="Műemléki és védett homlokzatok helyreállítása a pesti belvárosban: restaurátori kutatás, tagozatpótlás, kőkonzerválás, örökségvédelmi engedély.">
+<title>Műemlék és társasház homlokzat-felújítás · VAC-Team</title>
+<meta name="description" content="Műemlék homlokzat-felújítás és helyreállítás, társasház homlokzat-felújítás Budapesten: restaurátori kutatás, tagozatpótlás, örökségvédelmi engedély.">
 <link rel="canonical" href="https://vacteam.hu/muemlek">
 <link rel="alternate" hreflang="hu" href="https://vacteam.hu/muemlek">
 <link rel="alternate" hreflang="x-default" href="https://vacteam.hu/muemlek">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VAC-Team Építő Zrt.">
 <meta property="og:locale" content="hu_HU">
-<meta property="og:title" content="Műemléki homlokzat-helyreállítás Budapesten · VAC-Team Építő Zrt.">
+<meta property="og:title" content="Műemlék és társasház homlokzat-felújítás · VAC-Team Építő Zrt.">
 <meta property="og:description" content="Restaurátori kutatás, tagozatpótlás, kőkonzerválás és védőtetős állványozás a pesti belvárosban, örökségvédelmi engedéllyel.">
 <meta property="og:url" content="https://vacteam.hu/muemlek">
-<meta property="og:image" content="https://vacteam.hu/media/og-kep.jpg">
+<meta property="og:image" content="https://vacteam.hu/media/og/og-muemlek.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="VAC-Team Építő Zrt., generálkivitelezés és szerkezetépítés a pesti belvárosban">
+<meta property="og:image:alt" content="Eklektikus pesti homlokzat kőszobra és tagozatai a felújítás után">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Műemléki homlokzat-helyreállítás Budapesten · VAC-Team Építő Zrt.">
+<meta name="twitter:title" content="Műemlék és társasház homlokzat-felújítás · VAC-Team Építő Zrt.">
 <meta name="twitter:description" content="Restaurátori kutatás, tagozatpótlás, kőkonzerválás és védőtetős állványozás a pesti belvárosban, örökségvédelmi engedéllyel.">
-<meta name="twitter:image" content="https://vacteam.hu/media/og-kep.jpg">
+<meta name="twitter:image" content="https://vacteam.hu/media/og/og-muemlek.jpg">
 <meta name="theme-color" content="#1A1714">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="css/style.css?v=20261102e">
+<link rel="stylesheet" href="css/style.css?v=20261102h">
 <style>
-/* oldal-szkópolt kiegészítések, minden szelektor body.p-muemlek alatt */
 body.p-muemlek .phero__t,
 body.p-muemlek .s-cta__t{line-height:1.16}
 
-/* súrolófény-felirat: két mono címke között egy mondat */
 body.p-muemlek .m-cap{display:grid;grid-template-columns:auto minmax(0,1fr) auto;
   gap:.9rem clamp(1.5rem,4vw,3.5rem);align-items:baseline}
 body.p-muemlek .m-cap .lab{white-space:nowrap}
@@ -45,7 +43,6 @@ body.p-muemlek .m-cap__r{text-align:right}
   body.p-muemlek .m-cap__s{grid-column:1/-1;grid-row:2;margin-inline:0}
 }
 
-/* falszövet-szekció: három egyenrangú hasáb (szöveg · adat · fotó), nincs üres tér */
 body.p-muemlek .m-falt{max-width:18ch;margin-top:var(--sp-3)}
 body.p-muemlek .m-fal{display:grid;
   grid-template-columns:minmax(0,1.1fr) minmax(0,.85fr) minmax(0,330px);
@@ -57,11 +54,9 @@ body.p-muemlek .m-fb{max-width:440px;background:transparent}
   body.p-muemlek .m-fal .m-fb{grid-column:1;margin-top:0}}
 @media(max-width:900px){body.p-muemlek .m-fal{grid-template-columns:1fr}}
 
-/* menet: négy szakasz egy sávban, nem kártyarács-érzet */
 @media(min-width:1100px){body.p-muemlek .m-menet{grid-template-columns:repeat(4,minmax(0,1fr))}}
 body.p-muemlek .m-menet .stack__i .lab{margin-bottom:-.25rem}
 
-/* szakértői sorok: nem linkek, ezért nincs hover-elmozdulás */
 body.p-muemlek .m-kor .idx__row{cursor:default}
 @media (hover:hover) and (pointer:fine){
   body.p-muemlek .m-kor .idx__row:hover{padding-left:0}
@@ -69,7 +64,6 @@ body.p-muemlek .m-kor .idx__row{cursor:default}
   body.p-muemlek .m-kor .idx__row:hover .idx__t{color:var(--ink)}
 }
 
-/* tagozat-sáv: a fotó a szöveg-hasáb magasságát veszi fel, nincs üres tér */
 body.p-muemlek .m-band{display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1fr);
   gap:clamp(2rem,5vw,4.5rem);align-items:stretch;margin-bottom:clamp(3.5rem,9vh,7rem)}
 body.p-muemlek .m-band figure{display:flex;flex-direction:column;height:100%;min-height:0}
@@ -79,7 +73,6 @@ body.p-muemlek .m-band__txt{display:flex;flex-direction:column;gap:var(--sp-3);
 body.p-muemlek .m-band__txt .quote{margin-block:.2rem}
 @media(max-width:900px){body.p-muemlek .m-band{grid-template-columns:1fr}}
 
-/* zárás: gombok mellett az iratlista */
 body.p-muemlek .m-cta{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);
   gap:clamp(2rem,5vw,4.5rem);align-items:end;margin-top:var(--sp-4)}
 body.p-muemlek .m-cta__b{margin-top:0}
@@ -108,11 +101,18 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
    "email": "vacteamepitozrt@gmail.com",
    "vatID": "14658022-2-13",
    "taxID": "14658022-2-13",
-   "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "Cégjegyzékszám",
-    "value": "13-10-042476"
-   },
+   "identifier": [
+    {
+     "@type": "PropertyValue",
+     "propertyID": "Cégjegyzékszám",
+     "value": "13-10-042476"
+    },
+    {
+     "@type": "PropertyValue",
+     "propertyID": "MKIK építőipari kivitelezői névjegyzék, nyilvántartási szám",
+     "value": "26B79262"
+    }
+   ],
    "foundingDate": "2009",
    "address": {
     "@type": "PostalAddress",
@@ -129,7 +129,7 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
     },
     {
      "@type": "AdministrativeArea",
-     "name": "Budapesti agglomeráció"
+     "name": "Pest megye"
     }
    ],
    "employee": {
@@ -139,11 +139,15 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
    },
    "knowsAbout": [
     "generálkivitelezés",
+    "társasház kivitelezés",
     "monolit vasbeton szerkezetépítés",
     "foghíjbeépítés",
-    "tetőtér-ráépítés",
-    "műemléki homlokzat-helyreállítás",
-    "csarnoképítés"
+    "tetőtér-beépítés",
+    "emeletráépítés",
+    "homlokzat-felújítás",
+    "műemlék homlokzat-felújítás",
+    "csarnoképítés",
+    "építőipari projektmenedzsment"
    ],
    "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -153,42 +157,48 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Generálkivitelezés"
+       "name": "Generálkivitelezés",
+       "url": "https://vacteam.hu/hogyan-epitunk#general"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Monolit vasbeton szerkezetépítés"
+       "name": "Monolit vasbeton szerkezetépítés",
+       "url": "https://vacteam.hu/hogyan-epitunk#szerkezet"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Foghíjbeépítés"
+       "name": "Foghíjbeépítés",
+       "url": "https://vacteam.hu/foghij"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Tetőtér-ráépítés"
+       "name": "Tetőtér-beépítés és emeletráépítés",
+       "url": "https://vacteam.hu/foghij#tetoter"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Műemléki homlokzat-helyreállítás"
+       "name": "Műemlék homlokzat-felújítás",
+       "url": "https://vacteam.hu/muemlek"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Csarnok és iparterület"
+       "name": "Csarnok és iparterület",
+       "url": "https://vacteam.hu/mit-epitunk#csarnok"
       }
      }
     ]
@@ -235,8 +245,8 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
    "@type": "WebPage",
    "@id": "https://vacteam.hu/muemlek#oldal",
    "url": "https://vacteam.hu/muemlek",
-   "name": "Műemléki homlokzat-helyreállítás Budapesten · VAC-Team",
-   "description": "Műemléki és védett homlokzatok helyreállítása a pesti belvárosban: restaurátori kutatás, tagozatpótlás, kőkonzerválás, örökségvédelmi engedély.",
+   "name": "Műemlék és társasház homlokzat-felújítás · VAC-Team",
+   "description": "Műemlék homlokzat-felújítás és helyreállítás, társasház homlokzat-felújítás Budapesten: restaurátori kutatás, tagozatpótlás, örökségvédelmi engedély.",
    "inLanguage": "hu",
    "isPartOf": {
     "@id": "https://vacteam.hu/#web"
@@ -246,15 +256,21 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
     "@id": "https://vacteam.hu/#ceg",
     "name": "VAC-Team Építő Zrt."
    },
-   "dateModified": "2026-10-13",
+   "dateModified": "2026-11-02",
    "breadcrumb": {
     "@id": "https://vacteam.hu/muemlek#morzsa"
+   },
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://vacteam.hu/media/og/og-muemlek.jpg",
+    "width": 1200,
+    "height": 630
    }
   },
   {
    "@type": "Service",
    "@id": "https://vacteam.hu/muemlek#szolgaltatas",
-   "name": "Műemléki homlokzat-helyreállítás",
+   "name": "Műemlék homlokzat-felújítás és helyreállítás",
    "url": "https://vacteam.hu/muemlek",
    "provider": {
     "@type": "GeneralContractor",
@@ -268,9 +284,11 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
     },
     {
      "@type": "AdministrativeArea",
-     "name": "Budapesti agglomeráció"
+     "name": "Pest megye"
     }
-   ]
+   ],
+   "description": "Műemléki és védett homlokzatok felújítása és helyreállítása restaurátori kutatással, tagozatpótlással, kőkonzerválással és örökségvédelmi engedéllyel.",
+   "serviceType": "Műemlék homlokzat-felújítás és helyreállítás"
   }
  ]
 }
@@ -279,6 +297,7 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
 <body class="p-muemlek">
 
 <!-- CHROME:NAV:start -->
+<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
 <nav class="nav">
   <div class="nav__in">
     <a href="./" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
@@ -309,8 +328,7 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
 </div>
 <!-- CHROME:NAV:end -->
 
-<!-- ======================= ALOLDALI HERO ======================= -->
-<header class="phero wrap">
+<header class="phero phero--cover wrap" id="tartalom">
   <p class="phero__crumb lab">
     <a href="./">Főoldal</a><i>/</i>
     <a href="mit-epitunk">Mit építünk</a><i>/</i>
@@ -325,12 +343,11 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
   <div class="phero__rule"></div>
 </header>
 
-<!-- ======================= SIGNATURE: SÚROLÓFÉNY ======================= -->
 <div class="raketrack" data-rake-track>
   <div class="raketrack__stick">
     <div class="rake" data-rake>
       <div class="rake__layer">
-        <img width="1600" height="2400" src="media/projektek/ba-homlokzat-elotte.webp" srcset="media/projektek/ba-homlokzat-elotte-m.webp 800w, media/projektek/ba-homlokzat-elotte.webp 1600w" sizes="100vw" alt="Eklektikus pesti homlokzat a helyreállítás előtti, megfakult állapotában" fetchpriority="high">
+        <img width="1600" height="2400" src="media/projektek/ba-homlokzat-elotte.webp" srcset="media/projektek/ba-homlokzat-elotte-m.webp 800w, media/projektek/ba-homlokzat-elotte.webp 1600w" sizes="100vw" alt="Eklektikus pesti homlokzat a helyreállítás előtti, megfakult állapotában">
       </div>
       <div class="rake__after">
         <img width="1600" height="2400" src="media/projektek/ba-homlokzat-utana.webp" srcset="media/projektek/ba-homlokzat-utana-m.webp 800w, media/projektek/ba-homlokzat-utana.webp 1600w" sizes="100vw" alt="Ugyanaz a homlokzat a helyreállítás után, esti aranyfényben">
@@ -348,7 +365,6 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
   </div>
 </div>
 
-<!-- ======================= 01 · A FALSZÖVET (világos világ) ======================= -->
 <section class="sect light">
   <div class="wrap">
     <p class="lab lab-rule" data-in>01 / A falszövet</p>
@@ -388,7 +404,6 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
   </div>
 </section>
 
-<!-- ======================= 02 · A HELYREÁLLÍTÁS MENETE ======================= -->
 <section class="sect wrap">
   <div class="shd">
     <h2 class="shd__t" data-in>A helyreállítás menete</h2>
@@ -428,7 +443,6 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
   </div>
 </section>
 
-<!-- ======================= 03 · SZAKÉRTŐI KÖR ======================= -->
 <section class="sect wrap m-kor">
   <div class="shd">
     <h2 class="shd__t" data-in>Állandó szakértői kör</h2>
@@ -477,7 +491,6 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
   </div>
 </section>
 
-<!-- ======================= 04 · TAGOZAT-SÁV ÉS REFERENCIA ======================= -->
 <section class="sect wrap">
   <div class="m-band">
     <figure class="shot" data-in>
@@ -509,7 +522,6 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
   </div>
 </section>
 
-<!-- ======================= 05 · ZÁRÁS ======================= -->
 <section class="sect wrap s-cta">
   <p class="lab lab-rule" data-in>Projekt-egyeztetés</p>
   <h2 class="s-cta__t mask">
@@ -545,7 +557,7 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
           szerkezetépítés Budapesten és az agglomerációban.</p>
       </div>
       <div class="foot__col">
-        <h4>Szakterületek</h4>
+        <h2 class="foot__h">Szakterületek</h2>
         <a href="hogyan-epitunk#general">Generálkivitelezés</a>
         <a href="hogyan-epitunk#szerkezet">Szerkezetépítés</a>
         <a href="foghij">Foghíjbeépítés</a>
@@ -554,7 +566,7 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
         <a href="mit-epitunk#csarnok">Csarnok és ipari</a>
       </div>
       <div class="foot__col">
-        <h4>Oldalak</h4>
+        <h2 class="foot__h">Oldalak</h2>
         <a href="mit-epitunk">Mit építünk</a>
         <a href="hogyan-epitunk">Hogyan építünk</a>
         <a href="referenciak">Referenciák</a>
@@ -563,7 +575,7 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
         <a href="kapcsolat">Kapcsolat</a>
       </div>
       <div class="foot__col">
-        <h4>Cégadatok</h4>
+        <h2 class="foot__h">Cégadatok</h2>
         <span class="foot__mono">VAC-Team Építő Zrt.</span>
         <span class="foot__mono">Cg. 13-10-042476</span>
         <span class="foot__mono">Adószám 14658022-2-13</span>
@@ -590,6 +602,6 @@ body.p-muemlek .m-cta .lab{margin-bottom:var(--sp-2)}
 <script src="js/vendor/gsap.min.js" defer></script>
 <script src="js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="js/vendor/lenis.min.js" defer></script>
-<script src="js/app.js?v=20261102e" defer></script>
+<script src="js/app.js?v=20261102h" defer></script>
 </body>
 </html>

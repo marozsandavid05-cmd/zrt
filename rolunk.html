@@ -15,26 +15,23 @@
 <meta property="og:title" content="Rólunk: a cég, a vezetés és a háttér · VAC-Team Építő Zrt.">
 <meta property="og:description" content="Cégadatot bárki lekérdez. Ezért mi mondjuk el előbb: idővonal, munkamódszer, állandó partneri kör, teljes törzsadat.">
 <meta property="og:url" content="https://vacteam.hu/rolunk">
-<meta property="og:image" content="https://vacteam.hu/media/og-kep.jpg">
+<meta property="og:image" content="https://vacteam.hu/media/og/og-rolunk.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="VAC-Team Építő Zrt., generálkivitelezés és szerkezetépítés a pesti belvárosban">
+<meta property="og:image:alt" content="Toronydaruk egy belvárosi építkezés fölött, alkonyati fényben">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Rólunk: a cég, a vezetés és a háttér · VAC-Team Építő Zrt.">
 <meta name="twitter:description" content="Cégadatot bárki lekérdez. Ezért mi mondjuk el előbb: idővonal, munkamódszer, állandó partneri kör, teljes törzsadat.">
-<meta name="twitter:image" content="https://vacteam.hu/media/og-kep.jpg">
+<meta name="twitter:image" content="https://vacteam.hu/media/og/og-rolunk.jpg">
 <meta name="theme-color" content="#1A1714">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="css/style.css?v=20261102e">
+<link rel="stylesheet" href="css/style.css?v=20261102h">
 <style>
-/* ---- oldal-szkópolt: „idővonal és tisztázás" (minden szelektor body.p-rolunk) ---- */
-
 body.p-rolunk .mk{margin-bottom:var(--sp-3)}
 
-/* nyitó sáv: az idézet és a hozzá tartozó tisztázás egy sorban, alul igazítva */
 body.p-rolunk .op{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);
   gap:var(--sp-4) clamp(2rem,6vw,6rem);align-items:end;
   padding-bottom:clamp(2.2rem,6vh,4rem);border-bottom:1px solid var(--line)}
@@ -44,7 +41,6 @@ body.p-rolunk .op__x p+p{margin-top:var(--sp-2)}
   body.p-rolunk .op{grid-template-columns:1fr;align-items:start;gap:var(--sp-4)}
 }
 
-/* IDŐVONAL: a gerinc egy hajszálvonal, a szerkezetet az évszám viszi */
 body.p-rolunk .tl{border-top:1px solid var(--line-dark)}
 body.p-rolunk .tl__r{display:grid;grid-template-columns:minmax(0,12rem) minmax(0,1fr);
   gap:clamp(1rem,2.4vw,2.2rem);padding-block:clamp(2rem,5.5vh,3.4rem);
@@ -66,7 +62,6 @@ body.p-rolunk .tl__foot{margin-top:clamp(2rem,5vh,3.2rem);display:grid;
   body.p-rolunk .tl__foot{grid-template-columns:1fr;gap:var(--sp-2)}
 }
 
-/* helyszíni felvétel a munkamódszer alatt: a saját fotó csak kicsiben */
 body.p-rolunk .ev{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);
   gap:clamp(1.4rem,4vw,3.5rem);align-items:center;margin-top:clamp(2.5rem,6vh,4rem);
   padding-top:clamp(1.8rem,5vh,3rem);border-top:1px solid var(--line)}
@@ -79,7 +74,6 @@ body.p-rolunk .ev .lab-rule{margin-bottom:var(--sp-2)}
   body.p-rolunk .ev figure{max-width:330px}
 }
 
-/* partneri kör: sor, két oszlopos indoklással. Nem logófal, nem kártyarács */
 body.p-rolunk .prt{border-top:1px solid var(--line)}
 body.p-rolunk .prt__r{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);
   gap:1.1rem clamp(1.5rem,5vw,4.5rem);align-items:start;
@@ -94,7 +88,6 @@ body.p-rolunk .prt__k p{font-size:.94rem;margin-top:.55rem}
   body.p-rolunk .prt__k{grid-template-columns:1fr;gap:1.1rem}
 }
 
-/* zárás: fotó, törzsadat, jegyzet */
 body.p-rolunk .fin{margin-top:clamp(2.5rem,6vh,4rem)}
 body.p-rolunk .co{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
   gap:var(--sp-4) clamp(2rem,6vw,5rem);align-items:center}
@@ -128,11 +121,18 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
    "email": "vacteamepitozrt@gmail.com",
    "vatID": "14658022-2-13",
    "taxID": "14658022-2-13",
-   "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "Cégjegyzékszám",
-    "value": "13-10-042476"
-   },
+   "identifier": [
+    {
+     "@type": "PropertyValue",
+     "propertyID": "Cégjegyzékszám",
+     "value": "13-10-042476"
+    },
+    {
+     "@type": "PropertyValue",
+     "propertyID": "MKIK építőipari kivitelezői névjegyzék, nyilvántartási szám",
+     "value": "26B79262"
+    }
+   ],
    "foundingDate": "2009",
    "address": {
     "@type": "PostalAddress",
@@ -149,7 +149,7 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
     },
     {
      "@type": "AdministrativeArea",
-     "name": "Budapesti agglomeráció"
+     "name": "Pest megye"
     }
    ],
    "employee": {
@@ -159,11 +159,15 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
    },
    "knowsAbout": [
     "generálkivitelezés",
+    "társasház kivitelezés",
     "monolit vasbeton szerkezetépítés",
     "foghíjbeépítés",
-    "tetőtér-ráépítés",
-    "műemléki homlokzat-helyreállítás",
-    "csarnoképítés"
+    "tetőtér-beépítés",
+    "emeletráépítés",
+    "homlokzat-felújítás",
+    "műemlék homlokzat-felújítás",
+    "csarnoképítés",
+    "építőipari projektmenedzsment"
    ],
    "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -173,42 +177,48 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Generálkivitelezés"
+       "name": "Generálkivitelezés",
+       "url": "https://vacteam.hu/hogyan-epitunk#general"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Monolit vasbeton szerkezetépítés"
+       "name": "Monolit vasbeton szerkezetépítés",
+       "url": "https://vacteam.hu/hogyan-epitunk#szerkezet"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Foghíjbeépítés"
+       "name": "Foghíjbeépítés",
+       "url": "https://vacteam.hu/foghij"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Tetőtér-ráépítés"
+       "name": "Tetőtér-beépítés és emeletráépítés",
+       "url": "https://vacteam.hu/foghij#tetoter"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Műemléki homlokzat-helyreállítás"
+       "name": "Műemlék homlokzat-felújítás",
+       "url": "https://vacteam.hu/muemlek"
       }
      },
      {
       "@type": "Offer",
       "itemOffered": {
        "@type": "Service",
-       "name": "Csarnok és iparterület"
+       "name": "Csarnok és iparterület",
+       "url": "https://vacteam.hu/mit-epitunk#csarnok"
       }
      }
     ]
@@ -260,9 +270,15 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
     "@id": "https://vacteam.hu/#ceg",
     "name": "VAC-Team Építő Zrt."
    },
-   "dateModified": "2026-10-13",
+   "dateModified": "2026-11-02",
    "breadcrumb": {
     "@id": "https://vacteam.hu/rolunk#morzsa"
+   },
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://vacteam.hu/media/og/og-rolunk.jpg",
+    "width": 1200,
+    "height": 630
    }
   }
  ]
@@ -272,6 +288,7 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
 <body class="p-rolunk">
 
 <!-- CHROME:NAV:start -->
+<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
 <nav class="nav">
   <div class="nav__in">
     <a href="./" class="brand"><b>VAC-TEAM</b><span>Építő Zrt.</span></a>
@@ -302,8 +319,7 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
 </div>
 <!-- CHROME:NAV:end -->
 
-<!-- ======================= OLDAL-FEJ ======================= -->
-<header class="phero wrap">
+<header class="phero wrap" id="tartalom">
   <p class="phero__crumb lab" data-in>
     <a href="./">Főoldal</a><i>/</i><span>Rólunk</span>
   </p>
@@ -317,7 +333,6 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
   <div class="phero__rule"></div>
 </header>
 
-<!-- ======================= NYITÁS: A RÖVID VÁLTOZAT ======================= -->
 <section class="sect wrap">
   <p class="lab lab-rule mk" data-in>A rövid változat</p>
   <div class="op">
@@ -336,7 +351,6 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
   </div>
 </section>
 
-<!-- ======================= IDŐVONAL (világos világ) ======================= -->
 <section class="sect light">
   <div class="wrap">
     <p class="lab lab-rule mk" data-in>Idővonal</p>
@@ -432,7 +446,6 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
   </div>
 </section>
 
-<!-- ======================= MUNKAMÓDSZER ======================= -->
 <section class="sect wrap">
   <p class="lab lab-rule mk" data-in>Munkamódszer</p>
   <div class="shd">
@@ -490,7 +503,6 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
   </div>
 </section>
 
-<!-- ======================= ÁLLANDÓ PARTNERI KÖR ======================= -->
 <section class="sect wrap">
   <p class="lab lab-rule mk" data-in>Partnerek</p>
   <div class="shd">
@@ -581,7 +593,6 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
   </div>
 </section>
 
-<!-- ======================= ZÁRÁS: FOTÓ, TÖRZSADAT, EGYEZTETÉS ======================= -->
 <section class="sect wrap">
   <figure class="shot" data-in>
     <img width="1600" height="1066" src="media/szolgaltatasok/daru-belvaros.webp" loading="lazy"
@@ -652,7 +663,7 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
           szerkezetépítés Budapesten és az agglomerációban.</p>
       </div>
       <div class="foot__col">
-        <h4>Szakterületek</h4>
+        <h2 class="foot__h">Szakterületek</h2>
         <a href="hogyan-epitunk#general">Generálkivitelezés</a>
         <a href="hogyan-epitunk#szerkezet">Szerkezetépítés</a>
         <a href="foghij">Foghíjbeépítés</a>
@@ -661,7 +672,7 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
         <a href="mit-epitunk#csarnok">Csarnok és ipari</a>
       </div>
       <div class="foot__col">
-        <h4>Oldalak</h4>
+        <h2 class="foot__h">Oldalak</h2>
         <a href="mit-epitunk">Mit építünk</a>
         <a href="hogyan-epitunk">Hogyan építünk</a>
         <a href="referenciak">Referenciák</a>
@@ -670,7 +681,7 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
         <a href="kapcsolat">Kapcsolat</a>
       </div>
       <div class="foot__col">
-        <h4>Cégadatok</h4>
+        <h2 class="foot__h">Cégadatok</h2>
         <span class="foot__mono">VAC-Team Építő Zrt.</span>
         <span class="foot__mono">Cg. 13-10-042476</span>
         <span class="foot__mono">Adószám 14658022-2-13</span>
@@ -697,6 +708,6 @@ body.p-rolunk .dat .vl{font-family:var(--mono);font-size:.8rem;letter-spacing:.0
 <script src="js/vendor/gsap.min.js" defer></script>
 <script src="js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="js/vendor/lenis.min.js" defer></script>
-<script src="js/app.js?v=20261102e" defer></script>
+<script src="js/app.js?v=20261102h" defer></script>
 </body>
 </html>

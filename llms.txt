@@ -1,35 +1,57 @@
 # VAC-Team Építő Zrt.
 
-> Generálkivitelezés és monolit vasbeton szerkezetépítés Budapesten és a budapesti agglomerációban. 8-50 lakásos társasházak, foghíjbeépítés, tetőtér-ráépítés lakott ház fölé, műemléki homlokzat-helyreállítás és csarnok, beruházóknak és ingatlanfejlesztőknek.
+> Generálkivitelező Budapesten és Pest megyében, beruházóknak és ingatlanfejlesztőknek. Társasház-kivitelezés 8-50 lakásig, monolit vasbeton szerkezetépítés, foghíjbeépítés, tetőtér-beépítés és emeletráépítés lakott társasház fölött, műemlék és társasház homlokzat-felújítás, csarnoképítés.
 
 ## Cégadatok
 
 - Cégnév: VAC-Team Építő Zrt. (VAC-Team Építő Zártkörűen Működő Részvénytársaság)
 - Cégjegyzékszám: 13-10-042476
 - Adószám: 14658022-2-13
-- Székhely: 2161 Csomád, Kossuth Lajos út 79. (a cégnek nincs budapesti irodája)
-- Működési terület: Budapest (főként V., VI., VII., VIII. és IX. kerület) és agglomeráció
+- MKIK építőipari kivitelezői névjegyzék, nyilvántartási szám: 26B79262
+- Székhely: 2161 Csomád, Kossuth Lajos út 79. (Pest megye; a cégnek nincs budapesti irodája)
+- Működési terület: Budapest (főként V., VI., VII., VIII. és IX. kerület) és Pest megye
 - Vezérigazgató: Antal-Köz Csaba
 - Telefon: +36 70 403 7217
 - E-mail: vacteamepitozrt@gmail.com
 - A társaságot 2009-ben jegyezték be, építőipari profilja a 2023-as tulajdonosváltástól él. A szakmai tapasztalat a vezetők személyéhez és korábbi cégeikhez kötődik.
 
+## Szolgáltatások
+
+- Generálkivitelezés: alapozástól a kulcsátadásig, egy felelős műszaki vezetővel, 8-50 lakásos társasházig.
+- Monolit vasbeton szerkezetépítés: szerkezetkész, vízhatlan épületig, fix áron; mélyépítés és alapozás.
+- Foghíjbeépítés: zártsorú foghíjtelek beépítése két tűzfal között, közterületről szervezett organizációval.
+- Tetőtér-beépítés és emeletráépítés: lakott társasház fölé, a lakók kiköltözése nélkül.
+- Homlokzat-felújítás: műemlék és védett homlokzat felújítása és helyreállítása restaurátori kutatással, tagozatpótlással, örökségvédelmi engedéllyel; társasház homlokzat-felújítás.
+- Csarnoképítés, ipari és sportlétesítmény, irodaház.
+- Építőipari projektmenedzsment.
+
 ## Hogyan dolgozunk
 
 - Két ütemű szerződés: az első ütem fix áron a szerkezetkész, vízhatlan épületig, a második a kulcsátadásig, a tényleges piaci árakon. Banki finanszírozásnál a teljes generálkivitelezés kérésre egy szerződésben.
-- Kivitelezői felelősségbiztosítás: 100 millió Ft. C.A.R. építés- és szerelésbiztosítási keret a Generalinál: kb. 2 milliárd Ft, projektkötésenként.
+- Kivitelezői felelősségbiztosítás: 100 millió Ft, a kamarai kötelező minimum kétszerese.
+- Építés-szerelés biztosítás (C.A.R.) a Generalinál: kb. 2 milliárd Ft-os keret, projektenként külön kötvényen (450, 750 és 900 millió Ft-os kötések).
 - Névre szóló felelős műszaki vezető, heti riport a beruházónak, írásos minőség-kapuk.
 - Nem vállalunk lakásfelújítást, egyedi családi házat és műszaki ellenőr nélküli kivitelezést.
 
+## Referenciák szakterületenként
+
+41 projekt: generálkivitelezés (3), társasházak és lakóépületek (8), tetőtér-beépítés és ráépítés (3), homlokzat- és épületfelújítás (6), szerkezetépítés (5), ipari, kereskedelmi és sportlétesítmények (5), projektmenedzsment és tervezés (9), műemléki munkák és kiemelt épületek (4). Egy projekt több szakterületbe is tartozhat. Példák: Hársfa u. 59/a. (14 lakásos társasház), Lujza u. 10. (20 lakásos társasház), Andrássy u. 64. (homlokzat-felújítás), Kapy u. 52. (tetőtér-beépítés és homlokzat-felújítás), Vajdahunyad u. 6. (alapsüllyesztés és szerkezetépítés), NKE Sportcsarnok, Gesztesi Vár állagmegőrzése.
+
+## Ellenőrizhető források
+
+- Cégkivonat: https://www.e-cegjegyzek.hu/?cegadatlap/1310042476/TaroltCegkivonat
+- MKIK kivitelezői névjegyzék keresője: https://knyr.mkik.hu/Kivreg/Nyilvantarto/Kereses
+- Beszámolók: https://e-beszamolo.im.gov.hu/oldal/beszamolo_kereses
+
 ## Oldalak
 
-- [Főoldal](https://vacteam.hu/): a cég és a szakterületek röviden
-- [Mit építünk](https://vacteam.hu/mit-epitunk): hat épülettípus, méretsávokkal
-- [Foghíjbeépítés és tetőtér-ráépítés](https://vacteam.hu/foghij): zártsorú telek két tűzfal között, ráépítés lakott ház fölé
-- [Műemléki homlokzat-helyreállítás](https://vacteam.hu/muemlek): restaurátori kutatás, tagozatpótlás, örökségvédelmi engedély
-- [Hogyan építünk](https://vacteam.hu/hogyan-epitunk): a munkamenet szakaszai, mélyépítés, organizáció, minőség-kapuk
+- [Főoldal](https://vacteam.hu/): generálkivitelező Budapesten és Pest megyében, a szakterületek röviden
+- [Mit építünk](https://vacteam.hu/mit-epitunk): társasház, foghíj, tetőtér-beépítés, homlokzat, irodaház, csarnok, méretsávokkal
+- [Foghíjbeépítés, tetőtér-beépítés és emeletráépítés](https://vacteam.hu/foghij): zártsorú telek két tűzfal között, emeletráépítés lakott társasház fölé
+- [Műemlék homlokzat-felújítás](https://vacteam.hu/muemlek): restaurátori kutatás, tagozatpótlás, örökségvédelmi engedély
+- [Hogyan építünk](https://vacteam.hu/hogyan-epitunk): generálkivitelezés két ütemben, monolit vasbeton szerkezetépítés, mélyépítés, minőség-kapuk
 - [Referenciák](https://vacteam.hu/referenciak): 41 projekt nyolc szakterületen, a munka nehézségével és a Facebook-albumok linkjével
-- [Számok](https://vacteam.hu/szamok): fedezet, cégadat és a közhiteles nyilvántartások linkjei
+- [Számok](https://vacteam.hu/szamok): felelősségbiztosítás, építés-szerelés biztosítás, cégadat és a közhiteles nyilvántartások linkjei
 - [Rólunk](https://vacteam.hu/rolunk): cégtörténet, munkamódszer, állandó partneri kör
 - [Kapcsolat](https://vacteam.hu/kapcsolat): telefon, e-mail, kapcsolati űrlap
 
