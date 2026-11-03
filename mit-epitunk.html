@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="css/style.css?v=20261102h">
+<link rel="stylesheet" href="css/style.css?v=20261103a">
 <style>
 body.p-mit .corr__track{padding-block:clamp(1.25rem,3.5vh,2.6rem);align-items:flex-start}
 body.p-mit .corr__p{flex:0 0 min(82vw,440px);gap:.85rem;padding-top:var(--sp-3)}
@@ -39,6 +39,24 @@ body.p-mit .corr__p .btn{margin-top:.2rem}
 body.p-mit .corr__hint{display:flex;justify-content:space-between;align-items:baseline;
   gap:1rem var(--sp-4);flex-wrap:wrap;padding-top:var(--sp-3)}
 body.p-mit .corr__note{padding-top:var(--sp-2)}
+
+@media(min-width:701px){
+  body.p-mit .phero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto minmax(var(--sp-3),1fr) auto auto auto auto;
+    padding-top:calc(var(--nav-h) + clamp(1.5rem,5vh,4rem));padding-bottom:clamp(1.4rem,4vh,3rem)}
+  body.p-mit .phero__crumb{grid-row:1;margin-bottom:0}
+  body.p-mit .phero__t{grid-row:3;max-width:none;line-height:1.08;white-space:nowrap;
+    font-size:min(calc((min(100vw,var(--maxw)) - 2 * var(--gut)) / 4.9),calc((100svh - var(--nav-h)) * .29))}
+  body.p-mit .phero__x{grid-row:4;margin-top:clamp(1.2rem,3vh,2.2rem);max-width:52ch}
+  body.p-mit .phero__rule{grid-row:5;margin-top:clamp(1.4rem,4vh,3rem)}
+  body.p-mit .phero .corr__hint{grid-row:6}
+}
+@media(min-width:1000px){
+  body.p-mit .phero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(2rem,5vw,5rem)}
+  body.p-mit .phero__crumb,body.p-mit .phero__t,body.p-mit .phero__rule,
+  body.p-mit .phero .corr__hint{grid-column:1/-1}
+  body.p-mit .phero__x{grid-row:2;grid-column:2;align-self:center;margin-block:var(--sp-3);max-width:46ch}
+}
 
 body.p-mit .mit-size{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
   gap:var(--sp-4) clamp(2rem,6vw,5rem);align-items:start;margin-bottom:clamp(2.5rem,6vh,4rem)}
@@ -560,6 +578,6 @@ body.p-mit .mit-geo p+p{margin-top:var(--sp-2)}
 <script src="js/vendor/gsap.min.js" defer></script>
 <script src="js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="js/vendor/lenis.min.js" defer></script>
-<script src="js/app.js?v=20261102h" defer></script>
+<script src="js/app.js?v=20261103a" defer></script>
 </body>
 </html>
