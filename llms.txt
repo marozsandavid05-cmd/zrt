@@ -9,7 +9,7 @@
 - Adószám: 14658022-2-13
 - MKIK építőipari kivitelezői névjegyzék, nyilvántartási szám: 26B79262
 - Székhely: 2161 Csomád, Kossuth Lajos út 79. (Pest megye; a cégnek nincs budapesti irodája)
-- Működési terület: Budapest (főként V., VI., VII., VIII. és IX. kerület) és Pest megye
+- Működési terület: főként Budapest (V., VI., VII., VIII. és IX. kerület) és Pest megye; izgalmasabb projektek távolabb is voltak, például Várgesztes, Győr, Szeged
 - Vezérigazgató: Antal-Köz Csaba
 - Telefon: +36 70 403 7217
 - E-mail: vacteamepitozrt@gmail.com
@@ -27,7 +27,7 @@
 
 ## Hogyan dolgozunk
 
-- Két ütemű szerződés: az első ütem fix áron a szerkezetkész, vízhatlan épületig, a második a kulcsátadásig, a tényleges piaci árakon. Banki finanszírozásnál a teljes generálkivitelezés kérésre egy szerződésben.
+- Két ütemű szerződés: az első fix áron a szerkezetkész, vízhatlan épületig, a második egy újabb árkalkulációval (aktuális piaci árakkal) fix áron a kulcsátadásig. Banki finanszírozás esetén a teljes generálkivitelezés egy szerződésben.
 - Kivitelezői felelősségbiztosítás: 100 millió Ft, a kamarai kötelező minimum kétszerese.
 - Építés-szerelés biztosítás (C.A.R.) a Generalinál: kb. 2 milliárd Ft-os keret, projektenként külön kötvényen (450, 750 és 900 millió Ft-os kötések).
 - Névre szóló felelős műszaki vezető, heti riport a beruházónak, írásos minőség-kapuk.
@@ -42,6 +42,29 @@
 - Cégkivonat: https://www.e-cegjegyzek.hu/?cegadatlap/1310042476/TaroltCegkivonat
 - MKIK kivitelezői névjegyzék keresője: https://knyr.mkik.hu/Kivreg/Nyilvantarto/Kereses
 - Beszámolók: https://e-beszamolo.im.gov.hu/oldal/beszamolo_kereses
+- Cégnyilvántartó rendszerek (pl. Nemzeti Cégtár, OPTEN, Company Wall)
+
+## Rövid kérdések és válaszok
+
+Mit csinál a generálkivitelező?
+A teljes kivitelezést egy szerződésben vállalja, az alapozástól a kulcsátadásig, és egyedül felel a határidőért és a minőségért. Felelőssége az átadás utáni időszakra is kiterjed, garanciák formájában. A generálkivitelező a felelőse minden olyan munkanemnek, amely a megvalósításhoz szükséges (ideértve a járulékos tevékenységeket is [pl. organizáció, hatósági ügyintézések, munkavédelmi- és ideiglenes létesítmények], valamint az anyagszállítások). Nálunk a felelős műszaki vezető (FMV) neve a szerződésben szerepel.
+
+Generálkivitelezés egyben vagy két ütemben?
+Két szerződésben dolgozunk: az első fix áron a szerkezetkész, vízhatlan épületig, a második egy újabb árkalkulációval (aktuális piaci árakkal) fix áron a kulcsátadásig. Banki finanszírozás esetén a teljes generálkivitelezést egy szerződésben vállaljuk.
+
+Mik a társasházi tetőtér-beépítés feltételei?
+Négy fő kérdésnek kell rendben lennie, mielőtt árat adunk:
+- jogi feltételek: hatósági engedélyek, társasházi határozat, tulajdoni rendezés, albetétesítés
+- statikai feltételek: a meglévő falak, födémek és alapok tartaléka, szomszédos épületek állapota
+- előkészítettség: építési engedély, engedélyes tervek, kiviteli tervek, részlettervek, konszignációk, esetleg költségvetés kiírás, szomszédos ingatlanok állapotának felmérése
+- organizációs feltételek: ideiglenes energiaellátás kiépítésének lehetősége, áruforgalom hogyan biztosítható, az ingatlanok lakói/üzemeltetői bent maradnak-e a kivitelezés folyamán, függőleges anyagmozgatási lehetőségek.
+
+Hogyan ellenőrizhető egy kivitelező?
+Négy nyilvános, díjmentes nyilvántartásban:
+- MKIK építőipari kivitelezői névjegyzékében (a VAC-Team nyilvántartási száma: 26B79262): https://knyr.mkik.hu/Kivreg/Nyilvantarto/Kereses. Mellette érdemes megkérdezni a kivitelezői felelősségbiztosítás összegét, a VAC-Team esetében ez 100 millió Ft (a kamara oldalán ez is ellenőrizhető, a Keresés és a cég kiválasztása után válassza a „FELELŐSSÉGBIZTOSÍTÁS ADATOK” fület).
+- Cégkivonatban: https://www.e-cegjegyzek.hu/?cegkereses
+- e-beszámoló oldalon: https://e-beszamolo.im.gov.hu/oldal/kezdolap
+- Cégnyilvántartó rendszerekben (pl. Nemzeti Cégtár, OPTEN, Company Wall stb.).
 
 ## Oldalak
 
